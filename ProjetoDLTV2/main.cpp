@@ -12,7 +12,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(640, 480), "SFML works!");
     sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Blue);
+    shape.setFillColor(sf::Color::Red);
 
     while (window.isOpen())
     {
