@@ -1,31 +1,23 @@
 //includes e bibliotecas
-#include <iostream>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+#include "Game.h"
 
 
+//**MAIN**
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Red);
+    //Inicializando o jogo
+    Game game;
 
-    while (window.isOpen())
+    //Game loop
+    while (game.getIsWindowOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        //Update
+        game.update();
+
+        //Render
+        game.render();
+
     }
 
     return 0;
