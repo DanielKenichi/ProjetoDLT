@@ -16,7 +16,7 @@ Game::~Game()
 
 //**getters**
 
-//getIsWindowOpen():: Retorna true caso a janela do jogo esteja aberta, e false caso contrário
+//getIsWindowOpen(): Retorna true caso a janela do jogo esteja aberta, e false caso contrário
 const bool Game::getIsWindowOpen()
 {
 	return this->window->isOpen();
