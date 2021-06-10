@@ -4,7 +4,6 @@
 //**Construtores e destrutores**
 Game::Game()
 {
-	std::cout << "Jogo Inicializado" << std::endl;
 	this->InitializeVariables();
 	this->InitializeWindow();
 }
@@ -40,7 +39,7 @@ void Game::update()
 //render(): Renderiza os objetos do jogo
 void Game::render()
 {
-	this->window->clear(); //limpa o frame antigo
+	this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
 	this->window->display(); //Exibe na tela o desenho realizado no frame
 
@@ -63,6 +62,12 @@ void Game::InitializeWindow()
 	this->videoMode.width = 800;
 
 	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
-
+	
+	//Carrega e seta a imagem do jogo
+	sf::Image icon;
+	if(!icon.loadFromFile("src/resources/icon.png")){ //Imagem quadrada 128x128
+		std::cout<<"Falha na leitura do ícone" << std::endl;
+	}
+	this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
