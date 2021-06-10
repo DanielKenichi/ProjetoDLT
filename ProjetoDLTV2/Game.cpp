@@ -1,9 +1,10 @@
 #include "Game.h"
-
+#include <stdio.h>
 
 //**Construtores e destrutores**
 Game::Game()
 {
+	std::cout << "Jogo Inicializado" << std::endl;
 	this->InitializeVariables();
 	this->InitializeWindow();
 }
@@ -16,14 +17,14 @@ Game::~Game()
 
 //**getters**
 
-//getIsWindowOpen(): Retorna true caso a janela do jogo esteja aberta, e false caso contrário
+//getIsWindowOpen(): Retorna true caso a janela do jogo esteja aberta, e false caso contrÃ¡rio
 const bool Game::getIsWindowOpen()
 {
 	return this->window->isOpen();
 }
 
 
-//**Métodos Públicos**
+//**MÃ©todos PÃºblicos**
 
 //update():Atualiza os frames do jogo
 void Game::update()
@@ -47,15 +48,15 @@ void Game::render()
 }
 
 
-//**Métodos Privados**
+//**MÃ©todos Privados**
 
-//InitializeVariables() : Inicializa as variáveis iniciais
+//InitializeVariables() : Inicializa as variÃ¡veis iniciais
 void Game::InitializeVariables()
 {
 	this->window = nullptr;
 }
 
-//InitializeWindow(): Inicializa a janela com as especificações necessárias
+//InitializeWindow(): Inicializa a janela com as especificaÃ§Ãµes necessÃ¡rias
 void Game::InitializeWindow()
 {
 	this->videoMode.height = 600;
