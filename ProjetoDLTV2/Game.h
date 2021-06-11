@@ -44,9 +44,6 @@ private:
 	void initializeVariables();
 	void initializeWindow();
 
-	sf::RenderWindow* window;//window
-	sf::Event ev;//variavel de evento
-	sf::VideoMode videoMode; //Dimensoes da janela
 	
 };
 
