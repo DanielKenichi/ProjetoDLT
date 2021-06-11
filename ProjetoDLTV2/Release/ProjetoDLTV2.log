@@ -1,8 +1,10 @@
-﻿  Game.cpp
+﻿  ObjectsQueue.cpp
+  Game.cpp
   main.cpp
+  Object.cpp
   Gerando código
-  15 of 15 functions (100.0%) were compiled.
-    11 functions were new in current compilation
+  78 of 89 functions (87.6%) were compiled, the rest were copied from previous compilation.
+    74 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Release\ProjetoDLTV2.exe

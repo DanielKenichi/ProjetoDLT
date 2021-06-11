@@ -6,21 +6,35 @@
 */
 
 //Bibliotecas e includes
-#include<iostream>
+#include <iostream>
+#include <random>
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 
 
 class Object
 {
 public:
+
+	//**Construtores e Destrutores**
+	Object();
+	~Object();
+
 	//**getters**
 
 	//**setters**
 
-
+	//**Métodos**
+	void InitializeObject();
 
 private:
-//atributos
 
+//atributos
+	sf::RectangleShape body; //Corpo improvisado pro nosso objeto
+	int Speed;
 
 
 };
