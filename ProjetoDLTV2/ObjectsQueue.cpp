@@ -12,6 +12,11 @@ ObjectsQueue::~ObjectsQueue()
 {
 }
 
+int ObjectsQueue::getTamanho()
+{
+	return this->Tamanho;
+}
+
 //InitializeQueue(): Inicializa os atributos da Fila de objetos
 
 void ObjectsQueue::InitializeQueue()
@@ -21,13 +26,17 @@ void ObjectsQueue::InitializeQueue()
 	this->NroElementos = 0;
 }
 
+/*
+* newObject(): Inicializa e insere um novo objeto na fila de objetos (sem prioridade ainda)
+*/
+
 void ObjectsQueue::newObject()
 {
-	Nodeptr Aux; //ponteiro auxiliar
+	Nodeptr Aux; 
 
 	Aux = new Node;
 
-	Aux->info.InitializeObject();
+	Aux->info.InitializeObject(); 
 
 	//Caso 1: Caso a fila esteja vazia
 	if (this->Tamanho == 0)
@@ -35,7 +44,7 @@ void ObjectsQueue::newObject()
 		this->Primeiro = Aux;
 		this->Ultimo = Aux;
 
-		Aux->Dir = Aux; 
+		Aux->Dir = Aux;
 		Aux->Esq = Aux;
 
 		this->Tamanho++;
@@ -64,4 +73,47 @@ void ObjectsQueue::newObject()
 
 		this->Ultimo = Aux;
 	}
+}
 
+Object ObjectsQueue::removeObject()
+{
+	Nodeptr Aux; 
+
+	Aux = this->Primeiro;
+
+	//Caso 1: A fila está vazia
+	if (this->Tamanho == 0)
+	{
+		std::cout << "Falha no spawn do objeto (fila vazia)" << std::endl;
+	}
+
+	//Caso 2: A fila tem apenas um elemento
+	else if (this->Tamanho == 1)
+	{
+		Aux->Dir = nullptr;
+		Aux->Esq = nullptr;
+
+		this->Primeiro = nullptr;
+		this->Ultimo = nullptr;
+
+		this->Tamanho--;
+
+		return Aux->info;
+	}
+
+	//Caso 3: A fila tem mais de um elemento
+	else if (this->Tamanho > 1)
+	{
+		this->Primeiro = (this->Primeiro)->Dir;
+
+		(this->Primeiro)->Esq = this->Ultimo;
+		(this->Ultimo)->Dir = this->Primeiro;
+
+		Aux->Dir = nullptr;
+		Aux->Esq = nullptr;
+
+		this->Tamanho--;
+
+		return Aux->info;
+	}
+}

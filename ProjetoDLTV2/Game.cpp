@@ -63,7 +63,7 @@ void Game::initializeWindow()
 	
 	//Carrega e seta a imagem do jogo
 	sf::Image icon;
-	if(!icon.loadFromFile("src/resources/icon.png")){ //Imagem quadrada 128x128
+	if(!icon.loadFromFile("resources/icon.png")){ //Imagem quadrada 128x128
 		std::cout<<"Falha na leitura do ícone" << std::endl;
 	}
 	this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());

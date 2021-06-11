@@ -36,6 +36,7 @@ public:
     //**Métodos primitivos**
      void InitializeQueue();
      void newObject();
+     Object removeObject();
 
 
 

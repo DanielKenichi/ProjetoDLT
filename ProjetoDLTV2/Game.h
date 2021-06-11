@@ -37,12 +37,17 @@ private:
 	//**Atributos**
 	sf::RenderWindow* window;//Janela de Renderização
 	sf::Event ev;//Variável de evento
-	sf::VideoMode videoMode; //Dimensões da janela
+	sf::VideoMode videoMode; //Dimensoes da janela
+
 
 	//**Métodos privados**
 	void initializeVariables();
 	void initializeWindow();
 
+	sf::RenderWindow* window;//window
+	sf::Event ev;//variavel de evento
+	sf::VideoMode videoMode; //Dimensoes da janela
+	
 };
 
 #endif // !GAME_H
