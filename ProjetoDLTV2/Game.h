@@ -24,11 +24,10 @@ public:
 	Game();
 	virtual ~Game();
 
-	//**getters**
-
+	//**Getters**
 	const bool getIsWindowOpen();
 
-	//**M�todos**
+	//**Métodos**
 	void update(); 
 	void render(); 
 
@@ -36,14 +35,13 @@ public:
 
 private:
 	//**Atributos**
+	sf::RenderWindow* window;//Janela de Renderização
+	sf::Event ev;//Variável de evento
+	sf::VideoMode videoMode; //Dimensões da janela
 
-	sf::RenderWindow* window;//window
-	sf::Event ev;//variavel de evento
-	sf::VideoMode videoMode; //Dimensoes da janela
-
-	//**M�todos privados**
-	void InitializeVariables();
-	void InitializeWindow();
+	//**Métodos privados**
+	void initializeVariables();
+	void initializeWindow();
 
 };
 

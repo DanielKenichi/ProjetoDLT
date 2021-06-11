@@ -4,17 +4,16 @@
 //**Construtores e destrutores**
 Game::Game()
 {
-	this->InitializeVariables();
-	this->InitializeWindow();
+	this->initializeVariables();
+	this->initializeWindow();
 }
 
 Game::~Game()
 {
-
 	delete this->window; 
 }
 
-//**getters**
+//**Getters**
 
 //getIsWindowOpen(): Retorna true caso a janela do jogo esteja aberta, e false caso contrário
 const bool Game::getIsWindowOpen()
@@ -43,20 +42,19 @@ void Game::render()
 
 	this->window->display(); //Exibe na tela o desenho realizado no frame
 
-
 }
 
 
 //**Métodos Privados**
 
 //InitializeVariables() : Inicializa as variáveis iniciais
-void Game::InitializeVariables()
+void Game::initializeVariables()
 {
 	this->window = nullptr;
 }
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
-void Game::InitializeWindow()
+void Game::initializeWindow()
 {
 	this->videoMode.height = 600;
 	this->videoMode.width = 800;

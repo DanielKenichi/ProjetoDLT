@@ -11,13 +11,11 @@ int main()
     //Game loop
     while (game.getIsWindowOpen())
     {
-
         //Update
         game.update();
 
         //Render
         game.render();
-
     }
 
     return 0;
