@@ -8,6 +8,7 @@
 
 //Bibliotecas e includes
 #include <iostream>
+#include "ObjectsQueue.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -38,11 +39,13 @@ private:
 	sf::RenderWindow* window;//Janela de Renderização
 	sf::Event ev;//Variável de evento
 	sf::VideoMode videoMode; //Dimensoes da janela
+	ObjectsQueue objects;
 
 
 	//**Métodos privados**
 	void initializeVariables();
 	void initializeWindow();
+	void initializeObjects();
 
 	
 };

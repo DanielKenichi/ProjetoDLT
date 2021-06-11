@@ -6,6 +6,7 @@ Game::Game()
 {
 	this->initializeVariables();
 	this->initializeWindow();
+	this->initializeObjects();
 }
 
 Game::~Game()
@@ -60,6 +61,7 @@ void Game::initializeWindow()
 	this->videoMode.width = 800;
 
 	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
+
 	
 	//Carrega e seta a imagem do jogo
 	sf::Image icon;
@@ -67,5 +69,11 @@ void Game::initializeWindow()
 		std::cout<<"Falha na leitura do ícone" << std::endl;
 	}
 	this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+}
+
+void Game::initializeObjects()
+{
+	this->objects.InitializeQueue();
+	this->objects.newObject();
 }
 

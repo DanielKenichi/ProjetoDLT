@@ -11,7 +11,7 @@ Object::~Object()
 
 void Object::InitializeObject()
 {
-	this->body.setPosition();
+	//this->body.setPosition();
 	this->body.setSize(sf::Vector2f(50.f, 50.f));
 	this->body.setFillColor(sf::Color::Cyan);
 	this->body.setOutlineColor(sf::Color::Black);
