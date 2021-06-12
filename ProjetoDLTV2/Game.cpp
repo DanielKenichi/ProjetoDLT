@@ -41,6 +41,8 @@ void Game::render()
 {
 	this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
+	this->renderEnemies();
+
 	this->window->display(); //Exibe na tela o desenho realizado no frame
 
 }
@@ -73,7 +75,16 @@ void Game::initializeWindow()
 
 void Game::initializeObjects()
 {
-	this->objects.InitializeQueue();
+	this->objects.initializeQueue();
+
 	this->objects.newObject();
+	
+}
+
+void Game::renderEnemies()
+{
+	Object object = this->objects.removeObject();
+
+	(this->window)->draw(object.getBody());
 }
 

@@ -2,24 +2,17 @@
 
 
 //**Construtores e Destrutores**
-ObjectsQueue::ObjectsQueue(int Tamanho)
+ObjectsQueue::ObjectsQueue()
 {
-	this->Tamanho = Tamanho;
-	InitializeQueue();
+	initializeQueue();
 }
 
 ObjectsQueue::~ObjectsQueue()
 {
 }
 
-int ObjectsQueue::getTamanho()
-{
-	return this->Tamanho;
-}
-
 //InitializeQueue(): Inicializa os atributos da Fila de objetos
-
-void ObjectsQueue::InitializeQueue()
+void ObjectsQueue::initializeQueue()
 {
 	this->Primeiro = nullptr;
 	this->Ultimo = nullptr;
@@ -36,42 +29,39 @@ void ObjectsQueue::newObject()
 
 	Aux = new Node;
 
-	Aux->info.InitializeObject(); 
+	Aux->info.initializeObject(); 
 
 	//Caso 1: Caso a fila esteja vazia
-	if (this->Tamanho == 0)
+	if (this->NroElementos == 0)
 	{
 		this->Primeiro = Aux;
 		this->Ultimo = Aux;
 
-		Aux->Dir = Aux;
-		Aux->Esq = Aux;
+		Aux->Next = Aux;
 
-		this->Tamanho++;
+		this->NroElementos++;
 	}
 
 	//Caso 2: Caso a fila tenha apenas um elemento
-	else if (this->Tamanho == 1)
+	else if (this->NroElementos == 1)
 	{
 		this->Ultimo = Aux;
-		(this->Primeiro)->Dir = Aux;
-		(this->Primeiro)->Esq = Aux;
+		(this->Primeiro)->Next = Aux;
 
-		Aux->Dir = this->Primeiro;
-		Aux->Esq = this->Primeiro;
+		Aux->Next = this->Primeiro;
+		this->NroElementos++;
 	}
 
 	//Caso 3: Caso tenha mais de um elemento
 
-	else if (this->Tamanho > 1)
+	else if (this->NroElementos > 1)
 	{
-		(this->Ultimo)->Dir = Aux;
-		Aux->Esq = this->Ultimo;
-
-		(this->Primeiro)->Esq = Aux;
-		Aux->Dir = this->Primeiro;
-
+		(this->Ultimo)->Next = Aux;
 		this->Ultimo = Aux;
+
+		Aux->Next = this->Primeiro;
+
+		this->NroElementos++;
 	}
 }
 
@@ -82,37 +72,35 @@ Object ObjectsQueue::removeObject()
 	Aux = this->Primeiro;
 
 	//Caso 1: A fila está vazia
-	if (this->Tamanho == 0)
+	if (this->NroElementos == 0)
 	{
 		std::cout << "Falha no spawn do objeto (fila vazia)" << std::endl;
 	}
 
 	//Caso 2: A fila tem apenas um elemento
-	else if (this->Tamanho == 1)
+	else if (this->NroElementos == 1)
 	{
-		Aux->Dir = nullptr;
-		Aux->Esq = nullptr;
+		Aux->Next = nullptr;
+
 
 		this->Primeiro = nullptr;
 		this->Ultimo = nullptr;
 
-		this->Tamanho--;
+		this->NroElementos--;
 
 		return Aux->info;
 	}
 
 	//Caso 3: A fila tem mais de um elemento
-	else if (this->Tamanho > 1)
+	else if (this->NroElementos > 1)
 	{
-		this->Primeiro = (this->Primeiro)->Dir;
+		this->Primeiro = (this->Primeiro)->Next;
 
-		(this->Primeiro)->Esq = this->Ultimo;
-		(this->Ultimo)->Dir = this->Primeiro;
+		(this->Ultimo)->Next = this->Primeiro;
 
-		Aux->Dir = nullptr;
-		Aux->Esq = nullptr;
+		Aux->Next = nullptr;
 
-		this->Tamanho--;
+		this->NroElementos--;
 
 		return Aux->info;
 	}

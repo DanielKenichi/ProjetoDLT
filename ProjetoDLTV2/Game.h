@@ -46,6 +46,7 @@ private:
 	void initializeVariables();
 	void initializeWindow();
 	void initializeObjects();
+	void renderEnemies();
 
 	
 };

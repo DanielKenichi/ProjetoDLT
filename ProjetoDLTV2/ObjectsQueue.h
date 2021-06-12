@@ -14,9 +14,7 @@
 struct Node
 {
     Object info;
-    struct Node* Dir;
-    struct Node* Esq;
-
+    struct Node* Next;
 };
 
 typedef struct Node* Nodeptr;
@@ -26,15 +24,14 @@ class ObjectsQueue {
 
 public:
     //**Construtor e destrutor**
-    ObjectsQueue(int Tamanho);
+    ObjectsQueue();
     ~ObjectsQueue();
 
-    //**métodos get ** 
-    int getTamanho();
+    //**getters** 
 
 
     //**Métodos primitivos**
-     void InitializeQueue();
+     void initializeQueue();
      void newObject();
      Object removeObject();
 
@@ -42,7 +39,6 @@ public:
 
 private:
     //**Atributos da Pilha**
-    int Tamanho;
 
     Nodeptr Primeiro;
     Nodeptr Ultimo;

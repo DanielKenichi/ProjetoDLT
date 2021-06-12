@@ -2,14 +2,19 @@
 
 Object::Object()
 {
-	InitializeObject();
+	initializeObject();
 }
 
 Object::~Object()
 {
 }
 
-void Object::InitializeObject()
+sf::RectangleShape Object::getBody()
+{
+	return this->body;
+}
+
+void Object::initializeObject()
 {
 	//this->body.setPosition();
 	this->body.setSize(sf::Vector2f(50.f, 50.f));

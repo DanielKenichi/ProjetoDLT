@@ -24,11 +24,11 @@ public:
 	~Object();
 
 	//**getters**
-
+	sf::RectangleShape getBody();
 	//**setters**
 
 	//**Métodos**
-	void InitializeObject();
+	void initializeObject();
 
 private:
 
