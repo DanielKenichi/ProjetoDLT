@@ -9,8 +9,12 @@ ObjectsList::ObjectsList()
 ObjectsList::~ObjectsList()
 {
 }
+/*getters*/
 
-Object ObjectsList::getObjects()
+/*
+* getObjects(): 
+*/
+Object ObjectsList::getObjects() /**feito para lista de um unico elemento, aprimorar para lista com mais de um elemento depois **/
 {
 	if (this->PL == NULL)
 	{

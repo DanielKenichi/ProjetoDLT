@@ -28,12 +28,9 @@ const bool Game::getIsWindowOpen()
 //update():Atualiza os frames do jogo
 void Game::update()
 {
-	//Event polling
-	while (this->window->pollEvent(this->ev))
-	{
-		if (this->ev.type == sf::Event::Closed) //Fecha a janela do jogo ao clicar no "X" da janela
-			this->window->close();
-	}
+	this->pollEvents();
+	
+	this->updateObjects();
 }
 
 //render(): Renderiza os objetos do jogo
@@ -41,7 +38,7 @@ void Game::render()
 {
 	this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
-	this->renderEnemies();
+	this->renderObjects();
 
 	this->window->display(); //Exibe na tela o desenho realizado no frame
 
@@ -63,6 +60,7 @@ void Game::initializeWindow()
 	this->videoMode.width = 800;
 
 	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
+	this->window->setFramerateLimit(60);
 
 	
 	//Carrega e seta a imagem do jogo
@@ -71,6 +69,18 @@ void Game::initializeWindow()
 		std::cout<<"Falha na leitura do ícone" << std::endl;
 	}
 	this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+}
+/*
+* pollEvents(): Verifica se a janela está aberta 
+*/
+void Game::pollEvents()
+{
+	//Event polling
+	while (this->window->pollEvent(this->ev))
+	{
+		if (this->ev.type == sf::Event::Closed) //Fecha a janela do jogo ao clicar no "X" da janela
+			this->window->close();
+	}
 }
 
 /*
@@ -88,14 +98,29 @@ void Game::initializeObjects()
 /*
 * renderEnemies(): Desenha os inimigos na tela
 */
-void Game::renderEnemies()
+void Game::renderObjects()
 {
+	(this->window)->draw(this->spawnedObjects.getObjects().getBody());
+}
+/*
+* updateObjects(): Atualiza as informações dos objetos
+*/
+void Game::updateObjects()
+{
+	sf::Vector2f pos;
 	if (this->objects.isEmpty() == false)
 	{
 		Object object = this->objects.removeObject();
 		this->spawnedObjects.newObject(&object);
 	}
+	
+	this->spawnedObjects.getObjects().moveObject();
 
-	(this->window)->draw(this->spawnedObjects.getObjects().getBody());
+	/*debug*
+	pos = this->spawnedObjects.getObjects().getBody().getPosition();
+
+	std::cout << pos.x << pos.y << std::endl;*/
 }
+
+
 

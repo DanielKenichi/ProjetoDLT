@@ -29,11 +29,13 @@ public:
 
 	//**Métodos**
 	void initializeObject();
+	void moveObject();
 
 private:
 
 //atributos
 	sf::RectangleShape body; //Corpo improvisado pro nosso objeto
+	int poskey; //determina a posição de spawn do objeto
 	int Speed;
 
 
