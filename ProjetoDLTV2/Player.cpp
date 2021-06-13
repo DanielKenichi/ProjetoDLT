@@ -14,4 +14,28 @@ Player::~Player()
 void Player::rotate(double ang)
 {
     std::cout << "Rotacionando para " << ang << "º graus" << std::endl;
+    this->spr.setRotation(ang);
+}
+
+
+double Player::getPRotation(){
+    return this->spr.getRotation();
+}
+
+void InitializeShields(bool top, bool right, bool bottom, bool left){
+    // Inicializar os sprites (procurar nos resources)
+    if(top){
+
+    }
+    if(right){
+
+    }
+    if(bottom){
+
+    }
+    if(left){
+
+    }
+    //Configurar offset de rotação -> entity.setOrigin(10.f, 20.f); (Padrão é 0, 0)
+    //Setar a rotação de cada escudo -> entity.setRotation(x); com x = 0, 90, 180, 270
 }

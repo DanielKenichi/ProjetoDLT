@@ -23,9 +23,17 @@ private:
     // Vida
     int HP;
 
+    // Escudos (4, alguns desabilitados)
+    sf::Sprite sTop;
+    sf::Sprite sBottom;
+    sf::Sprite sLeft;
+    sf::Sprite sRight;
+    void InitializeShields(bool top, bool bottom, bool left, bool right);
+
     // Sprite e funções relacionadas
-    sf::Sprite spr;
-    void rotate(double ang);
+    sf::Sprite spr; // Player
+    void rotate(double ang); // Rotacionar
+    double getPRotation(); // Get Player Rotation
 };
 
 #endif // !PLAYER_H
