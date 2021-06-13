@@ -37,6 +37,7 @@ private:
 	ObjectsList spawnedObjects;
 
 
+
 	//**Métodos privados**
 	void initializeVariables();
 	void initializeWindow();
@@ -45,6 +46,7 @@ private:
 	void updateObjects();
 	void pollEvents();
 	void generateQueue(int size);
+	void spawnObject();
 
 	
 };

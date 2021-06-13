@@ -11,6 +11,7 @@ ObjectsQueue::~ObjectsQueue()
 {
 }
 
+
 bool ObjectsQueue::isEmpty()
 {
 	if (NroElementos == 0)

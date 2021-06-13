@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <stdio.h>
 
+sf::Clock spawnTimer;
+
 //**Construtores e destrutores**
 Game::Game()
 {
@@ -83,11 +85,23 @@ void Game::pollEvents()
 	}
 }
 
+
 void Game::generateQueue(int size)
 {
 	for (int i = 0; i < size; i++)
 	{
 		this->objects.newObject();
+	}
+}
+/*
+* spawnObject(): Checa se existem objetos a serem spawnados, e se houver, o coloca na lista de spawn
+*/
+void Game::spawnObject()
+{
+	if (this->objects.isEmpty() == false)
+	{
+		Object object = this->objects.removeObject();
+		this->spawnedObjects.newObject(&object);
 	}
 }
 
@@ -121,17 +135,21 @@ void Game::renderObjects()
 */
 void Game::updateObjects()
 {
-	//ir pro spawnobjects no futuro (definir regra de spawn)
-	if (this->objects.isEmpty() == false)
-	{
-		Object object = this->objects.removeObject();
-		this->spawnedObjects.newObject(&object);
-	}
-	//---
+	sf::Time delay = sf::seconds(0.3f); //delay entre spawns de objetos
 
-	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
+	if (spawnTimer.getElapsedTime().asSeconds() >= delay.asSeconds())
 	{
-		this->spawnedObjects.getObjects()->moveObject();
+		spawnObject();
+		spawnTimer.restart(); //restarta o timer de spawn de objetos
+	}
+
+	
+	if (this->spawnedObjects.getNroElementos() != 0) //se tiver elementos na lista de spawn, os movimenta
+	{
+		for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
+		{
+			this->spawnedObjects.getObjects()->moveObject();
+		}
 	}
 	
 

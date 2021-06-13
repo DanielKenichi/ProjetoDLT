@@ -51,7 +51,8 @@ void Object::initializeObject()
 	this->body.setOutlineColor(sf::Color::Black);
 	this->body.setOutlineThickness(1.f);
 
-	this->Speed = std::rand() % 5 + 1; //gera um número entre 1 e 5
+	this->Speed = 5;
+	//this->Speed = std::rand() % 5 + 1; //gera um número entre 1 e 5
 
 }
 
