@@ -11,6 +11,20 @@ ObjectsQueue::~ObjectsQueue()
 {
 }
 
+bool ObjectsQueue::isEmpty()
+{
+	if (NroElementos == 0)
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+	
+}
+
 //InitializeQueue(): Inicializa os atributos da Fila de objetos
 void ObjectsQueue::initializeQueue()
 {
@@ -64,7 +78,9 @@ void ObjectsQueue::newObject()
 		this->NroElementos++;
 	}
 }
-
+/*
+* removeObject(): Remove da fila o objeto para ser transferido para a lista de spawnados
+*/
 Object ObjectsQueue::removeObject()
 {
 	Nodeptr Aux; 

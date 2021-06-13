@@ -73,18 +73,29 @@ void Game::initializeWindow()
 	this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
+/*
+* *initializeObjects(): Inicializa a fila de objetos a serem gerados e a lista de objetos spawnados
+*/
 void Game::initializeObjects()
 {
 	this->objects.initializeQueue();
 
+	this->spawnedObjects.initializeList();
+
 	this->objects.newObject();
 	
 }
-
+/*
+* renderEnemies(): Desenha os inimigos na tela
+*/
 void Game::renderEnemies()
 {
-	Object object = this->objects.removeObject();
+	if (this->objects.isEmpty() == false)
+	{
+		Object object = this->objects.removeObject();
+		this->spawnedObjects.newObject(&object);
+	}
 
-	(this->window)->draw(object.getBody());
+	(this->window)->draw(this->spawnedObjects.getObjects().getBody());
 }
 

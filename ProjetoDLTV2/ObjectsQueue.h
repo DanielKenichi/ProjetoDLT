@@ -31,6 +31,7 @@ public:
 
 
     //**Métodos primitivos**
+     bool isEmpty();
      void initializeQueue();
      void newObject();
      Object removeObject();
@@ -38,7 +39,7 @@ public:
 
 
 private:
-    //**Atributos da Pilha**
+    //**Atributos da Fila**
 
     Nodeptr Primeiro;
     Nodeptr Ultimo;

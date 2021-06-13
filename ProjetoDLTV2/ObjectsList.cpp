@@ -1,0 +1,84 @@
+#include "ObjectsList.h"
+
+/*Construtor e Destrutor*/
+ObjectsList::ObjectsList()
+{
+	initializeList();
+}
+
+ObjectsList::~ObjectsList()
+{
+}
+
+Object ObjectsList::getObjects()
+{
+	if (this->PL == NULL)
+	{
+		std::cout << "Acabou a os objetos da lista" << std::endl;
+	}
+	else
+	{
+		return (this->PL)->info;
+	}	
+}
+
+/*
+* initializeList(): Inicializa a lista de objetos, indicando quais objetos estão spawnados
+*/
+void ObjectsList::initializeList()
+{
+	this->PL = nullptr;
+	this->UL = nullptr;
+	this->NroElementos = 0;
+}
+/*
+* newObject(): Insere um novo objeto na lista para ser spawnado
+*/
+
+void ObjectsList::newObject(Object *obj)
+{
+	{
+		LNodeptr Aux;
+
+		Aux = new LNode;
+
+		Aux->info = *obj;
+
+		//Caso 1: Caso a lista esteja vazia
+		if (this->NroElementos == 0)
+		{
+			this->PL = Aux;
+			this->UL = Aux;
+
+			Aux->Next = Aux;
+
+			this->NroElementos++;
+		}
+
+		//Caso 2: Caso a lista tenha apenas um elemento
+		else if (this->NroElementos == 1)
+		{
+			this->UL = Aux;
+			(this->PL)->Next = Aux;
+
+			Aux->Next = this->PL;
+			this->NroElementos++;
+		}
+
+		//Caso 3: Caso tenha mais de um elemento
+
+		else if (this->NroElementos > 1)
+		{
+			(this->UL)->Next = Aux;
+			this->UL = Aux;
+
+			Aux->Next = this->PL;
+
+			this->NroElementos++;
+		}
+	}
+
+
+}
+
+

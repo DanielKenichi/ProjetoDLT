@@ -9,13 +9,7 @@
 //Bibliotecas e includes
 #include <iostream>
 #include "ObjectsQueue.h"
-
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-
+#include "ObjectsList.h"
 
 class Game
 {
@@ -40,6 +34,7 @@ private:
 	sf::Event ev;//Variável de evento
 	sf::VideoMode videoMode; //Dimensoes da janela
 	ObjectsQueue objects;
+	ObjectsList spawnedObjects;
 
 
 	//**Métodos privados**
