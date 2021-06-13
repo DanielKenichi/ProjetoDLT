@@ -1,7 +1,8 @@
 #include "Game.h"
 #include <stdio.h>
 
-sf::Clock spawnTimer;
+//Variáveis globais
+sf::Clock spawnTimer; //timer para spawnar os objetos
 
 //**Construtores e destrutores**
 Game::Game()
@@ -53,6 +54,11 @@ void Game::render()
 void Game::initializeVariables()
 {
 	this->window = nullptr;
+
+	this->objects.initializeQueue();
+
+	this->spawnedObjects.initializeList();
+
 }
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
@@ -85,6 +91,9 @@ void Game::pollEvents()
 	}
 }
 
+/*
+* generateQueue(int size): Gera a fila de objetos de acordo com um parâmetro decidido no inicio de cada fase
+*/
 
 void Game::generateQueue(int size)
 {
@@ -110,11 +119,6 @@ void Game::spawnObject()
 */
 void Game::initializeObjects()
 {
-
-	this->objects.initializeQueue();
-
-	this->spawnedObjects.initializeList();
-
 	std::srand(time(0));  //inicializando seed aleatoria
 
 	this->generateQueue(10); //definir regra de geração pra queue (etapa de fase)
