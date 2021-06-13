@@ -20,12 +20,11 @@ sf::RectangleShape Object::getBody()
 /*
 *initializeObject(): Inicializa os atributos de um objeto
 */
-void Object::initializeObject() //h 600 w 800
+void Object::initializeObject() 
 {
 
-	std::srand(time(0));
-
 	this->poskey = std::rand() % 4 + 1;
+
 	
 	/*OBS: AJUSTAR O TAMANHO PARA SPAWNAR FORA DA TELA*/
 	switch (this->poskey) 
@@ -52,60 +51,31 @@ void Object::initializeObject() //h 600 w 800
 	this->body.setOutlineColor(sf::Color::Black);
 	this->body.setOutlineThickness(1.f);
 
-	//this->Speed = std::rand() % 1000 + 1; //teoricamente gera um número entre 1 e 10
-
-	//this->Speed = 5;
+	this->Speed = std::rand() % 5 + 1; //gera um número entre 1 e 5
 
 }
 
 void Object::moveObject()
 {
-	/*CORPO NAO ESTA MOVENDO (?)*/
+
 	sf::Vector2f pos;
 
 	switch (this->poskey)
 	{
 	case 1:
-		std::cout << "tentando mover" << std::endl;          //RESULTADO: NAO MOVE. Porque: ??
-		pos = this->body.getPosition();
-		std::cout << "Antes"<< pos.x <<" "<< pos.y << std::endl; 
-
-		this->body.move(0.f, 5.f); //Movimentação do objeto caso seja spawnado em cima
-
-		pos = this->body.getPosition();
-		std::cout << "Depois" << pos.x <<" "<< pos.y << std::endl;
+		this->body.move(0.f, 1.f * this->Speed); //Movimentação do objeto caso seja spawnado em cima
 		break;
 
 	case 2:
-		std::cout << "tentando mover" << std::endl;
-		pos = this->body.getPosition();
-		std::cout << "Antes" << pos.x << " " << pos.y << std::endl;
-
-		this->body.move(5.f, 0.f); //...caso seja spawnado à esquerda
-
-		pos = this->body.getPosition();
-		std::cout << "Depois" << pos.x << " " << pos.y << std::endl;
+		this->body.move(1.f * this->Speed, 0.f); //...caso seja spawnado à esquerda
 		break;
 
 	case 3:
-		std::cout << "tentando mover" << std::endl;
-		pos = this->body.getPosition();
-		std::cout << "Antes" << pos.x << " " << pos.y << std::endl;
-
-		this->body.move(-5.f, 0.f); //...caso seja spawnado à direita
-
-		pos = this->body.getPosition();
-		std::cout << "Depois" << pos.x << " " << pos.y << std::endl;
+		this->body.move(-1.f * this->Speed, 0.f); //...caso seja spawnado à direita
 		break;
+
 	case 4:
-		std::cout << "tentando mover" << std::endl;
-		pos = this->body.getPosition();
-		std::cout << "Antes" << pos.x << " " << pos.y << std::endl;
-
-		this->body.move(0.f, -5.f); //...caso seja spawnado embaixo
-
-		pos = this->body.getPosition();
-		std::cout << "Depois" << pos.x << " " << pos.y << std::endl;
+		this->body.move(0.f, -1.f * this->Speed); //...caso seja spawnado embaixo
 		break;
 	}
 }

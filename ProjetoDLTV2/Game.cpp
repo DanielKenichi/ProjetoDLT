@@ -83,43 +83,58 @@ void Game::pollEvents()
 	}
 }
 
+void Game::generateQueue(int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		this->objects.newObject();
+	}
+}
+
 /*
 * *initializeObjects(): Inicializa a fila de objetos a serem gerados e a lista de objetos spawnados
 */
 void Game::initializeObjects()
 {
+
 	this->objects.initializeQueue();
 
 	this->spawnedObjects.initializeList();
 
-	this->objects.newObject();
-	
+	std::srand(time(0));  //inicializando seed aleatoria
+
+	this->generateQueue(10); //definir regra de geração pra queue (etapa de fase)
 }
 /*
 * renderEnemies(): Desenha os inimigos na tela
 */
 void Game::renderObjects()
 {
-	(this->window)->draw(this->spawnedObjects.getObjects().getBody());
+	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
+	{
+		(this->window)->draw(this->spawnedObjects.getObjects()->getBody());
+	}
+	
 }
 /*
 * updateObjects(): Atualiza as informações dos objetos
 */
 void Game::updateObjects()
 {
-	sf::Vector2f pos;
+	//ir pro spawnobjects no futuro (definir regra de spawn)
 	if (this->objects.isEmpty() == false)
 	{
 		Object object = this->objects.removeObject();
 		this->spawnedObjects.newObject(&object);
 	}
+	//---
+
+	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
+	{
+		this->spawnedObjects.getObjects()->moveObject();
+	}
 	
-	this->spawnedObjects.getObjects().moveObject();
 
-	/*debug*
-	pos = this->spawnedObjects.getObjects().getBody().getPosition();
-
-	std::cout << pos.x << pos.y << std::endl;*/
 }
 
 

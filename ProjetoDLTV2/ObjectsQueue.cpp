@@ -25,6 +25,7 @@ bool ObjectsQueue::isEmpty()
 	
 }
 
+
 //InitializeQueue(): Inicializa os atributos da Fila de objetos
 void ObjectsQueue::initializeQueue()
 {

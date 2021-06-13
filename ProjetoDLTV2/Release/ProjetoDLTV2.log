@@ -1,8 +1,10 @@
-﻿  Object.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(26,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+﻿  Game.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(104,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+  ObjectsQueue.cpp
+  main.cpp
   Gerando código
-  2 of 116 functions ( 1.7%) were compiled, the rest were copied from previous compilation.
+  4 of 118 functions ( 3.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Release\ProjetoDLTV2.exe

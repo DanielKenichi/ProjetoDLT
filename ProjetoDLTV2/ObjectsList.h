@@ -27,9 +27,12 @@ public:
     ObjectsList();
     ~ObjectsList();
 
-    //**getters** 
+    //**setters**
+    void setAtt();
 
-    Object getObjects();
+    //**getters** 
+    int getNroElementos();
+    Object* getObjects();
     //**Métodos primitivos**
     void initializeList();
     void newObject(Object* obj);
@@ -41,8 +44,9 @@ public:
 private:
     //**Atributos da Lista**
     LNodeptr PL; 
-
     LNodeptr UL;
+
+    LNodeptr att;
 
     int NroElementos;
 

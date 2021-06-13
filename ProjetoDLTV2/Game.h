@@ -44,6 +44,7 @@ private:
 	void renderObjects();
 	void updateObjects();
 	void pollEvents();
+	void generateQueue(int size);
 
 	
 };

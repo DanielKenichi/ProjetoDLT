@@ -9,20 +9,34 @@ ObjectsList::ObjectsList()
 ObjectsList::~ObjectsList()
 {
 }
-/*getters*/
+/**setters**/
+void ObjectsList::setAtt()
+{
+	this->att = this->PL;
+}
+
+/**getters**/
+int ObjectsList::getNroElementos()
+{
+	return this->NroElementos;
+}
 
 /*
 * getObjects(): 
 */
-Object ObjectsList::getObjects() /**feito para lista de um unico elemento, aprimorar para lista com mais de um elemento depois **/
+Object* ObjectsList::getObjects() /**feito para lista de um unico elemento, aprimorar para lista com mais de um elemento depois **/
 {
+	LNodeptr Aux;
+	Aux = this->att;
+
 	if (this->PL == NULL)
 	{
 		std::cout << "Acabou a os objetos da lista" << std::endl;
 	}
 	else
-	{
-		return (this->PL)->info;
+	{	
+		this->att = (this->att)->Next;
+		return &Aux->info;
 	}	
 }
 
@@ -33,6 +47,7 @@ void ObjectsList::initializeList()
 {
 	this->PL = nullptr;
 	this->UL = nullptr;
+	this->att = nullptr;
 	this->NroElementos = 0;
 }
 /*
@@ -51,6 +66,7 @@ void ObjectsList::newObject(Object *obj)
 		//Caso 1: Caso a lista esteja vazia
 		if (this->NroElementos == 0)
 		{
+			this->att = Aux;
 			this->PL = Aux;
 			this->UL = Aux;
 
