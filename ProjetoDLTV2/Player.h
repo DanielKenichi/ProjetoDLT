@@ -14,12 +14,22 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-class Player
+class Player : public sf::Transformable
 {
 public:
     Player();
     ~Player();
+
+    // HP
+    int getHP();
+    // Inicializa os Escudos
+    void InitializeShields(bool top, bool bottom, bool left, bool right); 
+    // Rotaciona o player em uma direção
+    void rotateDirection(char dir); // Usa rotacionar para as 4 direções "t","r","b","l"
+    // Get Player Rotation
+    double getPRotation();
 private:
+
     // Vida
     int HP;
 
@@ -28,12 +38,10 @@ private:
     sf::Sprite sBottom;
     sf::Sprite sLeft;
     sf::Sprite sRight;
-    void InitializeShields(bool top, bool bottom, bool left, bool right);
 
     // Sprite e funções relacionadas
     sf::Sprite spr; // Player
-    void rotate(double ang); // Rotacionar
-    double getPRotation(); // Get Player Rotation
+    void rotatePlayer(double ang); // Rotacionar
 };
 
 #endif // !PLAYER_H
