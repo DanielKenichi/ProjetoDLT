@@ -103,7 +103,7 @@ void Game::update(float dt)
 // updateObjects(): Atualiza as informações dos objetos
 void Game::updateObjects()
 {
-	sf::Time delay = sf::seconds(0.3f); //delay entre spawns de objetos
+	sf::Time delay = sf::seconds(0.5f); //delay entre spawns de objetos
 
 	if (spawnTimer.getElapsedTime().asSeconds() >= delay.asSeconds())
 	{
