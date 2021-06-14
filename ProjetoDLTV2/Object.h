@@ -24,7 +24,7 @@ public:
 	~Object();
 
 	//**getters**
-	sf::RectangleShape getBody();
+	sf::Sprite getBody();
 	//**setters**
 
 	//**Métodos**
@@ -33,10 +33,11 @@ public:
 
 private:
 
-//atributos
-	sf::RectangleShape body; //Corpo improvisado pro nosso objeto
+	sf::Sprite body; //Corpo improvisado pro nosso objeto
 	int poskey; //determina a posição de spawn do objeto
-	int Speed;
+	int Speed; //multiplicador de velocidade
+
+	sf::Texture bodyImage; //textura do corpo do objeto
 
 
 };

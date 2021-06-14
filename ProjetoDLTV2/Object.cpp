@@ -12,7 +12,7 @@ Object::~Object()
 }
 
 /*getters*/
-sf::RectangleShape Object::getBody()
+sf::Sprite Object::getBody()
 {
 	return this->body;
 }
@@ -22,35 +22,49 @@ sf::RectangleShape Object::getBody()
 */
 void Object::initializeObject() 
 {
+	const sf::Vector2f spriteScale(0.5f, 0.5f);
 
 	this->poskey = std::rand() % 4 + 1;
+
+	//Carregamento de Texturas
+	if (!this->bodyImage.loadFromFile("resources/object.png")) //imagem 128x128
+	{  
+		std::cout << "Object.cpp : Falha na leitura de Object.png" << std::endl;
+	}
+
+	bodyImage.setSmooth(true);
+
+	this->body.setTexture(bodyImage);
+
+	sf::Vector2f middle(this->body.getLocalBounds().width / 2, this->body.getLocalBounds().height / 2);
+	this->body.setOrigin(middle);
 
 	
 	/*OBS: AJUSTAR O TAMANHO PARA SPAWNAR FORA DA TELA*/
 	switch (this->poskey) 
 	{
 	case 1:
-		this->body.setPosition(375.f, 0.f); //O objeto irá spawnar em cima do jogador
+		this->body.setPosition(400.f, 0.f); //O objeto irá spawnar em cima do jogador
+		this->body.setRotation(90.f);
 		break;
 
 	case 2:
-		this->body.setPosition(0.f, 275.f); //O objeto irá spawnar à esquerda do jogador
+		this->body.setPosition(0.f, 300.f); //O objeto irá spawnar à esquerda do jogador
+		this->body.setRotation(0.f);
 		break;
 
 	case 3:
-		this->body.setPosition(750.f, 275.f); //O objeto irá spawnar à direita do jogador
+		this->body.setPosition(800.f, 300.f); //O objeto irá spawnar à direita do jogador
+		this->body.setRotation(180.f);
 		break;
 
 	case 4:
-		this->body.setPosition(375.f, 550.f); //O objeto irá spawnar embaixo do jogador
+		this->body.setPosition(400.f, 600.f); //O objeto irá spawnar embaixo do jogador
+		this->body.setRotation(270.f);
 		break;
 	}
 
-	this->body.setSize(sf::Vector2f(50.f, 50.f));
-	this->body.setFillColor(sf::Color::Cyan);
-	this->body.setOutlineColor(sf::Color::Black);
-	this->body.setOutlineThickness(1.f);
-
+	this->body.setScale(spriteScale);
 	this->Speed = 5;
 	//this->Speed = std::rand() % 5 + 1; //gera um número entre 1 e 5
 

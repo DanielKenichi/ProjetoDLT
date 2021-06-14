@@ -64,7 +64,7 @@ Game::~Game()
 }
 
 
-// pollEvents(): Verifica eventos (Teclado, Janela aberta)
+//pollEvents(): Verifica eventos (Teclado, Janela aberta)
 void Game::pollEvents()
 {
 	//Event polling
@@ -138,7 +138,7 @@ void Game::render()
 
 }
 
-// renderEnemies(): Desenha os inimigos na tela
+//renderObjects(): Desenha os inimigos na tela
 void Game::renderObjects()
 {
 	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
