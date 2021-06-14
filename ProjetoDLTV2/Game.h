@@ -10,6 +10,7 @@
 #include <iostream>
 #include "ObjectsQueue.h"
 #include "ObjectsList.h"
+#include "Player.h"
 
 class Game
 {
@@ -23,7 +24,7 @@ public:
 	const bool getIsWindowOpen();
 
 	//**Métodos**
-	void update(); 
+	void update(float dt); 
 	void render(); 
 
 
@@ -33,22 +34,24 @@ private:
 	sf::RenderWindow* window;//Janela de Renderização
 	sf::Event ev;//Variável de evento
 	sf::VideoMode videoMode; //Dimensoes da janela
-	ObjectsQueue objects;
-	ObjectsList spawnedObjects;
 
-
+	ObjectsQueue objects; // Fila de Objetos
+	ObjectsList spawnedObjects; // Lista de Objetos Ativos
+	Player player; // Jogador
 
 	//**Métodos privados**
 	void initializeVariables();
 	void initializeWindow();
 	void initializeObjects();
+	void initializePlayer();
+
 	void renderObjects();
+
 	void updateObjects();
 	void pollEvents();
 	void generateQueue(int size);
 	void spawnObject();
 
-	
 };
 
 #endif // !GAME_H

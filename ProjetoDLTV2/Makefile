@@ -1,5 +1,5 @@
-OBJS = main.o game.o object.o objectsqueue.o 
-CPPS = main.cpp game.cpp object.cpp objectsqueue.cpp
+OBJS = main.o game.o object.o objectsqueue.o objectslist.o player.o
+CPPS = main.cpp game.cpp object.cpp objectsqueue.cpp objectslist.cpp player.cpp
 all: compile link move
 	
 compile: 
@@ -10,6 +10,7 @@ link:
 
 move:
 	move "main.exe" "Final\main.exe"
+	xcopy "resources" "Final\resources"
 
 run:
 	Final/main.exe

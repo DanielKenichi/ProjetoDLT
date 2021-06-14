@@ -25,9 +25,13 @@ public:
     // Inicializa os Escudos
     void InitializeShields(bool top, bool bottom, bool left, bool right); 
     // Rotaciona o player em uma direção
-    void rotateDirection(char dir); // Usa rotacionar para as 4 direções "t","r","b","l"
+    void rotateDirection(char dir); // Usa rotacionar para as 4 direções "u","r","d","l"
     // Get Player Rotation
     double getPRotation();
+
+    // Renderização e Update
+    void updateAll(float dt);
+    void renderAll(sf::RenderWindow *win);
 private:
 
     // Vida
@@ -42,6 +46,10 @@ private:
     // Sprite e funções relacionadas
     sf::Sprite spr; // Player
     void rotatePlayer(double ang); // Rotacionar
+
+    // Texturas
+    sf::Texture tPlayer;
+    sf::Texture tShield;
 };
 
 #endif // !PLAYER_H
