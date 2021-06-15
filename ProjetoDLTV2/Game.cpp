@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <stdio.h>
+#include <String>
 
 //Variáveis globais
 sf::Clock spawnTimer; //timer para spawnar os objetos
@@ -22,6 +23,15 @@ void Game::initializeVariables()
 
 	this->spawnedObjects.initializeList();
 
+	if(!this->font.loadFromFile("resources/Fonts/Rubik.ttf")){
+		std::cout << "Falha no carregamento da fonte" << std::endl;
+	}
+
+	//Colocar numa função depois TODO:
+	this->tScore.setFont(this->font);
+	this->tHP.setFont(this->font);
+	this->tHP.setPosition(this->videoMode.width/10*5,0);
+	this->tScore.setPosition(this->videoMode.width/10*5, this->tHP.getCharacterSize()+10);
 }
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
@@ -93,6 +103,8 @@ void Game::pollEvents()
 */
 void Game::update(float dt)
 {
+	this->hp = this->player.getHP();
+
 	this->pollEvents();
 
 	this->updateObjects(dt);
@@ -134,16 +146,16 @@ void Game::testCollisions()
 	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
 	{
 		testObject = this->spawnedObjects.getObjects()->getBody();
-		if(player.collidePlayer(testObject)) // Colisão com player
+		if(this->player.collidePlayer(testObject)) // Colisão com player
 		{
 			//Remover objeto i
 			std::cout << "Player Acertado por Objeto " << i << std::endl;
 			//Perda de vida ocorre no próprio objeto
-		} else if(player.collideShields(testObject)) // Colisão com escudos
+		} else if(this->player.collideShields(testObject)) // Colisão com escudos
 		{
 			//Remover objeto i 
 			std::cout << "Escudo Acertado por Objeto " << i << std::endl;
-			//Aumentar a pontuação (TODO:)
+			this->score += 100;
 		}
 	}
 }
@@ -159,6 +171,8 @@ void Game::render()
 
 	this->renderObjects();
 
+	this->renderScore();
+
 	this->window->display(); //Exibe na tela o desenho realizado no frame
 
 }
@@ -171,6 +185,15 @@ void Game::renderObjects()
 		(this->window)->draw(this->spawnedObjects.getObjects()->getBody());
 	}
 	
+}
+
+//renderScore(): Desenha Pontuação e Vida
+void Game::renderScore()
+{
+	tHP.setString("HP: " + std::to_string(this->hp));
+	tScore.setString("Score: " + std::to_string(this->score));
+	this->window->draw(tHP);
+	this->window->draw(tScore);
 }
 
 /*

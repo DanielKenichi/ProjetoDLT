@@ -4,3 +4,5 @@
 ProjetoDLTV2/object.o
 ProjetoDLTV2/objectsqueue.o
 *.o
+ProjetoDLTV2/main.o
+ProjetoDLTV2/game.o

@@ -28,13 +28,18 @@ public:
 	void update(float dt); 
 	void render(); 
 
-
-
 private:
 	//**Atributos**
 	sf::RenderWindow* window;//Janela de Renderização
 	sf::Event ev;//Variável de evento
 	sf::VideoMode videoMode; //Dimensoes da janela
+	
+	//Atributos de Score
+	sf::Font font; //Fonte
+	int score = 0;
+	int hp = 1;
+	sf::Text tHP;
+	sf::Text tScore;
 
 	ObjectsQueue objects; // Fila de Objetos
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
@@ -47,6 +52,7 @@ private:
 	void initializePlayer();
 
 	void renderObjects();
+	void renderScore();
 	void testCollisions();
 
 	void updateObjects(float dt);
