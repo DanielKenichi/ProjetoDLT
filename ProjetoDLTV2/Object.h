@@ -2,7 +2,7 @@
 #define OBJECT_H
 
 /*
-* Classe do objeto/obstáculo atirado em direção ao jogador
+* Classe do objeto/obstï¿½culo atirado em direï¿½ï¿½o ao jogador
 */
 
 //Bibliotecas e includes
@@ -27,14 +27,14 @@ public:
 	sf::Sprite getBody();
 	//**setters**
 
-	//**Métodos**
+	//**Mï¿½todos**
 	void initializeObject();
-	void moveObject();
+	void moveObject(float dt);
 
 private:
 
 	sf::Sprite body; //Corpo improvisado pro nosso objeto
-	int poskey; //determina a posição de spawn do objeto
+	int poskey; //determina a posiï¿½ï¿½o de spawn do objeto
 	int Speed; //multiplicador de velocidade
 
 	sf::Texture bodyImage; //textura do corpo do objeto

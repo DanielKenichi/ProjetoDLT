@@ -3,12 +3,16 @@
 
 Player::Player()
 {
+    this->initializeSprites();
+}
+
+void Player::initializeSprites(){
     // Carregamento de Texturas
     if(!tPlayer.loadFromFile("resources/Player.png")){ //Imagem quadrada 128x128
 		std::cout<<"Player.cpp : Falha na leitura de Player.png" << std::endl;
 	}
     tPlayer.setSmooth(true);
-    if(!tShield.loadFromFile("resources/Escudo.png")){ //Imagem quadrada 128x128
+    if(!tShield.loadFromFile("resources/Escudo.png")){ //Imagem retangular 128x32
 		std::cout<<"Player.cpp : Falha na leitura de Escudo.png" << std::endl;
 	}
     tShield.setSmooth(true);
@@ -17,7 +21,7 @@ Player::Player()
     spr.setTexture(tPlayer);
     sTop.setTexture(tShield);
     sRight.setTexture(tShield);
-    sBottom.setTexture(tShield);
+    sDown.setTexture(tShield);
     sLeft.setTexture(tShield);
 
     // Ajuste de Tamanho
@@ -25,7 +29,7 @@ Player::Player()
     spr.setScale(spriteScale);
     sTop.setScale(spriteScale);
     sRight.setScale(spriteScale);
-    sBottom.setScale(spriteScale);
+    sDown.setScale(spriteScale);
     sLeft.setScale(spriteScale);
 
     // Ajuste de Origem
@@ -41,7 +45,12 @@ Player::~Player()
 
 int Player::getHP()
 {
-    return HP;
+    return this->HP;
+}
+
+void Player::setHP(int hp)
+{
+    this->HP = hp;
 }
 
 void Player::rotateDirection(char dir)
@@ -64,8 +73,7 @@ void Player::rotateDirection(char dir)
 
 void Player::rotatePlayer(double ang)
 {
-    std::cout << "Rotacionando para " << ang << "o graus" << std::endl;
-    //this->spr.setRotation(ang);
+    //DEBUG: std::cout << "Rotacionando para " << ang << "o graus" << std::endl;
     this->setRotation(ang);
     //TODO: Smoothing
 }
@@ -78,6 +86,7 @@ double Player::getPRotation()
 void InitializeShields(bool top, bool right, bool bottom, bool left)
 {
     // Inicializar os sprites (procurar nos resources)
+    // TODO:
     if(top){
 
     }
@@ -107,4 +116,25 @@ void Player::updateAll(float dt)
     sTop.setPosition(this->getPosition());
     spr.setRotation(this->getRotation());
     sTop.setRotation(this->getRotation());
+}
+
+bool Player::collidePlayer(sf::Sprite obj)
+{
+    if(Collision::CircleTest(this->spr, obj))
+    {
+        HP--;
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool Player::collideShields(sf::Sprite obj)
+{
+    if(Collision::PixelPerfectTest(this->sTop, obj))
+    {
+        return true;
+    }else{
+        return false;
+    }
 }

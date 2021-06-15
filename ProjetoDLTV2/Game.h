@@ -8,6 +8,7 @@
 
 //Bibliotecas e includes
 #include <iostream>
+#include "Collision.h"
 #include "ObjectsQueue.h"
 #include "ObjectsList.h"
 #include "Player.h"
@@ -46,8 +47,9 @@ private:
 	void initializePlayer();
 
 	void renderObjects();
+	void testCollisions();
 
-	void updateObjects();
+	void updateObjects(float dt);
 	void pollEvents();
 	void generateQueue(int size);
 	void spawnObject();

@@ -44,33 +44,33 @@ void Object::initializeObject()
 	switch (this->poskey) 
 	{
 	case 1:
-		this->body.setPosition(400.f, 0.f); //O objeto irá spawnar em cima do jogador
+		this->body.setPosition(400.f, 0.f); //O objeto irï¿½ spawnar em cima do jogador
 		this->body.setRotation(90.f);
 		break;
 
 	case 2:
-		this->body.setPosition(0.f, 300.f); //O objeto irá spawnar à esquerda do jogador
+		this->body.setPosition(0.f, 300.f); //O objeto irï¿½ spawnar ï¿½ esquerda do jogador
 		this->body.setRotation(0.f);
 		break;
 
 	case 3:
-		this->body.setPosition(800.f, 300.f); //O objeto irá spawnar à direita do jogador
+		this->body.setPosition(800.f, 300.f); //O objeto irï¿½ spawnar ï¿½ direita do jogador
 		this->body.setRotation(180.f);
 		break;
 
 	case 4:
-		this->body.setPosition(400.f, 600.f); //O objeto irá spawnar embaixo do jogador
+		this->body.setPosition(400.f, 600.f); //O objeto irï¿½ spawnar embaixo do jogador
 		this->body.setRotation(270.f);
 		break;
 	}
 
 	this->body.setScale(spriteScale);
-	this->Speed = 5;
-	//this->Speed = std::rand() % 5 + 1; //gera um número entre 1 e 5
+	this->Speed = 100;
+	//this->Speed = std::rand() % 5 + 1; //gera um nï¿½mero entre 1 e 5
 
 }
 
-void Object::moveObject()
+void Object::moveObject(float dt)
 {
 
 	sf::Vector2f pos;
@@ -78,19 +78,19 @@ void Object::moveObject()
 	switch (this->poskey)
 	{
 	case 1:
-		this->body.move(0.f, 1.f * this->Speed); //Movimentação do objeto caso seja spawnado em cima
+		this->body.move(0.f, 1.f * this->Speed * dt); //Movimentaï¿½ï¿½o do objeto caso seja spawnado em cima
 		break;
 
 	case 2:
-		this->body.move(1.f * this->Speed, 0.f); //...caso seja spawnado à esquerda
+		this->body.move(1.f * this->Speed * dt, 0.f); //...caso seja spawnado ï¿½ esquerda
 		break;
 
 	case 3:
-		this->body.move(-1.f * this->Speed, 0.f); //...caso seja spawnado à direita
+		this->body.move(-1.f * this->Speed * dt, 0.f); //...caso seja spawnado ï¿½ direita
 		break;
 
 	case 4:
-		this->body.move(0.f, -1.f * this->Speed); //...caso seja spawnado embaixo
+		this->body.move(0.f, -1.f * this->Speed * dt); //...caso seja spawnado embaixo
 		break;
 	}
 }

@@ -7,7 +7,7 @@
 
 //Bibliotecas e includes
 #include <iostream>
-
+#include "Collision.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -22,6 +22,7 @@ public:
 
     // HP
     int getHP();
+    void setHP(int hp);
     // Inicializa os Escudos
     void InitializeShields(bool top, bool bottom, bool left, bool right); 
     // Rotaciona o player em uma direção
@@ -32,14 +33,19 @@ public:
     // Renderização e Update
     void updateAll(float dt);
     void renderAll(sf::RenderWindow *win);
+
+    // Testa Colisão
+    bool collideShields(sf::Sprite obj);
+    bool collidePlayer(sf::Sprite obj);
+ 
 private:
 
     // Vida
-    int HP;
+    int HP = 3;
 
     // Escudos (4, alguns desabilitados)
     sf::Sprite sTop;
-    sf::Sprite sBottom;
+    sf::Sprite sDown;
     sf::Sprite sLeft;
     sf::Sprite sRight;
 
@@ -50,6 +56,7 @@ private:
     // Texturas
     sf::Texture tPlayer;
     sf::Texture tShield;
+    void initializeSprites();
 };
 
 #endif // !PLAYER_H

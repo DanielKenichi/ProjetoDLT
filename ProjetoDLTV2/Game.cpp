@@ -31,7 +31,7 @@ void Game::initializeWindow()
 	this->videoMode.width = 800;
 
 	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
-	this->window->setFramerateLimit(60);
+	//this->window->setFramerateLimit(60);
 
 	
 	//Carrega e seta a imagem do jogo
@@ -95,13 +95,15 @@ void Game::update(float dt)
 {
 	this->pollEvents();
 
-	this->updateObjects();
+	this->updateObjects(dt);
+
+	this->testCollisions();
 
 	this->player.updateAll(dt);
 }
 
 // updateObjects(): Atualiza as informações dos objetos
-void Game::updateObjects()
+void Game::updateObjects(float dt)
 {
 	sf::Time delay = sf::seconds(0.5f); //delay entre spawns de objetos
 
@@ -116,11 +118,34 @@ void Game::updateObjects()
 	{
 		for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
 		{
-			this->spawnedObjects.getObjects()->moveObject();
+			this->spawnedObjects.getObjects()->moveObject(dt);
 		}
 	}
 	
 
+}
+
+/*
+* testCollision(): Testa colisões entre obstáculos e o jogador
+*/
+void Game::testCollisions()
+{
+	sf::Sprite testObject;
+	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++)
+	{
+		testObject = this->spawnedObjects.getObjects()->getBody();
+		if(player.collidePlayer(testObject)) // Colisão com player
+		{
+			//Remover objeto i
+			std::cout << "Player Acertado por Objeto " << i << std::endl;
+			//Perda de vida ocorre no próprio objeto
+		} else if(player.collideShields(testObject)) // Colisão com escudos
+		{
+			//Remover objeto i 
+			std::cout << "Escudo Acertado por Objeto " << i << std::endl;
+			//Aumentar a pontuação (TODO:)
+		}
+	}
 }
 
 /*

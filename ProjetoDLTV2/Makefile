@@ -1,5 +1,5 @@
-OBJS = main.o game.o object.o objectsqueue.o objectslist.o player.o
-CPPS = main.cpp game.cpp object.cpp objectsqueue.cpp objectslist.cpp player.cpp
+OBJS = main.o game.o object.o objectsqueue.o objectslist.o player.o collision.o
+CPPS = main.cpp game.cpp object.cpp objectsqueue.cpp objectslist.cpp player.cpp collision.cpp
 all: compile link move
 	
 compile: 
