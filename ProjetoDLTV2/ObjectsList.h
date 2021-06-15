@@ -11,6 +11,7 @@
 
 
 //**structs**
+ 
 struct LNode
 {
     Object info;

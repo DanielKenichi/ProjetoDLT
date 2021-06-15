@@ -101,13 +101,13 @@ void Game::pollEvents()
 			this->window->close();
 		if (this->ev.type == sf::Event::KeyPressed)
 		{
-			if(ev.key.code == sf::Keyboard::Up){
+			if(ev.key.code == sf::Keyboard::Up || ev.key.code == sf::Keyboard::W){
 				player.rotateDirection('u');
-			}else if(ev.key.code == sf::Keyboard::Right){
+			}else if(ev.key.code == sf::Keyboard::Right || ev.key.code == sf::Keyboard::D){
 				player.rotateDirection('r');
-			}else if(ev.key.code == sf::Keyboard::Down){
+			}else if(ev.key.code == sf::Keyboard::Down  || ev.key.code == sf::Keyboard::S){
 				player.rotateDirection('d');
-			}else if(ev.key.code == sf::Keyboard::Left){
+			}else if(ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::A){
 				player.rotateDirection('l');
 			}
 		}
