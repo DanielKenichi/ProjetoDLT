@@ -41,7 +41,6 @@ void Game::initializeWindow()
 	this->videoMode.width = 800;
 
 	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
-	//this->window->setFramerateLimit(60);
 
 	
 	//Carrega e seta a imagem do jogo

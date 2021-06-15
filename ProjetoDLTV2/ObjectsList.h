@@ -36,7 +36,6 @@ public:
     //**Métodos primitivos**
     void initializeList();
     void newObject(Object* obj);
-    ;
     //Object removeObject();
 
 

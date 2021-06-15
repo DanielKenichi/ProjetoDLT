@@ -1,51 +1,15 @@
-﻿  Collision.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(69,15): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
-          with
-          [
-              T=float
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(70,16): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
-          with
-          [
-              T=float
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(72,73): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(72,70): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(73,73): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(73,70): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(135,42): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(136,55): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(136,42): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(137,47): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
-  Game.cpp
+﻿  Game.cpp
 C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(33,48): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
 C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(34,83): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
 C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(34,51): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(60,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(67,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(67,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-  Player.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(77,23): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(59,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(66,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(66,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+  ObjectsList.cpp
   main.cpp
   Gerando código
-  160 of 282 functions (56.7%) were compiled, the rest were copied from previous compilation.
-    34 functions were new in current compilation
-    24 functions had inline decision re-evaluated but remain unchanged
+  1 of 282 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Release\ProjetoDLTV2.exe
