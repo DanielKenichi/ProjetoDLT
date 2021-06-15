@@ -24,10 +24,10 @@ int ObjectsList::getNroElementos()
 /*
 * getObjects(): 
 */
-Object* ObjectsList::getObjects() /**feito para lista de um unico elemento, aprimorar para lista com mais de um elemento depois **/
+Object* ObjectsList::getObjects() 
 {
 	LNodeptr Aux;
-	Aux = this->att;
+	Aux = this->att; //Identifica o objeto a ser atualizado em um loop
 
 	if (this->PL == NULL)
 	{
@@ -36,7 +36,7 @@ Object* ObjectsList::getObjects() /**feito para lista de um unico elemento, apri
 	else
 	{	
 		this->att = (this->att)->Next;
-		return &Aux->info;
+		return &(Aux->Next)->info;
 	}	
 }
 
@@ -82,6 +82,8 @@ void ObjectsList::newObject(Object *obj)
 			(this->PL)->Next = Aux;
 
 			Aux->Next = this->PL;
+			this->att = UL;
+
 			this->NroElementos++;
 		}
 
@@ -94,10 +96,72 @@ void ObjectsList::newObject(Object *obj)
 
 			Aux->Next = this->PL;
 
+			this->att = UL;
+
 			this->NroElementos++;
 		}
 	}
 
+
+}
+
+void ObjectsList::removeObject()
+{
+	//caso 0: lista vazia
+	if (this->NroElementos == 0)
+	{
+		std::cout << "Não há objetos a serem removidos" << std::endl;
+	}
+
+	//caso 1: a lista tem apenas um elemento
+	else if (this->NroElementos == 1)
+	{
+		(this->PL)->Next = nullptr;
+
+		delete this->PL;
+
+		this->PL = nullptr;
+		this->UL = nullptr;
+		this->att = nullptr;
+
+		this->NroElementos--;
+	}
+
+	//caso 2: a lista tem mais de um elemento...
+	else if (this->NroElementos > 1)
+	{
+		LNodeptr anterior = this->PL;
+		//caso 2.1 ...e o elemento a ser removido esteja no começo da lista
+		if (this->att == this->PL)
+		{
+			this->PL = (this->PL)->Next;
+			(this->UL)->Next = this->PL;
+			(this->att)->Next = nullptr;
+
+			delete this->att;
+
+			this->att = this->PL;
+			this->NroElementos--;
+		}
+
+		//caso 2.2 ... e o elemento a ser removido esteja no meio da lista
+		else
+		{
+			while (anterior->Next != this->att)
+			{
+				anterior = anterior->Next;
+			}
+
+			anterior->Next = (this->att)->Next;
+			(this->att)->Next = nullptr;
+
+			delete this->att;
+
+			this->att = anterior->Next;
+			this->NroElementos--;
+		}
+
+	}
 
 }
 

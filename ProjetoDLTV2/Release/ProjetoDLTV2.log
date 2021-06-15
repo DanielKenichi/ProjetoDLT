@@ -1,14 +1,6 @@
-﻿  Game.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(33,48): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(34,83): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(34,51): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(59,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(66,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(66,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-  ObjectsList.cpp
-  main.cpp
+﻿  ObjectsList.cpp
   Gerando código
-  1 of 282 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  2 of 285 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código

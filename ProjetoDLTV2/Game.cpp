@@ -13,6 +13,20 @@ Game::Game()
 	this->initializeObjects();
 	this->initializePlayer();
 }
+// --> Destrutor <--
+Game::~Game()
+{
+	delete this->window;
+}
+
+//**Getters**
+//getIsWindowOpen(): Retorna true caso a janela do jogo esteja aberta, e false caso contrário
+const bool Game::getIsWindowOpen()
+{
+	return this->window->isOpen();
+}
+
+//**Outros metodos**
 
 //InitializeVariables() : Inicializa as variáveis iniciais
 void Game::initializeVariables()
@@ -66,12 +80,16 @@ void Game::initializePlayer()
 	this->player.setPosition(videoMode.width/2, videoMode.height/2);
 }
 
-// --> Destrutor <--
-Game::~Game()
+/*
+* generateQueue(int size): Gera a fila de objetos de acordo com um parâmetro decidido no inicio de cada fase
+*/
+void Game::generateQueue(int size)
 {
-	delete this->window; 
+	for (int i = 0; i < size; i++)
+	{
+		this->objects.newObject();
+	}
 }
-
 
 //pollEvents(): Verifica eventos (Teclado, Janela aberta)
 void Game::pollEvents()
@@ -132,8 +150,6 @@ void Game::updateObjects(float dt)
 			this->spawnedObjects.getObjects()->moveObject(dt);
 		}
 	}
-	
-
 }
 
 /*
@@ -149,13 +165,28 @@ void Game::testCollisions()
 		{
 			//Remover objeto i
 			std::cout << "Player Acertado por Objeto " << i << std::endl;
+			this->spawnedObjects.removeObject();
+
 			//Perda de vida ocorre no próprio objeto
 		} else if(this->player.collideShields(testObject)) // Colisão com escudos
 		{
 			//Remover objeto i 
 			std::cout << "Escudo Acertado por Objeto " << i << std::endl;
+			this->spawnedObjects.removeObject();
 			this->score += 100;
 		}
+	}
+}
+
+/*
+* spawnObject(): Checa se existem objetos a serem spawnados, e se houver, o coloca na lista de spawn
+*/
+void Game::spawnObject()
+{
+	if (this->objects.isEmpty() == false)
+	{
+		Object object = this->objects.removeObject();
+		this->spawnedObjects.newObject(&object);
 	}
 }
 
@@ -195,32 +226,4 @@ void Game::renderScore()
 	this->window->draw(tScore);
 }
 
-/*
-* generateQueue(int size): Gera a fila de objetos de acordo com um parâmetro decidido no inicio de cada fase
-*/
-void Game::generateQueue(int size)
-{
-	for (int i = 0; i < size; i++)
-	{
-		this->objects.newObject();
-	}
-}
 
-/*
-* spawnObject(): Checa se existem objetos a serem spawnados, e se houver, o coloca na lista de spawn
-*/
-void Game::spawnObject()
-{
-	if (this->objects.isEmpty() == false)
-	{
-		Object object = this->objects.removeObject();
-		this->spawnedObjects.newObject(&object);
-	}
-}
-
-//**Getters**
-//getIsWindowOpen(): Retorna true caso a janela do jogo esteja aberta, e false caso contrário
-const bool Game::getIsWindowOpen()
-{
-	return this->window->isOpen();
-}
