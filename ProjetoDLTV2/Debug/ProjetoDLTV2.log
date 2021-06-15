@@ -1,2 +1,36 @@
-﻿  main.cpp
+﻿  Collision.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(69,15): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+          with
+          [
+              T=float
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(70,16): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+          with
+          [
+              T=float
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(72,73): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(72,70): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(73,73): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(73,70): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(135,42): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
+          with
+          [
+              T=int
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(136,55): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
+          with
+          [
+              T=int
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(136,42): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
+          with
+          [
+              T=int
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(137,47): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
+          with
+          [
+              T=int
+          ]
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Debug\ProjetoDLTV2.exe

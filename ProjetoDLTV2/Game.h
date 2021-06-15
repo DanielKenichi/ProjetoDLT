@@ -8,7 +8,6 @@
 
 //Bibliotecas e includes
 #include <iostream>
-#include "Collision.h"
 #include "ObjectsQueue.h"
 #include "ObjectsList.h"
 #include "Player.h"

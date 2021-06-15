@@ -1,7 +1,6 @@
 //includes e bibliotecas
 #include "Game.h"
 
-
 //**MAIN**
 int main()
 {
