@@ -8,7 +8,7 @@ int main()
     //Inicializando o jogo
     Game game;
     sf::Clock deltaClock;
-
+    
     //Game loop
     while (game.getIsWindowOpen())
     {
