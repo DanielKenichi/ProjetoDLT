@@ -55,7 +55,7 @@ private:
 	void testCollisions();
 
 	void updateObjects(float dt);
-	void pollEvents();
+	void pollEvents(float dt);
 	void generateQueue(int size);
 	void spawnObject();
 

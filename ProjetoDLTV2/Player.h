@@ -26,7 +26,7 @@ public:
     // Inicializa os Escudos
     void InitializeShields(bool top, bool bottom, bool left, bool right); 
     // Rotaciona o player em uma direção
-    void rotateDirection(char dir); // Usa rotacionar para as 4 direções "u","r","d","l"
+    void rotateDirection(char dir, float dt); // Usa rotacionar para as 4 direções "u","r","d","l"
     // Get Player Rotation
     double getPRotation();
 
@@ -42,16 +42,26 @@ private:
 
     // Vida
     int HP = 3;
+    // Velocidade, Aceleração
+    double velocidade = 0;
+    double angAlvo = 0;
+    const double ACELERACAO = 10;
+    const double DESACELERACAO = 1;
+    const double VELOCIDADEMAX = 100;
 
     // Escudos (4, alguns desabilitados)
     sf::Sprite sTop;
     sf::Sprite sDown;
     sf::Sprite sLeft;
     sf::Sprite sRight;
+    // Animação Escudos
+    sf::Clock cTop;
 
     // Sprite e funções relacionadas
     sf::Sprite spr; // Player
-    void rotatePlayer(double ang); // Rotacionar
+    void rotatePlayer(double ang, float dt); // Rotacionar
+    // Animação Player
+    sf::Clock cSpr;
 
     // Texturas
     sf::Texture tPlayer;

@@ -131,7 +131,6 @@ void ObjectsList::removeObject()
 	else if (this->NroElementos > 1)
 	{
 		LNodeptr anterior = this->PL;
-
 		//caso 2.1 ...e o elemento a ser removido esteja no começo da lista
 		if (this->att == this->PL)
 		{

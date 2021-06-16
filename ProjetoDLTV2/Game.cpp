@@ -72,7 +72,7 @@ void Game::initializeObjects()
 {
 	std::srand(time(0));  //inicializando seed aleatoria
 
-	this->generateQueue(10); //definir regra de geração pra queue (etapa de fase)
+	this->generateQueue(200); //definir regra de geração pra queue (etapa de fase)
 }
 
 void Game::initializePlayer()
@@ -92,7 +92,7 @@ void Game::generateQueue(int size)
 }
 
 //pollEvents(): Verifica eventos (Teclado, Janela aberta)
-void Game::pollEvents()
+void Game::pollEvents(float dt)
 {
 	//Event polling
 	while (this->window->pollEvent(this->ev))
@@ -102,13 +102,13 @@ void Game::pollEvents()
 		if (this->ev.type == sf::Event::KeyPressed)
 		{
 			if(ev.key.code == sf::Keyboard::Up || ev.key.code == sf::Keyboard::W){
-				player.rotateDirection('u');
+				player.rotateDirection('u', dt);
 			}else if(ev.key.code == sf::Keyboard::Right || ev.key.code == sf::Keyboard::D){
-				player.rotateDirection('r');
+				player.rotateDirection('r', dt);
 			}else if(ev.key.code == sf::Keyboard::Down  || ev.key.code == sf::Keyboard::S){
-				player.rotateDirection('d');
+				player.rotateDirection('d', dt);
 			}else if(ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::A){
-				player.rotateDirection('l');
+				player.rotateDirection('l', dt);
 			}
 		}
 
@@ -122,7 +122,7 @@ void Game::update(float dt)
 {
 	this->hp = this->player.getHP();
 
-	this->pollEvents();
+	this->pollEvents(dt);
 
 	this->updateObjects(dt);
 
@@ -134,7 +134,7 @@ void Game::update(float dt)
 // updateObjects(): Atualiza as informações dos objetos
 void Game::updateObjects(float dt)
 {
-	sf::Time delay = sf::seconds(0.5f); //delay entre spawns de objetos
+	sf::Time delay = sf::seconds(0.4f); //delay entre spawns de objetos
 
 	if (spawnTimer.getElapsedTime().asSeconds() >= delay.asSeconds())
 	{
@@ -163,15 +163,9 @@ void Game::testCollisions()
 		testObject = this->spawnedObjects.getObjects()->getBody();
 		if(this->player.collidePlayer(testObject)) // Colisão com player
 		{
-			//Remover objeto i
-			std::cout << "Player Acertado por Objeto " << i << std::endl;
 			this->spawnedObjects.removeObject();
-
-			//Perda de vida ocorre no próprio objeto
 		} else if(this->player.collideShields(testObject)) // Colisão com escudos
 		{
-			//Remover objeto i 
-			std::cout << "Escudo Acertado por Objeto " << i << std::endl;
 			this->spawnedObjects.removeObject();
 			this->score += 100;
 		}
