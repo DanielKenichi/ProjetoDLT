@@ -101,7 +101,7 @@ void Player::rotatePlayer(double ang, float dt)
         velocidade = fmax(velocidade - DESACELERACAO, 0);
     }
 
-    this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt * 100.f); 
+    this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt); 
 }
 
 double Player::getPRotation()
