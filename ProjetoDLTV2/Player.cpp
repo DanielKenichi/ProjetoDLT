@@ -62,7 +62,7 @@ void Player::rotateDirection(char dir, float dt)
             angAlvo = 360.f;
         break;
         case 'r': //right
-            //this->rotatePlayer(90.f, dt);
+            this->rotatePlayer(90.f, dt);
             angAlvo = 90.f;
         break;
         case 'd': //down
@@ -100,8 +100,8 @@ void Player::rotatePlayer(double ang, float dt)
     { 
         velocidade = fmax(velocidade - DESACELERACAO, 0);
     }
-
-    this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt); 
+    //this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt * 100.f);
+    this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt * 100.f); 
 }
 
 double Player::getPRotation()

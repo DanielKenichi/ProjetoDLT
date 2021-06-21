@@ -35,8 +35,8 @@ private:
 
 	sf::Sprite body; //Corpo improvisado pro nosso objeto
 	int poskey; //determina a posi��o de spawn do objeto
-	float Speed; //multiplicador de velocidade
-
+	int Speed; //multiplicador de velocidade
+	//float Speed;
 	sf::Texture bodyImage; //textura do corpo do objeto
 
 

@@ -44,6 +44,14 @@ private:
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
 	Player player; // Jogador
 
+	//Indicador de estado
+	int state;
+
+	//Indicadores de fase
+	int level;
+	bool pass;
+	bool inGame;
+
 	//**Métodos privados**
 	void initializeVariables();
 	void initializeWindow();

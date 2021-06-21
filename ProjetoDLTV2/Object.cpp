@@ -65,8 +65,8 @@ void Object::initializeObject()
 	}
 
 	this->body.setScale(spriteScale);
-	this->Speed = 0.2f;
-
+	this->Speed = 200;
+	//this->Speed = 0.2f;
 	//this->Speed = std::rand() % 5 + 1; //gera um n�mero entre 1 e 5
 
 }
