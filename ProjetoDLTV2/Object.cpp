@@ -2,33 +2,28 @@
 
 
 /*Construtor e Destrutor*/
-Object::Object()
-{
+Object::Object(){
 	initializeObject();
 }
 
-Object::~Object()
-{
+Object::~Object(){
 }
 
 /*getters*/
-sf::Sprite Object::getBody()
-{
+sf::Sprite Object::getBody(){
 	return this->body;
 }
 
 /*
 *initializeObject(): Inicializa os atributos de um objeto
 */
-void Object::initializeObject() 
-{
+void Object::initializeObject() {
 	const sf::Vector2f spriteScale(0.5f, 0.5f);
 
 	this->poskey = std::rand() % 4 + 1;
 
 	//Carregamento de Texturas
-	if (!this->bodyImage.loadFromFile("resources/object.png")) //imagem 128x128
-	{  
+	if (!this->bodyImage.loadFromFile("resources/object.png")){ //imagem 128x128  
 		std::cout << "Object.cpp : Falha na leitura de Object.png" << std::endl;
 	}
 
@@ -41,8 +36,7 @@ void Object::initializeObject()
 
 	
 	/*OBS: AJUSTAR O TAMANHO PARA SPAWNAR FORA DA TELA*/
-	switch (this->poskey) 
-	{
+	switch (this->poskey) {
 	case 1:
 		this->body.setPosition(400.f, 0.f); //O objeto ir� spawnar em cima do jogador
 		this->body.setRotation(90.f);
@@ -65,19 +59,17 @@ void Object::initializeObject()
 	}
 
 	this->body.setScale(spriteScale);
-	this->Speed = 0.2f;
+	this->Speed = 200;
 	//this->Speed = 0.2f;
 	//this->Speed = std::rand() % 5 + 1; //gera um n�mero entre 1 e 5
 
 }
 
-void Object::moveObject(float dt)
-{
+void Object::moveObject(float dt){
 
 	sf::Vector2f pos;
 
-	switch (this->poskey)
-	{
+	switch (this->poskey){
 	case 1:
 		this->body.move(0.f, 1.f * this->Speed * dt); //Movimenta��o do objeto caso seja spawnado em cima
 		break;

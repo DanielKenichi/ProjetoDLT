@@ -14,8 +14,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-class Player : public sf::Transformable
-{
+class Player : public sf::Transformable{
 public:
     Player();
     ~Player();
@@ -45,11 +44,11 @@ private:
     // Velocidade, Aceleração
     double velocidade = 0;
     double angAlvo = 0;
-    //const double ACELERACAO = 10;
-    const double ACELERACAO = 1;
+    const double ACELERACAO = 10;
+    //const double ACELERACAO = 1;
     const double DESACELERACAO = 1;
-    //const double VELOCIDADEMAX = 100;
-    const double VELOCIDADEMAX = 10;
+    const double VELOCIDADEMAX = 100;
+    //const double VELOCIDADEMAX = 10;
 
     // Escudos (4, alguns desabilitados)
     sf::Sprite sTop;

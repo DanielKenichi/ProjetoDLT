@@ -1,7 +1,23 @@
-﻿  main.cpp
+﻿  Game.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(147,48): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(148,83): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(148,51): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(174,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(181,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(181,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+  Object.cpp
+  ObjectsList.cpp
+  ObjectsQueue.cpp
+  Player.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(80,20): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(87,27): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(98,60): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+  main.cpp
   Gerando código
-  0 of 233 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\ObjectsList.cpp(34): warning C4715: 'ObjectsList::getObjects': nem todos os caminhos de controle retornam um valor
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\ObjectsQueue.cpp(112): warning C4715: 'ObjectsQueue::removeObject': nem todos os caminhos de controle retornam um valor
+  43 of 233 functions (18.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Release\ProjetoDLTV2.exe

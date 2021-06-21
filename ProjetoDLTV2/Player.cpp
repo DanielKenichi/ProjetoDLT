@@ -39,23 +39,19 @@ void Player::initializeSprites(){
     sTop.setOrigin(middle + sf::Vector2f(0.0f, middle.y/2));
 }
 
-Player::~Player()
-{
+Player::~Player(){
     std::cout << "Player Destruido" << std::endl;
 }
 
-int Player::getHP()
-{
+int Player::getHP(){
     return this->HP;
 }
 
-void Player::setHP(int hp)
-{
+void Player::setHP(int hp){
     this->HP = hp;
 }
 
-void Player::rotateDirection(char dir, float dt)
-{
+void Player::rotateDirection(char dir, float dt){
     switch(dir){
         case 'u': //up
             //this->rotatePlayer(0.f, dt);
@@ -80,8 +76,7 @@ float modulo(float a, float b){
     return a - floor(a/b) * b;
 }
 
-void Player::rotatePlayer(double ang, float dt)
-{
+void Player::rotatePlayer(double ang, float dt){
     float deltaAng = ang - this->getRotation();
     deltaAng = modulo((deltaAng + 180.f), 360.f) - 180.f;
     float distancia = fabs(deltaAng);  
@@ -100,17 +95,15 @@ void Player::rotatePlayer(double ang, float dt)
     { 
         velocidade = fmax(velocidade - DESACELERACAO, 0);
     }
-    //this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt * 100.f);
-    this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt); 
+    this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt * 100.f);
+    //this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt); 
 }
 
-double Player::getPRotation()
-{
+double Player::getPRotation(){
     return this->spr.getRotation();
 }
 
-void InitializeShields(bool top, bool right, bool bottom, bool left)
-{
+void InitializeShields(bool top, bool right, bool bottom, bool left){
     // Inicializar os sprites (procurar nos resources)
     // TODO:
     if(top){
@@ -129,14 +122,12 @@ void InitializeShields(bool top, bool right, bool bottom, bool left)
     //Setar a rotação offset de cada escudo -> entity.setRotation(x); com x = 0, 90, 180, 270
 }
 
-void Player::renderAll(sf::RenderWindow *win)
-{
+void Player::renderAll(sf::RenderWindow *win){
     win->draw(spr);
     win->draw(sTop);
 }
 
-void Player::updateAll(float dt)
-{
+void Player::updateAll(float dt){
     //Temporário FIXME: solução permanente para todas as atualizações
     this->rotatePlayer(angAlvo, dt);
     spr.setPosition(this->getPosition());
@@ -158,10 +149,8 @@ void Player::updateAll(float dt)
     }
 }
 
-bool Player::collidePlayer(sf::Sprite obj)
-{
-    if(Collision::CircleTest(this->spr, obj))
-    {
+bool Player::collidePlayer(sf::Sprite obj){
+    if(Collision::CircleTest(this->spr, obj)){
         HP--;
         cSpr.restart();
         return true;
@@ -170,10 +159,8 @@ bool Player::collidePlayer(sf::Sprite obj)
     }
 }
 
-bool Player::collideShields(sf::Sprite obj)
-{ 
-    if(Collision::BoundingBoxTest(this->sTop, obj))
-    {
+bool Player::collideShields(sf::Sprite obj){ 
+    if(Collision::BoundingBoxTest(this->sTop, obj)){
         cTop.restart();
         return true;
     }else{

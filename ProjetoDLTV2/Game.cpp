@@ -242,7 +242,9 @@ void Game::testCollisions(){
 
 	sf::Sprite testObject;
 	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++){
+
 		testObject = this->spawnedObjects.getObjects()->getBody();
+
 		if(this->player.collidePlayer(testObject)){ // Colisão com player
 			this->spawnedObjects.removeObject();
 		} 

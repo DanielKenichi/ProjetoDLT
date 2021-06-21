@@ -11,8 +11,7 @@
 
 
 //**structs**
-struct Node
-{
+struct Node{
     Object info;
     struct Node* Next;
 };
