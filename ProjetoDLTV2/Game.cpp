@@ -292,7 +292,7 @@ sf::Time Game::setSpawnTimer() {
 void Game::updateObjects(float dt) {
 	sf::Time delay = setSpawnTimer(); //delay entre spawns de objetos
 
-	this->updateTimer(dt);
+	this->updateTimer(dt, &this->spawnTimer);
 
 	if (this->spawnTimer.asSeconds() >= delay.asSeconds()) {
 		spawnObject();
@@ -313,12 +313,12 @@ void Game::updateObjects(float dt) {
 }
 
 /*
-* updateTimer(float dt): Atualiza o timer de spawn dos objetos
+* updateTimer(float dt, sf::Time *timer): Atualiza o timer desejado
 */
-void Game::updateTimer(float dt) {
+void Game::updateTimer(float dt, sf::Time *timer) {
 	sf::Time increase = sf::seconds(1.f);
 
-	this->spawnTimer += increase * dt; 
+	*timer += increase * dt; 
 }
 
 /*

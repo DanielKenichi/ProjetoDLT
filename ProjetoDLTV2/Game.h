@@ -46,8 +46,9 @@ private:
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
 	Player player; // Jogador
 
-	//timer
+	//timers
 	sf::Time spawnTimer;
+	sf::Time waitTimer;
 
 	//Indicador de estado
 	int state;
@@ -74,7 +75,7 @@ private:
 	void testCollisions();
 
 	sf::Time setSpawnTimer();
-	void updateTimer(float dt);
+	void updateTimer(float dt, sf::Time *timer);
 	void updateObjects(float dt);
 	void pollEvents(float dt);
 	void generateQueue(int size);

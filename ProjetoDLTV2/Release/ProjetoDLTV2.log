@@ -1,9 +1,12 @@
-﻿  Object.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(98,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(100,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(102,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+﻿  Game.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(197,48): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(198,83): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(198,51): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(224,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(231,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(231,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
   Gerando código
-  6 of 235 functions ( 2.6%) were compiled, the rest were copied from previous compilation.
+  4 of 235 functions ( 1.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
