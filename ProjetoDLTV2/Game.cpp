@@ -298,10 +298,13 @@ void Game::updateObjects(float dt) {
 	}
 	
 }
+/*
+* updateTimer(float dt): Atualiza o timer de spawn dos objetos
+*/
 void Game::updateTimer(float dt) {
 	sf::Time increase = sf::seconds(1.f);
 
-	this->spawnTimer += increase * dt;
+	this->spawnTimer += increase * dt; 
 }
 
 /*
