@@ -33,7 +33,7 @@ public:
      bool isEmpty();
      void initializeQueue();
      void newObject();
-     Object removeObject();
+     Object* removeObject();
 
 
 

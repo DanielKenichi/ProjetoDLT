@@ -7,6 +7,7 @@ ObjectsQueue::ObjectsQueue(){
 }
 
 ObjectsQueue::~ObjectsQueue(){
+	std::cout << "Fila destruida" << std::endl;
 }
 
 
@@ -74,7 +75,7 @@ void ObjectsQueue::newObject(){
 /*
 * removeObject(): Remove da fila o objeto para ser transferido para a lista de spawnados
 */
-Object ObjectsQueue::removeObject(){
+Object* ObjectsQueue::removeObject(){
 	Nodeptr Aux; 
 
 	Aux = this->Primeiro;
@@ -94,7 +95,7 @@ Object ObjectsQueue::removeObject(){
 
 		this->NroElementos--;
 
-		return Aux->info;
+		return &Aux->info;
 	}
 
 	//Caso 3: A fila tem mais de um elemento
@@ -107,6 +108,6 @@ Object ObjectsQueue::removeObject(){
 
 		this->NroElementos--;
 
-		return Aux->info;
+		return &Aux->info;
 	}
 }

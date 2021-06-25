@@ -6,6 +6,7 @@ ObjectsList::ObjectsList(){
 }
 
 ObjectsList::~ObjectsList(){
+	std::cout << "Lista destruida" << std::endl;
 }
 /**setters**/
 void ObjectsList::setAtt(){

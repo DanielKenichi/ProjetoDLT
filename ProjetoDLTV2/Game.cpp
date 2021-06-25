@@ -9,7 +9,7 @@ sf::Clock spawnTimer; //timer para spawnar os objetos
 Game::Game(){
 	this->initializeVariables();
 	this->initializeWindow();
-	this->initializePlayer();
+	
 }
 // --> Destrutor <--
 Game::~Game(){
@@ -33,7 +33,13 @@ void Game::update(float dt){
 		//gera main screen
 
 		//condição de saida : start game
-		//this->state = 1;
+		if (this->start == true){
+			this->initializePlayer();
+			this->player.setHP(3);
+			this->score = 0;
+			this->state = 1;
+		}
+		
 	}
 	//state 1
 	if (this->state == 1){
@@ -70,8 +76,23 @@ void Game::update(float dt){
 	if (this->state == 3) {
 		std::cout << "Game Over" << std::endl;
 
+		//voltando variaveis ao estado inicial
+		this->inGame = false;
+		this->level = 1;
+		
+		//esvaziando lista e fila
+		while (this->objects.isEmpty() == false) {
+			this->objects.removeObject();
+		}
+		while (this->spawnedObjects.getNroElementos() != 0) {
+			this->spawnedObjects.removeObject();
+		}
+
 		//condição de saida: Após confirmação do player, voltar para tela inicial
-		this->state = 0;
+		if (this->start == false) {
+			this->state = 0;
+		}
+		
 	}
 	
 }
@@ -128,8 +149,8 @@ const bool Game::getIsWindowOpen(){
 void Game::initializeVariables(){
 	this->window = nullptr;
 
-	//this->state = 0; 
-	this->state = 1; //para teste apenas
+	this->start = false;
+	this->state = 0; 
 	this->level = 1;
 	this->pass = false;
 	this->inGame = false;
@@ -199,6 +220,7 @@ void Game::pollEvents(float dt){
 			this->window->close();
 
 		if (this->ev.type == sf::Event::KeyPressed){
+			//movimento do player
 			if(ev.key.code == sf::Keyboard::Up || ev.key.code == sf::Keyboard::W){
 				player.rotateDirection('u', dt);
 			}else if(ev.key.code == sf::Keyboard::Right || ev.key.code == sf::Keyboard::D){
@@ -207,6 +229,11 @@ void Game::pollEvents(float dt){
 				player.rotateDirection('d', dt);
 			}else if(ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::A){
 				player.rotateDirection('l', dt);
+			}
+
+			//start game
+			if (ev.key.code == sf::Keyboard::Enter && (this->state == 0 || this->state == 3)) {
+				this->start = !start;
 			}
 		}
 
@@ -259,9 +286,10 @@ void Game::testCollisions(){
 * spawnObject(): Checa se existem objetos a serem spawnados, e se houver, o coloca na lista de spawn
 */
 void Game::spawnObject(){
+	Object* object = nullptr;
 	if (this->objects.isEmpty() == false){
-		Object object = this->objects.removeObject();
-		this->spawnedObjects.newObject(&object);
+		object = this->objects.removeObject();
+		this->spawnedObjects.newObject(object);
 		this->inGame = true;
 	}
 }

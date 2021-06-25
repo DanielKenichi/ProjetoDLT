@@ -40,12 +40,17 @@ private:
 	sf::Text tHP;
 	sf::Text tScore;
 
+	//Texto de game over
+
 	ObjectsQueue objects; // Fila de Objetos
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
 	Player player; // Jogador
 
 	//Indicador de estado
 	int state;
+	
+	//start
+	bool start;
 
 	//Indicadores de fase
 	int level;

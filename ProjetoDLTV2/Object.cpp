@@ -7,6 +7,7 @@ Object::Object(){
 }
 
 Object::~Object(){
+	std::cout << "Objeto Destruido" << std::endl;
 }
 
 /*getters*/

@@ -40,7 +40,7 @@ public:
 private:
 
     // Vida
-    int HP = 3;
+    int HP;
     // Velocidade, Aceleração
     double velocidade = 0;
     double angAlvo = 0;
