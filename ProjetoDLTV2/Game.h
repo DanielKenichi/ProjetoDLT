@@ -46,11 +46,17 @@ private:
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
 	Player player; // Jogador
 
+	//timer
+	sf::Time spawnTimer;
+
 	//Indicador de estado
 	int state;
 	
-	//start
+	//Start game
 	bool start;
+
+	//Pause
+	bool pause;
 
 	//Indicadores de fase
 	int level;
@@ -67,6 +73,7 @@ private:
 	void renderScore();
 	void testCollisions();
 
+	void updateTimer(float dt);
 	void updateObjects(float dt);
 	void pollEvents(float dt);
 	void generateQueue(int size);

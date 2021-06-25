@@ -3,7 +3,7 @@
 #include <String>
 
 //Variáveis globais
-sf::Clock spawnTimer; //timer para spawnar os objetos
+//sf::Clock spawnTimer; //timer para spawnar os objetos
 
 // --> Construtor e Inicializadores <--
 Game::Game(){
@@ -22,6 +22,7 @@ Game::~Game(){
 *	State 1: Gerando nova fase
 *   State 2: Em jogo
 *   State 3: Game over
+*	State 4: Pause
 */
 void Game::update(float dt){
 
@@ -60,15 +61,21 @@ void Game::update(float dt){
 		this->testCollisions();
 		this->player.updateAll(dt);
 
-		//condição de saída: finalizar a fase ou Zerar o hp
+		//condições de saída: Zerar hp 
 		if (this->player.getHP() == 0){
 			this->state = 3;
 		}
+
+		//Passar a fase
 		else if (pass == true){
 			std::cout << "YAY passou" << std::endl;
 			this->level++;
 			this->inGame = false;
 			this->state = 1;
+		}
+		//Pausar o jogo
+		else if (pause == true) {
+			this->state = 4;
 		}
 	}
 
@@ -76,9 +83,11 @@ void Game::update(float dt){
 	if (this->state == 3) {
 		std::cout << "Game Over" << std::endl;
 
+		this->hp = this->player.getHP();
 		//voltando variaveis ao estado inicial
 		this->inGame = false;
 		this->level = 1;
+		this->spawnTimer = sf::seconds(0.f);
 		
 		//esvaziando lista e fila
 		while (this->objects.isEmpty() == false) {
@@ -91,8 +100,17 @@ void Game::update(float dt){
 		//condição de saida: Após confirmação do player, voltar para tela inicial
 		if (this->start == false) {
 			this->state = 0;
+		}		
+	}
+
+	//state 4
+	if (this->state == 4) {
+		std::cout << "Jogo pausado" << std::endl;
+
+		//Condição de Saída: Despausar o jogo
+		if (this->pause == false) {
+			this->state = 2;
 		}
-		
 	}
 	
 }
@@ -103,6 +121,7 @@ void Game::update(float dt){
 *	State 1: Gerando nova fase
 *   State 2: Em jogo
 *   State 3: Game over
+*	State 4: Pause
 */
 void Game::render(){
 	this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
@@ -132,6 +151,13 @@ void Game::render(){
 	//state 3
 	if (this->state == 3) {
 		//renderiza tela de Game over
+		this->renderScore();
+		this->window->display();
+	}
+
+	//state 4
+	if (this->state == 4) {
+		//renderiza tela de pause
 	}
 
 }
@@ -150,6 +176,9 @@ void Game::initializeVariables(){
 	this->window = nullptr;
 
 	this->start = false;
+	this->pause = false;
+
+	this -> spawnTimer = sf::seconds(0.f);
 	this->state = 0; 
 	this->level = 1;
 	this->pass = false;
@@ -235,6 +264,11 @@ void Game::pollEvents(float dt){
 			if (ev.key.code == sf::Keyboard::Enter && (this->state == 0 || this->state == 3)) {
 				this->start = !start;
 			}
+
+			//pause and unpause
+			if (ev.key.code == sf::Keyboard::Escape && (this->state == 2 || this->state == 4)) {
+				this->pause = !pause;
+			}
 		}
 
 	}
@@ -245,10 +279,13 @@ void Game::pollEvents(float dt){
 void Game::updateObjects(float dt) {
 	sf::Time delay = sf::seconds(0.4f); //delay entre spawns de objetos
 
-	if (spawnTimer.getElapsedTime().asSeconds() >= delay.asSeconds()){
+	this->updateTimer(dt);
+
+	if (this->spawnTimer.asSeconds() >= delay.asSeconds()) {
 		spawnObject();
-		spawnTimer.restart(); //restarta o timer de spawn de objetos
-	}
+		this->spawnTimer = sf::seconds(0.f); //restarta timer de spawn de objetos
+	 }
+
 	if(this->inGame == true){
 		if (this->spawnedObjects.getNroElementos() != 0) { //se tiver elementos na lista de spawn, os movimenta
 			for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++) {
@@ -260,6 +297,11 @@ void Game::updateObjects(float dt) {
 		}
 	}
 	
+}
+void Game::updateTimer(float dt) {
+	sf::Time increase = sf::seconds(1.f);
+
+	this->spawnTimer += increase * dt;
 }
 
 /*
@@ -311,3 +353,8 @@ void Game::renderScore(){
 }
 
 
+//**Apenas caso precise de volta** 
+/*if (spawnTimer.getElapsedTime().asSeconds() >= delay.asSeconds()){
+		spawnObject();
+		spawnTimer.restart(); //restarta o timer de spawn de objetos
+	}*/
