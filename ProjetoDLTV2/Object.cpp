@@ -92,8 +92,11 @@ void Object::speedAdjust(int level)
 {
 	//int key = std::rand() % 2 + 1;
 	int key = 1;
+	/*key = 1: fase de Velocidade constante
+	* key = 2: fase de velocidade variavel
+	*/
 	switch (key) {
-	case 1:		//velocidade constante
+	case 1:		
 		if (level == 1) {
 			this->Speed = 100.f;
 		}if (level > 1 && level <= 5) {
@@ -102,7 +105,7 @@ void Object::speedAdjust(int level)
 			this->Speed = 400.f;
 		}
 		break;
-	case 2:
+	case 2: 
 		break;
 	}
 }

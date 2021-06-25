@@ -273,6 +273,9 @@ void Game::pollEvents(float dt){
 
 	}
 }
+/*
+* setSpawnTimer(): setta o timer de spawn do objeto com base no level
+*/
 
 sf::Time Game::setSpawnTimer() {
 	if (this->level == 1) 
@@ -287,7 +290,7 @@ sf::Time Game::setSpawnTimer() {
 
 // updateObjects(): Atualiza as informações dos objetos
 void Game::updateObjects(float dt) {
-	sf::Time delay = setSpawnTimer();//delay entre spawns de objetos
+	sf::Time delay = setSpawnTimer(); //delay entre spawns de objetos
 
 	this->updateTimer(dt);
 
