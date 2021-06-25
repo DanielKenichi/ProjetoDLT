@@ -3,7 +3,7 @@
 #include <String>
 
 //Variáveis globais
-//sf::Clock spawnTimer; //timer para spawnar os objetos
+
 
 // --> Construtor e Inicializadores <--
 Game::Game(){
@@ -44,7 +44,7 @@ void Game::update(float dt){
 	}
 	//state 1
 	if (this->state == 1){
-		std::cout << "gerando objetos" << std::endl;
+		std::cout << "gerando objetos da fase: " << this->level <<  std::endl;
 		this->pass = false;
 		this->initializeObjects();
 		
@@ -218,7 +218,7 @@ void Game::initializeWindow(){
 */
 void Game::initializeObjects(){
 
-	int numObjs = this->level * 5;
+	int numObjs = this->level * 2;
 	if (numObjs > 200) numObjs = 200;
 
 	std::srand(time(0));  //inicializando seed aleatoria
@@ -237,7 +237,7 @@ void Game::initializePlayer(){
 void Game::generateQueue(int size){
 
 	for (int i = 0; i < size; i++){
-		this->objects.newObject();
+		this->objects.newObject(this->level);
 	}
 }
 
@@ -274,10 +274,20 @@ void Game::pollEvents(float dt){
 	}
 }
 
+sf::Time Game::setSpawnTimer() {
+	if (this->level == 1) 
+		return sf::seconds(2.f);
+	else if(this->level > 1 && this->level <= 3){
+		return sf::seconds(1.f);
+	}
+	else if (this->level > 3) {
+		return sf::seconds(0.5f);
+	}
+}
 
 // updateObjects(): Atualiza as informações dos objetos
 void Game::updateObjects(float dt) {
-	sf::Time delay = sf::seconds(0.4f); //delay entre spawns de objetos
+	sf::Time delay = setSpawnTimer();//delay entre spawns de objetos
 
 	this->updateTimer(dt);
 
@@ -298,6 +308,7 @@ void Game::updateObjects(float dt) {
 	}
 	
 }
+
 /*
 * updateTimer(float dt): Atualiza o timer de spawn dos objetos
 */
@@ -355,9 +366,3 @@ void Game::renderScore(){
 	this->window->draw(tScore);
 }
 
-
-//**Apenas caso precise de volta** 
-/*if (spawnTimer.getElapsedTime().asSeconds() >= delay.asSeconds()){
-		spawnObject();
-		spawnTimer.restart(); //restarta o timer de spawn de objetos
-	}*/

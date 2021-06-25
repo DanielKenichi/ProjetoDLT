@@ -73,6 +73,7 @@ private:
 	void renderScore();
 	void testCollisions();
 
+	sf::Time setSpawnTimer();
 	void updateTimer(float dt);
 	void updateObjects(float dt);
 	void pollEvents(float dt);

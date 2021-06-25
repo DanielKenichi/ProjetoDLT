@@ -27,7 +27,7 @@ public:
 	//**setters**
 
 	//**M�todos**
-	void initializeObject();
+	void initializeObject(int level);
 	void moveObject(float dt);
 
 private:
@@ -38,7 +38,7 @@ private:
 	//float Speed;
 	sf::Texture bodyImage; //textura do corpo do objeto
 
-
+	void speedAdjust(int level);
 };
 
 #endif //OBJECT_H
