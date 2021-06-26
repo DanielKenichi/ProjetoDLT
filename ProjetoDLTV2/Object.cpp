@@ -98,11 +98,11 @@ void Object::speedAdjust(int level)
 	switch (key) {
 	case 1:		
 		if (level == 1) {
-			this->Speed = 100.f;
-		}if (level > 1 && level <= 5) {
 			this->Speed = 200.f;
+		}if (level > 1 && level <= 5) {
+			this->Speed = 300.f;
 		}if (level > 5) {
-			this->Speed = 400.f;
+			this->Speed = 600.f;
 		}
 		break;
 	case 2: 

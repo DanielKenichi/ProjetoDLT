@@ -47,7 +47,7 @@ void Game::update(float dt){
 		std::cout << "gerando objetos da fase: " << this->level <<  std::endl;
 		this->pass = false;
 		this->initializeObjects();
-		
+		if (this->level % 5 == 0) this->player.setHP(this->player.getHP() + 1);
 
 		//condição de saída: ter gerado os objetos
 		this->state = 2;
@@ -218,7 +218,7 @@ void Game::initializeWindow(){
 */
 void Game::initializeObjects(){
 
-	int numObjs = this->level * 2;
+	int numObjs = this->level * 4;
 	if (numObjs > 200) numObjs = 200;
 
 	std::srand(time(0));  //inicializando seed aleatoria
@@ -280,11 +280,14 @@ void Game::pollEvents(float dt){
 sf::Time Game::setSpawnTimer() {
 	if (this->level == 1) 
 		return sf::seconds(2.f);
-	else if(this->level > 1 && this->level <= 3){
+	else if(this->level > 1 && this->level <=5){
 		return sf::seconds(1.f);
 	}
-	else if (this->level > 3) {
+	else if (this->level > 5 && this->level <= 15) {
 		return sf::seconds(0.5f);
+	}
+	else if (this->level > 15) {
+		return sf::seconds(0.4f);
 	}
 }
 
@@ -305,7 +308,7 @@ void Game::updateObjects(float dt) {
 				this->spawnedObjects.getObjects()->moveObject(dt);
 			}
 		}
-		else {
+		else if(this->objects.isEmpty() == true){
 			this->pass = true;
 		}
 	}

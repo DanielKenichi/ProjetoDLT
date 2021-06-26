@@ -6,8 +6,8 @@ C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(224,17): warning C424
 C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(231,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
 C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(231,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
   Gerando código
-  4 of 235 functions ( 1.7%) were compiled, the rest were copied from previous compilation.
+  2 of 235 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Release\ProjetoDLTV2.exe
