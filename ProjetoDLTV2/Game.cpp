@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <String>
 
-//Variáveis globais
-
+//Variáveis globais  e defines
+#define WIDTH 1000
+#define HEIGHT 800
 
 // --> Construtor e Inicializadores <--
 Game::Game(){
@@ -200,8 +201,8 @@ void Game::initializeVariables(){
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
 void Game::initializeWindow(){
-	this->videoMode.height = 600;
-	this->videoMode.width = 800;
+	this->videoMode.height = HEIGHT;
+	this->videoMode.width = WIDTH;
 	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 
 	
@@ -237,7 +238,7 @@ void Game::initializePlayer(){
 void Game::generateQueue(int size){
 
 	for (int i = 0; i < size; i++){
-		this->objects.newObject(this->level);
+		this->objects.newObject(this->level, WIDTH, HEIGHT);
 	}
 }
 

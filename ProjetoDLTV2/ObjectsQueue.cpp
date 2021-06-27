@@ -35,12 +35,12 @@ void ObjectsQueue::initializeQueue(){
 * newObject(): Inicializa e insere um novo objeto na fila de objetos (sem prioridade ainda)
 */
 
-void ObjectsQueue::newObject(int level){
+void ObjectsQueue::newObject(int level, int w, int h){
 	Nodeptr Aux; 
 
 	Aux = new Node;
 
-	Aux->info.initializeObject(level); 
+	Aux->info.initializeObject(level, h, w); 
 
 	//Caso 1: Caso a fila esteja vazia
 	if (this->NroElementos == 0){

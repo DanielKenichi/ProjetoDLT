@@ -27,7 +27,7 @@ public:
 	//**setters**
 
 	//**M�todos**
-	void initializeObject(int level);
+	void initializeObject(int level, int h, int w);
 	void moveObject(float dt);
 
 private:

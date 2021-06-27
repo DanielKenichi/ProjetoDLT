@@ -1,5 +1,5 @@
 #include "Object.h"
-
+#include "Game.h"
 
 /*Construtor e Destrutor*/
 Object::Object(){
@@ -17,7 +17,7 @@ sf::Sprite Object::getBody(){
 /*
 *initializeObject(): Inicializa os atributos de um objeto
 */
-void Object::initializeObject(int level) {
+void Object::initializeObject(int level, int h, int w) {
 	const sf::Vector2f spriteScale(0.5f, 0.5f);
 
 	this->poskey = std::rand() % 4 + 1;
@@ -38,22 +38,22 @@ void Object::initializeObject(int level) {
 	/*OBS: AJUSTAR O TAMANHO PARA SPAWNAR FORA DA TELA*/
 	switch (this->poskey) {
 	case 1:
-		this->body.setPosition(400.f, 0.f); //O objeto ir� spawnar em cima do jogador
+		this->body.setPosition(w/2.f, 0.f); //O objeto ir� spawnar em cima do jogador
 		this->body.setRotation(90.f);
 		break;
 
 	case 2:
-		this->body.setPosition(0.f, 300.f); //O objeto ir� spawnar � esquerda do jogador
+		this->body.setPosition(0.f, h/2.f); //O objeto ir� spawnar � esquerda do jogador
 		this->body.setRotation(0.f);
 		break;
 
 	case 3:
-		this->body.setPosition(800.f, 300.f); //O objeto ir� spawnar � direita do jogador
+		this->body.setPosition(w, h/2.f); //O objeto ir� spawnar � direita do jogador
 		this->body.setRotation(180.f);
 		break;
 
 	case 4:
-		this->body.setPosition(400.f, 600.f); //O objeto ir� spawnar embaixo do jogador
+		this->body.setPosition(w/2.f, h); //O objeto ir� spawnar embaixo do jogador
 		this->body.setRotation(270.f);
 		break;
 	}

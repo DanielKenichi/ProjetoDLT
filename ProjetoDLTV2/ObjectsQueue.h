@@ -32,7 +32,7 @@ public:
     //**Métodos primitivos**
      bool isEmpty();
      void initializeQueue();
-     void newObject(int level);
+     void newObject(int level, int h, int w);
      Object* removeObject();
 
 
