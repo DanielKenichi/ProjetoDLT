@@ -2,6 +2,7 @@
 #include "Game.h"
 
 //**MAIN**
+
 int main(){
     //Inicializando o jogo
     Game game;
@@ -20,3 +21,4 @@ int main(){
 
     return 0;
 }
+

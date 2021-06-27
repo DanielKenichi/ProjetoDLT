@@ -1,36 +1,19 @@
-﻿  Collision.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(69,15): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+﻿  Game.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(201,48): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(202,83): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(202,51): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(227,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(234,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(234,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(244,74): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(70,16): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(244,37): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(72,73): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(72,70): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(73,73): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(73,70): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(135,42): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(136,55): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(136,42): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Collision.cpp(137,47): warning C4244: 'argumento': conversão de 'T' para 'float', possível perda de dados
-          with
-          [
-              T=int
-          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(296): warning C4715: 'Game::setSpawnTimer': nem todos os caminhos de controle retornam um valor
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Debug\ProjetoDLTV2.exe

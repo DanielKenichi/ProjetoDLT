@@ -103,6 +103,11 @@ double Player::getPRotation(){
     return this->spr.getRotation();
 }
 
+sf::FloatRect Player::getSpriteSize()
+{
+    return this->spr.getLocalBounds();
+}
+
 void InitializeShields(bool top, bool right, bool bottom, bool left){
     // Inicializar os sprites (procurar nos resources)
     // TODO:

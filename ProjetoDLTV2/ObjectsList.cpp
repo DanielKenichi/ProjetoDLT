@@ -27,6 +27,7 @@ Object* ObjectsList::getObjects() {
 
 	if (this->PL == NULL){
 		std::cout << "Acabou a os objetos da lista" << std::endl;
+		return NULL;
 	}
 	else{	
 		this->att = (this->att)->Next;
@@ -114,6 +115,7 @@ void ObjectsList::removeObject(){
 	//caso 2: a lista tem mais de um elemento...
 	else if (this->NroElementos > 1){
 		LNodeptr anterior = this->PL;
+
 		//caso 2.1 ...e o elemento a ser removido esteja no começo da lista
 		if (this->att == this->PL){
 			this->PL = (this->PL)->Next;
@@ -126,15 +128,29 @@ void ObjectsList::removeObject(){
 			this->NroElementos--;
 		}
 
-		//caso 2.2 ... e o elemento a ser removido esteja no meio da lista
-		else{
+		else if (this->att == this->UL) {
 			while (anterior->Next != this->att){
 				anterior = anterior->Next;
 			}
 
 			anterior->Next = (this->att)->Next;
-			(this->att)->Next = nullptr;
 
+			(this->att)->Next = nullptr;
+			delete this->att;
+
+			this->att = anterior->Next;
+			this->UL = anterior;
+			this->NroElementos--;
+		}
+
+		//caso 2.2 ... e o elemento a ser removido esteja no meio da lista
+		else{
+			while (anterior->Next != this->att){
+				anterior = anterior->Next;
+			}
+			anterior->Next = (this->att)->Next;
+
+			(this->att)->Next = nullptr;
 			delete this->att;
 
 			this->att = anterior->Next;

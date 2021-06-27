@@ -27,12 +27,12 @@ public:
     ~ObjectsQueue();
 
     //**getters** 
-
+    Object getFirst();
 
     //**Métodos primitivos**
      bool isEmpty();
      void initializeQueue();
-     void newObject(int level, int h, int w);
+     void newObject(int level, int h, int w, float dt, int ph, int pw);
      Object* removeObject();
 
 

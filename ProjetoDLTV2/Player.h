@@ -29,6 +29,9 @@ public:
     // Get Player Rotation
     double getPRotation();
 
+    //get Sprite size
+    sf::FloatRect getSpriteSize();
+
     // Renderização e Update
     void updateAll(float dt);
     void renderAll(sf::RenderWindow *win);

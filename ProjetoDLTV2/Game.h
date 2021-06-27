@@ -1,6 +1,8 @@
 
 #ifndef GAME_H
 #define GAME_H
+#define WIDTH 1000
+#define HEIGHT 800
 
 /*
 * A classe do jogo 
@@ -48,7 +50,8 @@ private:
 
 	//timers
 	sf::Time spawnTimer;
-	sf::Time waitTimer;
+	sf::Time checkerTimer;
+	sf::Time LastObjTimer;
 
 	//Indicador de estado
 	int state;
@@ -67,7 +70,7 @@ private:
 	//**Métodos privados**
 	void initializeVariables();
 	void initializeWindow();
-	void initializeObjects();
+	void initializeObjects(float dt);
 	void initializePlayer();
 
 	void renderObjects();
@@ -75,10 +78,11 @@ private:
 	void testCollisions();
 
 	sf::Time setSpawnTimer();
-	void updateTimer(float dt, sf::Time *timer);
+	void increaseTimer(float dt, sf::Time *timer);
+	void decreaseTimer(float dt, sf::Time* timer);
 	void updateObjects(float dt);
 	void pollEvents(float dt);
-	void generateQueue(int size);
+	void generateQueue(int size, float dt);
 	void spawnObject();
 
 };

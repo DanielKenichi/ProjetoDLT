@@ -10,6 +10,11 @@ ObjectsQueue::~ObjectsQueue(){
 	std::cout << "Fila destruida" << std::endl;
 }
 
+Object ObjectsQueue::getFirst()
+{
+	return (this->Primeiro)->info;
+}
+
 
 bool ObjectsQueue::isEmpty()
 {
@@ -35,12 +40,12 @@ void ObjectsQueue::initializeQueue(){
 * newObject(): Inicializa e insere um novo objeto na fila de objetos (sem prioridade ainda)
 */
 
-void ObjectsQueue::newObject(int level, int w, int h){
+void ObjectsQueue::newObject(int level, int w, int h, float dt, int ph, int pw){
 	Nodeptr Aux; 
 
 	Aux = new Node;
 
-	Aux->info.initializeObject(level, h, w); 
+	Aux->info.initializeObject(level, h, w, dt, ph, pw); 
 
 	//Caso 1: Caso a fila esteja vazia
 	if (this->NroElementos == 0){

@@ -1,5 +1,7 @@
 #include "Object.h"
 #include "Game.h"
+#
+#include <math.h>
 
 /*Construtor e Destrutor*/
 Object::Object(){
@@ -14,10 +16,15 @@ sf::Sprite Object::getBody(){
 	return this->body;
 }
 
+sf::Time Object::getHitTime()
+{
+	return this->hitTime;
+}
+
 /*
 *initializeObject(): Inicializa os atributos de um objeto
 */
-void Object::initializeObject(int level, int h, int w) {
+void Object::initializeObject(int level, int h, int w, float dt, int ph, int pw) {
 	const sf::Vector2f spriteScale(0.5f, 0.5f);
 
 	this->poskey = std::rand() % 4 + 1;
@@ -34,40 +41,43 @@ void Object::initializeObject(int level, int h, int w) {
 	sf::Vector2f middle(this->body.getLocalBounds().width / 2, this->body.getLocalBounds().height / 2);
 	this->body.setOrigin(middle);
 
+	this->body.setScale(spriteScale);
+	this->speedAdjust(level);
 	
 	/*OBS: AJUSTAR O TAMANHO PARA SPAWNAR FORA DA TELA*/
 	switch (this->poskey) {
 	case 1:
 		this->body.setPosition(w/2.f, 0.f); //O objeto ir� spawnar em cima do jogador
 		this->body.setRotation(90.f);
+		this->hitTime = sf::seconds(((h / 2 - 0) - ph/2) / this->Speed * dt);
 		break;
 
 	case 2:
 		this->body.setPosition(0.f, h/2.f); //O objeto ir� spawnar � esquerda do jogador
 		this->body.setRotation(0.f);
+		this->hitTime = sf::seconds(((w / 2 - 0) - pw/2) / this->Speed * dt);
 		break;
 
 	case 3:
 		this->body.setPosition(w, h/2.f); //O objeto ir� spawnar � direita do jogador
 		this->body.setRotation(180.f);
+		this->hitTime = sf::seconds(((w - w / 2) + pw/2) / this->Speed * dt);
 		break;
 
 	case 4:
 		this->body.setPosition(w/2.f, h); //O objeto ir� spawnar embaixo do jogador
 		this->body.setRotation(270.f);
+		this->hitTime = sf::seconds(((h - h / 2) + ph/2) / this->Speed * dt);
 		break;
 	}
 
-	this->body.setScale(spriteScale);
-	this->speedAdjust(level);
+	
 	//this->Speed = 0.2f;
 	//this->Speed = std::rand() % 5 + 1; //gera um n�mero entre 1 e 5
 
 }
 
 void Object::moveObject(float dt){
-
-	sf::Vector2f pos;
 
 	switch (this->poskey){
 	case 1:
@@ -85,13 +95,16 @@ void Object::moveObject(float dt){
 	case 4:
 		this->body.move(0.f, -1.f * this->Speed * dt); //...caso seja spawnado embaixo
 		break;
+	default:
+		std::cout << "UwU" << std::endl;
+		break;
 	}
 }
 
 void Object::speedAdjust(int level)
 {
 	//int key = std::rand() % 2 + 1;
-	int key = 1;
+	int key = 2;
 	/*key = 1: fase de Velocidade constante
 	* key = 2: fase de velocidade variavel
 	*/
@@ -105,7 +118,10 @@ void Object::speedAdjust(int level)
 			this->Speed = 600.f;
 		}
 		break;
-	case 2: 
+	case 2:
+		
+		this->Speed = (rand() % 6 + 1) * 100.f;
+		
 		break;
 	}
 }

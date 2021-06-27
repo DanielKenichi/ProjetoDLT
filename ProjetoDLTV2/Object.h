@@ -24,10 +24,11 @@ public:
 
 	//**getters**
 	sf::Sprite getBody();
+	sf::Time getHitTime();
 	//**setters**
 
 	//**M�todos**
-	void initializeObject(int level, int h, int w);
+	void initializeObject(int level, int h, int w, float dt, int ph, int pw);
 	void moveObject(float dt);
 
 private:
@@ -35,6 +36,7 @@ private:
 	sf::Sprite body; //Corpo improvisado pro nosso objeto
 	int poskey; //determina a posi��o de spawn do objeto
 	int Speed; //multiplicador de velocidade
+	sf::Time hitTime;
 	//float Speed;
 	sf::Texture bodyImage; //textura do corpo do objeto
 

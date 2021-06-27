@@ -2,9 +2,6 @@
 #include <stdio.h>
 #include <String>
 
-//Variáveis globais  e defines
-#define WIDTH 1000
-#define HEIGHT 800
 
 // --> Construtor e Inicializadores <--
 Game::Game(){
@@ -47,7 +44,9 @@ void Game::update(float dt){
 	if (this->state == 1){
 		std::cout << "gerando objetos da fase: " << this->level <<  std::endl;
 		this->pass = false;
-		this->initializeObjects();
+		this->initializeObjects(dt);
+		this->LastObjTimer = objects.getFirst().getHitTime();
+		this->checkerTimer = sf::seconds(-999.f);
 		if (this->level % 5 == 0) this->player.setHP(this->player.getHP() + 1);
 
 		//condição de saída: ter gerado os objetos
@@ -127,6 +126,9 @@ void Game::update(float dt){
 void Game::render(){
 	this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
+	/*sf::View view;
+	sf::FloatRect;*/
+
 	//state 0 
 	if (this->state == 0){
 		//renderiza mainScreen
@@ -179,7 +181,8 @@ void Game::initializeVariables(){
 	this->start = false;
 	this->pause = false;
 
-	this -> spawnTimer = sf::seconds(0.f);
+	this->spawnTimer = sf::seconds(0.f);
+	this->checkerTimer = sf::seconds(-999.f);
 	this->state = 0; 
 	this->level = 1;
 	this->pass = false;
@@ -205,7 +208,6 @@ void Game::initializeWindow(){
 	this->videoMode.width = WIDTH;
 	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 
-	
 	//Carrega e seta a imagem do jogo
 	sf::Image icon;
 	if(!icon.loadFromFile("resources/icon.png")){ //Imagem quadrada 128x128
@@ -217,14 +219,14 @@ void Game::initializeWindow(){
 /*
 * *initializeObjects(): Inicializa a fila de objetos a serem gerados e a lista de objetos spawnados
 */
-void Game::initializeObjects(){
+void Game::initializeObjects(float dt){
 
 	int numObjs = this->level * 4;
 	if (numObjs > 200) numObjs = 200;
 
 	std::srand(time(0));  //inicializando seed aleatoria
 
-	this->generateQueue(numObjs); //definir regra de geração pra queue (etapa de fase)
+	this->generateQueue(numObjs, dt); //definir regra de geração pra queue (etapa de fase)
 }
 
 void Game::initializePlayer(){
@@ -235,10 +237,11 @@ void Game::initializePlayer(){
 /*
 * generateQueue(int size): Gera a fila de objetos de acordo com um parâmetro decidido no inicio de cada fase
 */
-void Game::generateQueue(int size){
+void Game::generateQueue(int size, float dt){
 
 	for (int i = 0; i < size; i++){
-		this->objects.newObject(this->level, WIDTH, HEIGHT);
+		this->objects.newObject(this->level, this->window->getSize().x, this->window->getSize().y, dt, 
+								this->player.getSpriteSize().height, this->player.getSpriteSize().width);
 	}
 }
 
@@ -296,17 +299,35 @@ sf::Time Game::setSpawnTimer() {
 void Game::updateObjects(float dt) {
 	sf::Time delay = setSpawnTimer(); //delay entre spawns de objetos
 
-	this->updateTimer(dt, &this->spawnTimer);
+	this->increaseTimer(dt, &this->spawnTimer);
 
-	if (this->spawnTimer.asSeconds() >= delay.asSeconds()) {
-		spawnObject();
-		this->spawnTimer = sf::seconds(0.f); //restarta timer de spawn de objetos
-	 }
+	if (this->objects.isEmpty() == false) {
+
+		if (this->inGame == true) this->checkerTimer = (this->LastObjTimer - this->spawnTimer) + delay;
+
+		if (this->spawnTimer.asSeconds() >= delay.asSeconds()) {
+			sf::Time test = this->objects.getFirst().getHitTime();
+			//std::cout << "Test time: " << test.asSeconds() << "CheckerTime: " << this->checkerTimer.asSeconds() << std::endl;
+			if (test.asSeconds() > this->checkerTimer.asSeconds()) {
+
+				this->LastObjTimer = this->objects.getFirst().getHitTime();
+
+				spawnObject();
+
+				this->spawnTimer = sf::seconds(0.f); //restarta timer de spawn de objetos
+			}
+
+		}
+	}
 
 	if(this->inGame == true){
+		//std::cout << "Num elem na lista: " << this->spawnedObjects.getNroElementos() << std::endl;
+
 		if (this->spawnedObjects.getNroElementos() != 0) { //se tiver elementos na lista de spawn, os movimenta
 			for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++) {
-				this->spawnedObjects.getObjects()->moveObject(dt);
+				//if (this->spawnedObjects.getObjects() != nullptr) 
+					this->spawnedObjects.getObjects()->moveObject(dt);
+				//else std::cout << "OwO" << std::endl;
 			}
 		}
 		else if(this->objects.isEmpty() == true){
@@ -319,10 +340,16 @@ void Game::updateObjects(float dt) {
 /*
 * updateTimer(float dt, sf::Time *timer): Atualiza o timer desejado
 */
-void Game::updateTimer(float dt, sf::Time *timer) {
+void Game::increaseTimer(float dt, sf::Time *timer) {
 	sf::Time increase = sf::seconds(1.f);
 
 	*timer += increase * dt; 
+}
+
+void Game::decreaseTimer(float dt, sf::Time* timer) {
+	sf::Time decrease = sf::seconds(1.f);
+
+	*timer -= decrease * dt;
 }
 
 /*
