@@ -7,7 +7,7 @@
 Game::Game(){
 	this->initializeVariables();
 	this->initializeWindow();
-	
+	this->initializeTexts();
 }
 // --> Destrutor <--
 Game::~Game(){
@@ -154,7 +154,7 @@ void Game::render(){
 	//state 3
 	if (this->state == 3) {
 		//renderiza tela de Game over
-		this->renderScore();
+		this->renderGameOver();
 		this->window->display();
 	}
 
@@ -184,7 +184,7 @@ void Game::initializeVariables(){
 	this->spawnTimer = sf::seconds(0.f);
 	this->checkerTimer = sf::seconds(-999.f);
 	this->state = 0; 
-	this->level = 1;
+	this->level = 30;
 	this->pass = false;
 	this->inGame = false;
 
@@ -195,11 +195,37 @@ void Game::initializeVariables(){
 		std::cout << "Falha no carregamento da fonte" << std::endl;
 	}
 
-	//Colocar numa função depois TODO:
-	this->tScore.setFont(this->font);
+}
+
+void Game::initializeTexts(){
+	// Usado para centralizar a origem dos textos
+	sf::FloatRect textRect;
+
+	// Texto HP
 	this->tHP.setFont(this->font);
 	this->tHP.setPosition(this->videoMode.width/10*5,0);
+	// Texto Score
+	tScore.setFont(this->font);
 	this->tScore.setPosition(this->videoMode.width/10*5, this->tHP.getCharacterSize()+10);
+
+	// Texto Gameover
+	this->tGameover.setFont(this->font);
+	this->tGameover.setCharacterSize(128);
+	 // Centralizando origem
+	 textRect = tGameover.getLocalBounds();
+	this->tGameover.setOrigin(textRect.left + textRect.width/2.0f,
+               textRect.top  + textRect.height/2.0f);
+	this->tGameover.setPosition(videoMode.width/2, videoMode.height/2-80);
+	
+	// Texto Final Score
+	this->tFinalScore.setFont(this->font);
+	this->tFinalScore.setCharacterSize(64);
+	 // Centralizando origem
+	textRect = tFinalScore.getLocalBounds();
+	tFinalScore.setOrigin(textRect.left + textRect.width/2.0f,
+				textRect.top  + textRect.height/2.0f);
+	tFinalScore.setPosition(0,0);	
+	
 }
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
@@ -402,3 +428,9 @@ void Game::renderScore(){
 	this->window->draw(tScore);
 }
 
+void Game::renderGameOver(){
+	this->tFinalScore.setString("Score: " + std::to_string(this->score));
+	this->tGameover.setString("Gameover");
+	this->window->draw(tFinalScore);
+	this->window->draw(tGameover);
+}

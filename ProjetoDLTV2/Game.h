@@ -41,8 +41,11 @@ private:
 	int hp = 1;
 	sf::Text tHP;
 	sf::Text tScore;
+	
 
 	//Texto de game over
+	sf::Text tGameover;
+	sf::Text tFinalScore;
 
 	ObjectsQueue objects; // Fila de Objetos
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
@@ -72,9 +75,11 @@ private:
 	void initializeWindow();
 	void initializeObjects(float dt);
 	void initializePlayer();
+	void initializeTexts();
 
 	void renderObjects();
 	void renderScore();
+	void renderGameOver();
 	void testCollisions();
 
 	sf::Time setSpawnTimer();
