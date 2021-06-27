@@ -40,6 +40,10 @@ public:
     bool collideShields(sf::Sprite obj);
     bool collidePlayer(sf::Sprite obj);
  
+    // Funções que tocam os efeitos sonoros
+    void playHitShield();
+    void playHurt();
+
 private:
 
     // Vida
@@ -71,6 +75,13 @@ private:
     sf::Texture tPlayer;
     sf::Texture tShield;
     void initializeSprites();
+
+    // Sons e funções relacionadas
+    sf::Sound sHitShield; // Som atingiu escudo
+    sf::Sound sHurt; // Som atingiu player
+    sf::SoundBuffer sbHitShield;
+    sf::SoundBuffer sbHurt;
+    void initializeSounds();
 };
 
 #endif // !PLAYER_H

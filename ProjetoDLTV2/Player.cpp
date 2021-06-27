@@ -5,6 +5,7 @@
 Player::Player()
 {
     this->initializeSprites();
+    this->initializeSounds();
 }
 
 void Player::initializeSprites(){
@@ -37,6 +38,19 @@ void Player::initializeSprites(){
     sf::Vector2f middle(spr.getLocalBounds().width/2, spr.getLocalBounds().height/2);
     spr.setOrigin(middle);
     sTop.setOrigin(middle + sf::Vector2f(0.0f, middle.y/2));
+}
+
+void Player::initializeSounds(){
+    if(!sbHitShield.loadFromFile("resources/Sounds/hitShield.wav")){
+		std::cout<<"Player.cpp : Falha na leitura de hitShield.wav" << std::endl;
+	}
+
+    if(!sbHurt.loadFromFile("resources/Sounds/hurt.wav")){
+		std::cout<<"Player.cpp : Falha na leitura de hurt.wav" << std::endl;
+	}
+
+    sHitShield.setBuffer(sbHitShield);
+    sHurt.setBuffer(sbHurt);
 }
 
 Player::~Player(){
@@ -171,4 +185,12 @@ bool Player::collideShields(sf::Sprite obj){
     }else{
         return false;
     }
+}
+
+void Player::playHitShield(){
+    sHitShield.play();
+}
+
+void Player::playHurt(){
+    sHurt.play();
 }

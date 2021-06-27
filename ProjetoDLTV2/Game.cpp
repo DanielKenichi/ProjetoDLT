@@ -363,9 +363,11 @@ void Game::testCollisions(){
 		testObject = this->spawnedObjects.getObjects()->getBody();
 
 		if(this->player.collidePlayer(testObject)){ // Colisão com player
+			this->player.playHurt();
 			this->spawnedObjects.removeObject();
 		} 
 		else if(this->player.collideShields(testObject)){ // Colisão com escudos
+			this->player.playHitShield();
 			this->spawnedObjects.removeObject();
 			this->score += 100;
 		}
