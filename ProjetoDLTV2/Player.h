@@ -73,6 +73,8 @@ private:
 
     // Texturas
     sf::Texture tPlayer;
+    sf::Texture playerHit;
+    sf::Texture playerDead;
     sf::Texture tShield;
     void initializeSprites();
 

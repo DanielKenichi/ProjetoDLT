@@ -1,19 +1,35 @@
 ﻿  Game.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(201,48): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(202,83): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(202,51): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(227,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(234,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(234,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(244,74): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(208,48): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(211,83): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(211,51): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(220,67): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(220,45): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(255,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(262,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(262,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(272,74): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(244,37): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(272,37): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(296): warning C4715: 'Game::setSpawnTimer': nem todos os caminhos de controle retornam um valor
+  Object.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(62,26): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(68,33): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(114,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(116,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(118,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(123,34): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+  Player.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(100,20): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(107,27): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(118,60): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+  main.cpp
+  Gerando Código...
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(324): warning C4715: 'Game::setSpawnTimer': nem todos os caminhos de controle retornam um valor
+  LINK : C:\Users\L\source\repos\ProjetoDLTV2\Debug\ProjetoDLTV2.exe não encontrado ou não compilado pelo o último link incremental; executando link completo
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Debug\ProjetoDLTV2.exe

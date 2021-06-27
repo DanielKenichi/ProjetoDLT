@@ -10,9 +10,15 @@ Player::Player()
 
 void Player::initializeSprites(){
     // Carregamento de Texturas
-    if(!tPlayer.loadFromFile("resources/Player.png")){ //Imagem quadrada 128x128
-		std::cout<<"Player.cpp : Falha na leitura de Player.png" << std::endl;
+    if(!tPlayer.loadFromFile("resources/standardPlayer.png")){ //Imagem quadrada 128x128
+		std::cout<<"Player.cpp : Falha na leitura de standardPlayer.png" << std::endl;
 	}
+    if (!playerHit.loadFromFile("resources/1HpPlayer.png")) { //Imagem quadrada 128x128
+        std::cout << "Player.cpp : Falha na leitura de 1HpPlayer.png" << std::endl;
+    } 
+    if (!playerDead.loadFromFile("resources/dead.png")) { //Imagem quadrada 128x128
+        std::cout << "Player.cpp : Falha na leitura de dead.png" << std::endl;
+    }
     tPlayer.setSmooth(true);
     if(!tShield.loadFromFile("resources/Escudo.png")){ //Imagem retangular 128x32
 		std::cout<<"Player.cpp : Falha na leitura de Escudo.png" << std::endl;
@@ -27,7 +33,7 @@ void Player::initializeSprites(){
     sLeft.setTexture(tShield);
 
     // Ajuste de Tamanho
-    const sf::Vector2f spriteScale(0.5f, 0.5f);
+    const sf::Vector2f spriteScale(0.75f, 0.75f);
     spr.setScale(spriteScale);
     sTop.setScale(spriteScale);
     sRight.setScale(spriteScale);
@@ -162,9 +168,21 @@ void Player::updateAll(float dt){
     }
     //Animação Player
     if(cSpr.getElapsedTime().asSeconds() > 0.06){
-        spr.setColor(sf::Color::White);
+        if (this->HP > 1) {
+            spr.setTexture(tPlayer);
+            spr.setColor(sf::Color::White);
+        }
+        else if (this->HP = 1) {
+            spr.setTexture(playerHit);
+            spr.setColor(sf::Color::White);
+        }
+        else if (this->HP = 0) {
+            spr.setTexture(playerDead);
+            spr.setColor(sf::Color::White);
+        }
     }else{
-        spr.setColor(sf::Color::Red);
+        spr.setTexture(playerHit);
+        spr.setColor(sf::Color(216, 136, 171));
     }
 }
 

@@ -132,11 +132,13 @@ void Game::render(){
 	//state 0 
 	if (this->state == 0){
 		//renderiza mainScreen
+		this->window->clear(sf::Color::Black);
+		this->window->display();
 	}
 	
 	//state 1
 	if (this->state == 1) {
-		//renderiza uma tela de loading?
+		//renderiza uma tela de loading
 	}
 
 	//state 2
@@ -184,7 +186,7 @@ void Game::initializeVariables(){
 	this->spawnTimer = sf::seconds(0.f);
 	this->checkerTimer = sf::seconds(-999.f);
 	this->state = 0; 
-	this->level = 30;
+	this->level = 1;
 	this->pass = false;
 	this->inGame = false;
 
