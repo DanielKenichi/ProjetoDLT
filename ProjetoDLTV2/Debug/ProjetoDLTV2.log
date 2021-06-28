@@ -1,5 +1,27 @@
-﻿  Player.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(100,20): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(107,27): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(118,60): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+﻿  Game.cpp
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(167,67): warning C4244: 'argumento': conversão de 'unsigned int' para 'T', possível perda de dados
+          with
+          [
+              T=float
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(167,50): warning C4244: 'argumento': conversão de 'unsigned int' para 'T', possível perda de dados
+          with
+          [
+              T=float
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(227,47): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(262,17): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(269,62): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(269,42): warning C4244: 'argumento': conversão de 'unsigned int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(280,74): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
+          with
+          [
+              T=float
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(280,37): warning C4244: 'argumento': conversão de 'T' para 'int', possível perda de dados
+          with
+          [
+              T=float
+          ]
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(341): warning C4715: 'Game::setSpawnTimer': nem todos os caminhos de controle retornam um valor
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Debug\ProjetoDLTV2.exe

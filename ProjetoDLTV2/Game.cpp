@@ -33,7 +33,7 @@ void Game::update(float dt){
 		//condição de saida : start game
 		if (this->start == true){
 			this->initializePlayer();
-			this->player.setHP(20);
+			this->player.setHP(3);
 			this->score = 0;
 			this->state = 1;
 		}
