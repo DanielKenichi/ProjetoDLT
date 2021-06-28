@@ -46,7 +46,10 @@ void Game::update(float dt){
 		this->initializeObjects(dt);
 		this->LastObjTimer = objects.getFirst().getHitTime();
 		this->checkerTimer = sf::seconds(-999.f);
-		if (this->level % 5 == 0) this->player.setHP(this->player.getHP() + 1);
+		if (this->level % 5 == 0){
+			this->player.setHP(this->player.getHP() + 1);
+			this->player.playNewLive();
+		} 
 
 		//condição de saída: ter gerado os objetos
 		this->state = 2;
@@ -306,6 +309,7 @@ void Game::initializePlayer(){
 */
 void Game::generateQueue(int size, float dt){
 
+	this->player.playNextLevel();
 	int key = level > 5 ? std::rand() % 2 + 1 : 1;
 	for (int i = 0; i < size; i++){
 		this->objects.newObject(this->level, this->window->getSize().x, this->window->getSize().y, dt, 

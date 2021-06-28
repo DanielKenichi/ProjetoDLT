@@ -43,6 +43,8 @@ public:
     // Funções que tocam os efeitos sonoros
     void playHitShield();
     void playHurt();
+    void playNextLevel();
+    void playNewLive();
 
 private:
 
@@ -83,6 +85,10 @@ private:
     sf::Sound sHurt; // Som atingiu player
     sf::SoundBuffer sbHitShield;
     sf::SoundBuffer sbHurt;
+    sf::Sound sNextLevel; // Som passou de nível
+    sf::Sound sNewLive; // Som ganhou vida
+    sf::SoundBuffer sbNextLevel;
+    sf::SoundBuffer sbNewLive;
     void initializeSounds();
 };
 

@@ -46,9 +46,6 @@ private:
 	//Texto de Start
 	sf::Text tInstrucao;
 	sf::Text tExtra;
-
-	
-
 	
 	//Texto de game over
 	sf::Text tGameover;
