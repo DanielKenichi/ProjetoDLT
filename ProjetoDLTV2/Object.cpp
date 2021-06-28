@@ -32,8 +32,8 @@ void Object::initializeObject(int level, int h, int w, float dt, int ph, int pw,
 	this->poskey = std::rand() % 4 + 1;
 
 	//Carregamento de Texturas
-	if (!this->bodyImage.loadFromFile("resources/object.png")){ //imagem 128x128  
-		std::cout << "Object.cpp : Falha na leitura de Object.png" << std::endl;
+	if (!this->bodyImage.loadFromFile("resources/Stickersprite.png")){ //imagem 128x128  
+		std::cout << "Object.cpp : Falha na leitura de Stickersprite.png" << std::endl;
 	}
 
 	bodyImage.setSmooth(true);
