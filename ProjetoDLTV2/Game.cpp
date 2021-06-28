@@ -14,6 +14,8 @@ Game::~Game(){
 	delete this->window;
 }
 
+// OI DANIEL
+
 /*
 * update():Atualiza os frames do jogo de acordo com cada estado:
 *	State 0: Main Screen 
