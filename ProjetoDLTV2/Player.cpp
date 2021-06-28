@@ -148,8 +148,14 @@ void InitializeShields(bool top, bool right, bool bottom, bool left){
 }
 
 void Player::renderAll(sf::RenderWindow *win){
-    win->draw(spr);
-    win->draw(sTop);
+    if (this->HP > 0) {
+        win->draw(spr);
+        win->draw(sTop);
+    }
+    else {
+        win->draw(spr);
+    }
+   
 }
 
 void Player::updateAll(float dt){
