@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <String>
 
-//AA
-
 // --> Construtor e Inicializadores <--
 Game::Game(){
 	this->initializeVariables();
@@ -14,8 +12,6 @@ Game::Game(){
 Game::~Game(){
 	delete this->window;
 }
-
-// OI DANIEL
 
 /*
 * update():Atualiza os frames do jogo de acordo com cada estado:
@@ -127,6 +123,7 @@ void Game::update(float dt){
 *	State 4: Pause
 */
 void Game::render(){
+	
 	this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
 	/*sf::View view;
@@ -135,32 +132,29 @@ void Game::render(){
 	//state 0 
 	if (this->state == 0){
 		//renderiza mainScreen
-		this->window->clear(sf::Color::Black);
-		this->window->display();
 	}
 	
 	//state 1
 	if (this->state == 1) {
+		this->window->clear(sf::Color::Red); //limpa o frame antigo
 		//renderiza uma tela de loading
 	}
 
 	//state 2
 	if (this->state == 2) {
-
+		
 		this->player.renderAll(this->window); //Desenha o Player
 
 		this->renderObjects();
 
 		this->renderScore();
-
-		this->window->display(); //Exibe na tela o desenho realizado no frame
 	}
 
 	//state 3
 	if (this->state == 3) {
 		//renderiza tela de Game over
+		this->window->clear(sf::Color(0, 0, 0, 1));
 		this->renderGameOver();
-		this->window->display();
 	}
 
 	//state 4
@@ -168,6 +162,7 @@ void Game::render(){
 		//renderiza tela de pause
 	}
 
+	this->window->display(); //Exibe na tela o desenho realizado no frame
 }
 
 
@@ -202,35 +197,30 @@ void Game::initializeVariables(){
 
 }
 
+sf::Vector2f round(const sf::Vector2f vector)
+{
+    return sf::Vector2f{ std::round(vector.x), std::round(vector.y) };
+}
+
 void Game::initializeTexts(){
-	// Usado para centralizar a origem dos textos
-	sf::FloatRect textRect;
 
 	// Texto HP
-	this->tHP.setFont(this->font);
-	this->tHP.setPosition(this->videoMode.width/10*5,0);
+	tHP = sf::Text{"HP: ", font, 32};
+	tHP.setPosition(10,0);
+
 	// Texto Score
-	tScore.setFont(this->font);
-	this->tScore.setPosition(this->videoMode.width/10*5, this->tHP.getCharacterSize()+10);
+	tScore = sf::Text{"Score: ", font, 32};
+	tScore.setPosition(10, tHP.getCharacterSize()+10);
 
 	// Texto Gameover
-	this->tGameover.setFont(this->font);
-	this->tGameover.setCharacterSize(128);
-	 // Centralizando origem
-	 textRect = tGameover.getLocalBounds();
-	this->tGameover.setOrigin(textRect.left + textRect.width/2.0f,
-               textRect.top  + textRect.height/2.0f);
-	this->tGameover.setPosition(videoMode.width/2, videoMode.height/2-80);
-	
+	tGameover = sf::Text{"Gameover", font, 128};
+	tGameover.setOrigin(tGameover.getLocalBounds().width/2.f, tGameover.getLocalBounds().height/2.f);
+	tGameover.setPosition(videoMode.width/2.f, videoMode.height/2.f - 128);
+
 	// Texto Final Score
-	this->tFinalScore.setFont(this->font);
-	this->tFinalScore.setCharacterSize(64);
-	 // Centralizando origem
-	textRect = tFinalScore.getLocalBounds();
-	tFinalScore.setOrigin(textRect.left + textRect.width/2.0f,
-				textRect.top  + textRect.height/2.0f);
-	tFinalScore.setPosition(0,0);	
-	
+	tFinalScore = sf::Text{"Score: ", font, 32};
+	tFinalScore.setOrigin(tFinalScore.getLocalBounds().width/2.f, tFinalScore.getLocalBounds().height/2.f);
+	tFinalScore.setPosition(videoMode.width/2.f, videoMode.height/2.f);	
 }
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
@@ -293,6 +283,8 @@ void Game::pollEvents(float dt){
 				player.rotateDirection('d', dt);
 			}else if(ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::A){
 				player.rotateDirection('l', dt);
+			}else if(ev.key.code == sf::Keyboard::P){
+				state = 3;
 			}
 
 			//start game
@@ -431,11 +423,11 @@ void Game::renderScore(){
 	tScore.setString("Score: " + std::to_string(this->score));
 	this->window->draw(tHP);
 	this->window->draw(tScore);
+	
 }
 
 void Game::renderGameOver(){
 	this->tFinalScore.setString("Score: " + std::to_string(this->score));
-	this->tGameover.setString("Gameover");
 	this->window->draw(tFinalScore);
 	this->window->draw(tGameover);
 }

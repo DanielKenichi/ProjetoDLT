@@ -42,7 +42,6 @@ private:
 	sf::Text tHP;
 	sf::Text tScore;
 	
-
 	//Texto de game over
 	sf::Text tGameover;
 	sf::Text tFinalScore;
