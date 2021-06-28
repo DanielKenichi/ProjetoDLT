@@ -45,16 +45,17 @@ void Game::update(float dt){
 		std::cout << "gerando objetos da fase: " << level <<  std::endl;
 		this->pass = false;
 		initializeObjects(dt);
-		LastObjTimer = objects.getFirst().getHitTime();
+
+		LastObjTimer = objects.getFirst().getHitTime(); //Timers para tratamento de colisao
 		checkerTimer = sf::seconds(-999.f);
 
-		if (isPlaying == false) {
+		if (isPlaying == false) { //toca a musica
 			musica.play();
 			isPlaying = true;
 		}
 			
 
-		if (level % 5 == 0){
+		if (level % 5 == 0){ //incrementa vida do player a cada 5 níveis
 			player.setHP(player.getHP() + 1);
 			player.playNewLive();
 		} 
@@ -71,12 +72,13 @@ void Game::update(float dt){
 		testCollisions();
 		player.updateAll(dt);
 		
-		if (player.getHP() == 1) {
+		if (player.getHP() == 1) { //musica mais rapida caso player esteja quase morto
 			musica.setPitch(1.2f);
 		}
 		else {
 			musica.setPitch(1.f);
 		}
+
 		//condições de saída: Zerar hp 
 		if (player.getHP() == 0){
 			musica.stop();
@@ -101,7 +103,6 @@ void Game::update(float dt){
 	//State 3
 	if (state == 3) {
 		//std::cout << "Game Over" << std::endl;
-
 		//esvaziando lista e fila
 		while (objects.isEmpty() == false) {
 			objects.removeObject();
@@ -109,6 +110,7 @@ void Game::update(float dt){
 		while (spawnedObjects.getNroElementos() != 0) {
 			spawnedObjects.removeObject();
 		}
+
 		hp = player.getHP();
 		player.updateAll(dt);
 
@@ -151,28 +153,27 @@ void Game::render(){
 	sf::FloatRect;*/
 
 	//state 0 
-	if (state == 0){
+	if (state == 0){ //renderiza mainScreen
+		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
+
 		window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		window->draw(background);
-		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
+		
 		opaco.setFillColor(sf::Color(0,0,0,150));
 		window->draw(opaco);
 		renderInicial();
-		//renderiza mainScreen
 	}
 	
 	//state 1
-	if (state == 1){
-		//renderiza uma tela de loading
-	}
+	if (state == 1){}
 
 	//state 2
-	if (state == 2){
+	if (state == 2){ //renderiza a fase, objetos o jogador e as pontuações
 		window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
 		window->draw(background);
 
-		player.renderAll(window); //Desenha o Player
+		player.renderAll(window);
 
 		renderObjects();
 
@@ -180,8 +181,9 @@ void Game::render(){
 	}
 
 	//state 3
-	if (state == 3){
-		//renderiza tela de Game over
+	if (state == 3) {//renderiza tela de Game over
+		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
+
 		window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		
 		window->draw(background);
@@ -190,7 +192,6 @@ void Game::render(){
 
 		renderObjects();
 
-		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
 		opaco.setFillColor(sf::Color(0,0,0,150));
 		window->draw(opaco);
 
@@ -198,9 +199,7 @@ void Game::render(){
 	}
 
 	//state 4
-	if (state == 4){
-		//renderiza tela de pause
-
+	if (state == 4){ //renderiza tela de pause
 		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
 		opaco.setFillColor(sf::Color(0,0,0,150));
 
@@ -263,10 +262,14 @@ void Game::initializeVariables(){
 
 }
 
+/*
 sf::Vector2f round(const sf::Vector2f vector){
     return sf::Vector2f{ std::round(vector.x), std::round(vector.y) };
-}
+}*/
 
+/*
+* initializeTexts(): Inicializa os textos a serem escritos no jogo
+*/
 void Game::initializeTexts(){
 
 	// Texto HP
@@ -332,14 +335,16 @@ void Game::initializeWindow(){
 */
 void Game::initializeObjects(float dt){
 
-	int numObjs = log(level) * 6 + 3;
-	if (numObjs > 200) numObjs = 200;
+	int numObjs = log(level) * 6 + 3; //incrementa o numero de objetos por fase com base no level da fase
+	if (numObjs > 1000) numObjs = 1000;
 
 	std::srand(time(0));  //inicializando seed aleatoria
 
 	generateQueue(numObjs, dt); //definir regra de geração pra queue (etapa de fase)
 }
-
+/*
+* initializePlayer(): Inicializa a posição do player
+*/
 void Game::initializePlayer(){
 
 	player.setPosition(videoMode.width/2, videoMode.height/2);
@@ -349,9 +354,9 @@ void Game::initializePlayer(){
 * generateQueue(int size): Gera a fila de objetos de acordo com um parâmetro decidido no inicio de cada fase
 */
 void Game::generateQueue(int size, float dt){
+	int key = level >= 5 ? std::rand() % 2 + 1 : 1; //chave que decide o tipo de fase
+	player.playNextLevel(); //som de quando passa de fase
 
-	player.playNextLevel();
-	int key = level >= 5 ? std::rand() % 2 + 1 : 1;
 	for (int i = 0; i < size; i++){
 		objects.newObject(level, window->getSize().x, window->getSize().y, dt, 
 								player.getSpriteSize().height, player.getSpriteSize().width, key);
@@ -425,14 +430,13 @@ void Game::updateObjects(float dt) {
 
 	if (objects.isEmpty() == false) {
 
-		if (inGame == true) checkerTimer = (LastObjTimer - spawnTimer) + delay;
+		if (inGame == true) checkerTimer = (LastObjTimer - spawnTimer) + delay; // tempo minimo entre um objeto e o outro
 
 		if (spawnTimer.asSeconds() >= delay.asSeconds()) {
 			sf::Time test = objects.getFirst().getHitTime();
-			//std::cout << "Test time: " << test.asSeconds() << "CheckerTime: " << checkerTimer.asSeconds() << std::endl;
 			if (test.asSeconds() > checkerTimer.asSeconds()) {
 
-				LastObjTimer = objects.getFirst().getHitTime();
+				LastObjTimer = objects.getFirst().getHitTime(); //tempo ate colisao do ultimo objeto spawnado
 
 				spawnObject();
 
@@ -447,11 +451,10 @@ void Game::updateObjects(float dt) {
 
 		if (spawnedObjects.getNroElementos() != 0) { //se tiver elementos na lista de spawn, os movimenta
 			for (int i = 0; i < spawnedObjects.getNroElementos(); i++) {
-				//if (spawnedObjects.getObjects() != nullptr) 
-					spawnedObjects.getObjects()->moveObject(dt);
+					spawnedObjects.getObjects()->moveObject(dt);             /**Marcação para uns testes futuros ai**/
 			}
 		}
-		else if(objects.isEmpty() == true){
+		else if (objects.isEmpty() == true) { //se nao, passou de fase
 			pass = true;
 		}
 	}
@@ -459,18 +462,12 @@ void Game::updateObjects(float dt) {
 }
 
 /*
-* updateTimer(float dt, sf::Time *timer): Atualiza o timer desejado
+* increaseTimer(float dt, sf::Time *timer): Atualiza o timer desejado
 */
 void Game::increaseTimer(float dt, sf::Time *timer) {
 	sf::Time increase = sf::seconds(1.f);
 
 	*timer += increase * dt; 
-}
-
-void Game::decreaseTimer(float dt, sf::Time* timer) {
-	sf::Time decrease = sf::seconds(1.f);
-
-	*timer -= decrease * dt;
 }
 
 /*
@@ -490,7 +487,6 @@ void Game::testCollisions(){
 		else if(player.collideShields(testObject->getBody())){ // Colisão com escudos
 			player.playHitShield();
 			spawnedObjects.removeObject();
-			//std::cout << testObject->getSpeed() << std::endl;
 			score += 100 + (testObject->getSpeed()) / 10;	
 		}
 	}
@@ -526,14 +522,18 @@ void Game::renderScore(){
 	window->draw(tScore);
 	
 }
-
+/*
+* renderGameOver(): Desenha os textos da tela de gameover
+*/
 void Game::renderGameOver(){
 	tFinalScore.setString("Score: " + std::to_string(score));
 	window->draw(tFinalScore);
 	window->draw(tGameover);
 	window->draw(tInstrucaoGO);
 }
-
+/*
+* renderPause(): Desenha os textos da tela de pause
+*/
 void Game::renderPause(){
 	timerPause++;
 	if(timerPause > 1500){
@@ -547,10 +547,10 @@ void Game::renderPause(){
 	
 }
 
+/*
+* renderGameOver(): Desenha os textos da tela Inicial
+*/
 void Game::renderInicial(){
-
-
-	//window->draw(tInstrucao);
 
 	timerPause++;
 	if(timerPause > 2200){

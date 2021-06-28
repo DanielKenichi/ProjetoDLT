@@ -60,19 +60,19 @@ void Object::initializeObject(int level, int h, int w, float dt, int ph, int pw,
 		break;
 
 	case 2:
-		body.setPosition(0.f, h/2.f); //O objeto ir� spawnar � esquerda do jogador
+		body.setPosition(0.f, h/2.f); //O objeto ira spawnar a esquerda do jogador
 		body.setRotation(0.f);
 		hitTime = sf::seconds(((w / 2 - 0) - pw/2) / Speed * dt);
 		break;
 
 	case 3:
-		body.setPosition(w, h/2.f); //O objeto ir� spawnar � direita do jogador
+		body.setPosition(w, h/2.f); //O objeto ira spawnar a direita do jogador
 		body.setRotation(180.f);
 		hitTime = sf::seconds(((w - w / 2) + pw/2) / Speed * dt);
 		break;
 
 	case 4:
-		body.setPosition(w/2.f, h); //O objeto ir� spawnar embaixo do jogador
+		body.setPosition(w/2.f, h); //O objeto ira spawnar embaixo do jogador
 		body.setRotation(270.f);
 		hitTime = sf::seconds(((h - h / 2) + ph/2) / Speed * dt);
 		break;
@@ -83,20 +83,22 @@ void Object::initializeObject(int level, int h, int w, float dt, int ph, int pw,
 	//Speed = std::rand() % 5 + 1; //gera um n�mero entre 1 e 5
 
 }
-
+/*
+* moveObject(float dt): Movimenta os objetos
+*/
 void Object::moveObject(float dt){
 
 	switch (poskey){
 	case 1:
-		body.move(0.f, 1.f * Speed * dt); //Movimenta��o do objeto caso seja spawnado em cima
+		body.move(0.f, 1.f * Speed * dt); //Movimentacao do objeto caso seja spawnado em cima
 		break;
 
 	case 2:
-		body.move(1.f * Speed * dt, 0.f); //...caso seja spawnado � esquerda
+		body.move(1.f * Speed * dt, 0.f); //...caso seja spawnado a esquerda
 		break;
 
 	case 3:
-		body.move(-1.f * Speed * dt, 0.f); //...caso seja spawnado � direita
+		body.move(-1.f * Speed * dt, 0.f); //...caso seja spawnado a direita
 		break;
 
 	case 4:
@@ -107,11 +109,11 @@ void Object::moveObject(float dt){
 		break;
 	}
 }
-
+/*
+* speedAdjust(int level, int key): Ajusta a velocidade do objeto com base no nivel da fase
+*/
 void Object::speedAdjust(int level, int key)
-{
-	
-	
+{	
 	/*key = 1: fase de Velocidade constante
 	* key = 2: fase de velocidade variavel
 	*/

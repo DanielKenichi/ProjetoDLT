@@ -37,8 +37,7 @@ private:
 	sf::Sprite body; //Corpo improvisado pro nosso objeto
 	int poskey; //determina a posi��o de spawn do objeto
 	int Speed; //multiplicador de velocidade
-	sf::Time hitTime;
-	//float Speed;
+	sf::Time hitTime; //tempo até colisao com o player
 	sf::Texture bodyImage; //textura do corpo do objeto
 
 	void speedAdjust(int level, int key);

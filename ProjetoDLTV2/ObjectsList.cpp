@@ -93,6 +93,9 @@ void ObjectsList::newObject(Object *obj){
 
 }
 
+/*
+* removeObject(): remove objeto da lista 
+*/
 void ObjectsList::removeObject(){
 	//caso 0: lista vazia
 	if (NroElementos == 0){
@@ -128,6 +131,7 @@ void ObjectsList::removeObject(){
 			NroElementos--;
 		}
 
+		//caso 2.2 ... e o elemento a ser removido esteja no final da lista
 		else if (att == UL) {
 			while (anterior->Next != att){
 				anterior = anterior->Next;
@@ -143,7 +147,7 @@ void ObjectsList::removeObject(){
 			NroElementos--;
 		}
 
-		//caso 2.2 ... e o elemento a ser removido esteja no meio da lista
+		//caso 2.3 ... e o elemento a ser removido esteja no meio da lista
 		else{
 			while (anterior->Next != att){
 				anterior = anterior->Next;

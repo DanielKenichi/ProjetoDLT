@@ -55,6 +55,7 @@ private:
 	//Texto de Pause
 	sf::Text tPause;
 
+	//background
 	sf::Sprite background;
 	sf::Texture tBackground;
 
@@ -71,9 +72,9 @@ private:
 	//timers
 	int timerPause;
 	bool piscaPisca = true;
-	sf::Time spawnTimer;
-	sf::Time checkerTimer;
-	sf::Time LastObjTimer;
+	sf::Time spawnTimer; //tempo ate proximo spawn
+	sf::Time checkerTimer; //tempo minimo entre um spawn e outro
+	sf::Time LastObjTimer; //tempo de colisao do ultimo objeto spawnado
 
 	//Indicador de estado
 	int state;
@@ -105,7 +106,6 @@ private:
 
 	sf::Time setSpawnTimer();
 	void increaseTimer(float dt, sf::Time *timer);
-	void decreaseTimer(float dt, sf::Time* timer);
 	void updateObjects(float dt);
 	void pollEvents(float dt);
 	void generateQueue(int size, float dt);
