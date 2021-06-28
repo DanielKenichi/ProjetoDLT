@@ -25,6 +25,7 @@ public:
 	//**getters**
 	sf::Sprite getBody();
 	sf::Time getHitTime();
+	int getSpeed();
 	//**setters**
 
 	//**M�todos**

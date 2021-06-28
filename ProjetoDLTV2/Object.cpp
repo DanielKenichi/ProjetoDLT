@@ -23,6 +23,11 @@ sf::Time Object::getHitTime()
 	return this->hitTime;
 }
 
+int Object::getSpeed()
+{
+	return this->Speed;
+}
+
 /*
 *initializeObject(): Inicializa os atributos de um objeto
 */

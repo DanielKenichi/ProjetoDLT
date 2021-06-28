@@ -418,19 +418,19 @@ void Game::decreaseTimer(float dt, sf::Time* timer) {
 */
 void Game::testCollisions(){
 
-	sf::Sprite testObject;
+	Object* testObject;
 	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++){
 
-		testObject = this->spawnedObjects.getObjects()->getBody();
+		testObject = this->spawnedObjects.getObjects();
 
-		if(this->player.collidePlayer(testObject)){ // Colisão com player
+		if(this->player.collidePlayer(testObject->getBody())){ // Colisão com player
 			this->player.playHurt();
 			this->spawnedObjects.removeObject();
 		} 
-		else if(this->player.collideShields(testObject)){ // Colisão com escudos
+		else if(this->player.collideShields(testObject->getBody())){ // Colisão com escudos
 			this->player.playHitShield();
 			this->spawnedObjects.removeObject();
-			this->score += 100;
+			this->score += 100 + (testObject->getSpeed())/10;	
 		}
 	}
 }
