@@ -1,5 +1,5 @@
 # ProjetoDLT
-Estados iniciais de Me-OW
+Estados iniciais de Me-OW!
 
 Enter para iniciar
 
