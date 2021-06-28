@@ -57,6 +57,18 @@ void Player::initializeSounds(){
 
     sHitShield.setBuffer(sbHitShield);
     sHurt.setBuffer(sbHurt);
+
+    if(!sbNextLevel.loadFromFile("resources/Sounds/nextLevel.wav")){
+		std::cout<<"Player.cpp : Falha na leitura de nextLevel.wav" << std::endl;
+	}
+
+    if(!sbNewLive.loadFromFile("resources/Sounds/select.wav")){
+		std::cout<<"Player.cpp : Falha na leitura de select.wav" << std::endl;
+	}
+
+    sNewLive.setBuffer(sbNewLive);
+    sNextLevel.setBuffer(sbNextLevel);
+    sNextLevel.setVolume(70.f);
 }
 
 Player::~Player(){
@@ -217,4 +229,12 @@ void Player::playHitShield(){
 
 void Player::playHurt(){
     sHurt.play();
+}
+
+void Player::playNextLevel(){
+    sNextLevel.play();
+}
+
+void Player::playNewLive(){
+    sNewLive.play();
 }
