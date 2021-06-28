@@ -13,6 +13,6 @@ Utilizando a livraria de código aberto SFML
 
 Feito por:
 
-Bruno Leandro Pereira
-Daniel Kenichi Tiago Tateishi
+Bruno Leandro Pereira-
+Daniel Kenichi Tiago Tateishi-
 João Dini de Miranda
