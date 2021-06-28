@@ -172,11 +172,11 @@ void Player::updateAll(float dt){
             spr.setTexture(tPlayer);
             spr.setColor(sf::Color::White);
         }
-        else if (this->HP = 1) {
+        else if (this->HP == 1) {
             spr.setTexture(playerHit);
             spr.setColor(sf::Color::White);
         }
-        else if (this->HP = 0) {
+        else if (this->HP == 0) {
             spr.setTexture(playerDead);
             spr.setColor(sf::Color::White);
         }
