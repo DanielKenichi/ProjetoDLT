@@ -41,6 +41,10 @@ private:
 	int hp = 1;
 	sf::Text tHP;
 	sf::Text tScore;
+
+	//Texto de Start
+	sf::Text tInstrucao;
+	sf::Text tExtra;
 	
 	//Texto de game over
 	sf::Text tGameover;
@@ -81,6 +85,7 @@ private:
 	void initializePlayer();
 	void initializeTexts();
 
+	void renderInicial();
 	void renderObjects();
 	void renderScore();
 	void renderGameOver();

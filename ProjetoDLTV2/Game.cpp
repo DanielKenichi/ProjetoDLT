@@ -134,6 +134,7 @@ void Game::render(){
 	//state 0 
 	if (this->state == 0){
 		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
+		this->renderInicial();
 		//renderiza mainScreen
 	}
 	
@@ -251,13 +252,24 @@ void Game::initializeTexts(){
 	tPause = sf::Text{"PAUSADO", font, 64};
 	tPause.setOrigin(tPause.getLocalBounds().width + 10, tPause.getLocalBounds().height + 10);
 	tPause.setPosition(videoMode.width - 20, videoMode.height - 20);	
+
+	// Texto Instrução
+	tInstrucao = sf::Text{"Aperte Enter para iniciar", font, 64};
+	tInstrucao.setOrigin(tInstrucao.getLocalBounds().width/2, tInstrucao.getLocalBounds().height/2);
+	tInstrucao.setPosition(videoMode.width/2.f, videoMode.height/2.f);	
+
+	// Texto Extra (Menu Inicial)
+	tExtra = sf::Text{L"2021 - Criado por Bruno L., Daniel K., João D.", font, 16};
+	tExtra.setOrigin(tExtra.getLocalBounds().width/2, tExtra.getLocalBounds().height/2);
+	tExtra.setPosition(videoMode.width/2.f, videoMode.height - 20);
+
 }
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
 void Game::initializeWindow(){
 	this->videoMode.height = HEIGHT;
 	this->videoMode.width = WIDTH;
-	this->window = new sf::RenderWindow(this->videoMode, "Projeto DLT", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
+	this->window = new sf::RenderWindow(this->videoMode, "Dona Chica Simulator", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 
 	//Carrega e seta a imagem do jogo
 	sf::Image icon;
@@ -481,4 +493,9 @@ void Game::renderPause(){
 		this->window->draw(tPause);
 	}
 	
+}
+
+void Game::renderInicial(){
+	this->window->draw(tInstrucao);
+	this->window->draw(tExtra);
 }
