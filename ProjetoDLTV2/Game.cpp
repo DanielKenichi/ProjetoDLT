@@ -507,6 +507,14 @@ void Game::renderPause(){
 }
 
 void Game::renderInicial(){
-	this->window->draw(tInstrucao);
+	timerPause++;
+	if(timerPause > 1200){
+		piscaPisca = !piscaPisca;
+		timerPause = 0;
+	}
+
+	if(piscaPisca){
+		this->window->draw(tInstrucao);
+	}
 	this->window->draw(tExtra);
 }
