@@ -31,9 +31,9 @@ bool ObjectsQueue::isEmpty()
 
 //InitializeQueue(): Inicializa os atributos da Fila de objetos
 void ObjectsQueue::initializeQueue(){
-	this->Primeiro = nullptr;
-	this->Ultimo = nullptr;
-	this->NroElementos = 0;
+	Primeiro = nullptr;
+	Ultimo = nullptr;
+	NroElementos = 0;
 }
 
 /*
@@ -48,33 +48,33 @@ void ObjectsQueue::newObject(int level, int w, int h, float dt, int ph, int pw, 
 	Aux->info.initializeObject(level, h, w, dt, ph, pw, key); 
 
 	//Caso 1: Caso a fila esteja vazia
-	if (this->NroElementos == 0){
-		this->Primeiro = Aux;
-		this->Ultimo = Aux;
+	if (NroElementos == 0){
+		Primeiro = Aux;
+		Ultimo = Aux;
 
 		Aux->Next = Aux;
 
-		this->NroElementos++;
+		NroElementos++;
 	}
 
 	//Caso 2: Caso a fila tenha apenas um elemento
-	else if (this->NroElementos == 1){
-		this->Ultimo = Aux;
-		(this->Primeiro)->Next = Aux;
+	else if (NroElementos == 1){
+		Ultimo = Aux;
+		Primeiro->Next = Aux;
 
-		Aux->Next = this->Primeiro;
-		this->NroElementos++;
+		Aux->Next = Primeiro;
+		NroElementos++;
 	}
 
 	//Caso 3: Caso tenha mais de um elemento
 
-	else if (this->NroElementos > 1){
-		(this->Ultimo)->Next = Aux;
-		this->Ultimo = Aux;
+	else if (NroElementos > 1){
+		Ultimo->Next = Aux;
+		Ultimo = Aux;
 
-		Aux->Next = this->Primeiro;
+		Aux->Next = Primeiro;
 
-		this->NroElementos++;
+		NroElementos++;
 	}
 }
 /*
@@ -83,35 +83,35 @@ void ObjectsQueue::newObject(int level, int w, int h, float dt, int ph, int pw, 
 Object* ObjectsQueue::removeObject(){
 	Nodeptr Aux; 
 
-	Aux = this->Primeiro;
+	Aux = Primeiro;
 
 	//Caso 1: A fila está vazia
-	if (this->NroElementos == 0){
+	if (NroElementos == 0){
 		std::cout << "Falha no spawn do objeto (fila vazia)" << std::endl;
 	}
 
 	//Caso 2: A fila tem apenas um elemento
-	else if (this->NroElementos == 1){
+	else if (NroElementos == 1){
 		Aux->Next = nullptr;
 
 
-		this->Primeiro = nullptr;
-		this->Ultimo = nullptr;
+		Primeiro = nullptr;
+		Ultimo = nullptr;
 
-		this->NroElementos--;
+		NroElementos--;
 
 		return &Aux->info;
 	}
 
 	//Caso 3: A fila tem mais de um elemento
-	else if (this->NroElementos > 1){
-		this->Primeiro = (this->Primeiro)->Next;
+	else if (NroElementos > 1){
+		Primeiro = (Primeiro)->Next;
 
-		(this->Ultimo)->Next = this->Primeiro;
+		Ultimo->Next = Primeiro;
 
 		Aux->Next = nullptr;
 
-		this->NroElementos--;
+		NroElementos--;
 
 		return &Aux->info;
 	}

@@ -58,6 +58,12 @@ private:
 	sf::Sprite background;
 	sf::Texture tBackground;
 
+	//Musicas de fundo 
+	sf::Music musica;
+	sf::Music musica1Hp;
+	bool isPlaying;
+
+
 	ObjectsQueue objects; // Fila de Objetos
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
 	Player player; // Jogador

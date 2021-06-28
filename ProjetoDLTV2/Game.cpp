@@ -5,13 +5,13 @@
 
 // --> Construtor e Inicializadores <--
 Game::Game(){
-	this->initializeVariables();
-	this->initializeWindow();
-	this->initializeTexts();
+	initializeVariables();
+	initializeWindow();
+	initializeTexts();
 }
 // --> Destrutor <--
 Game::~Game(){
-	delete this->window;
+	delete window;
 }
 
 /*
@@ -24,100 +24,114 @@ Game::~Game(){
 */
 void Game::update(float dt){
 
-	this->pollEvents(dt);
+	pollEvents(dt);
 
 	//state 0
-	if (this->state == 0){
+	if (state == 0){
 		//std::cout << "Estou na tela principal" << std::endl;
 
 
 		//condição de saida : start game
-		if (this->start == true){
-			this->initializePlayer();
-			this->player.setHP(3);
-			this->score = 0;
-			this->state = 1;
+		if (start == true){
+			initializePlayer();
+			player.setHP(3);
+			score = 0;
+			state = 1;
 		}
 		
 	}
 	//state 1
-	if (this->state == 1){
-		std::cout << "gerando objetos da fase: " << this->level <<  std::endl;
+	if (state == 1){
+		std::cout << "gerando objetos da fase: " << level <<  std::endl;
 		this->pass = false;
-		this->initializeObjects(dt);
-		this->LastObjTimer = objects.getFirst().getHitTime();
-		this->checkerTimer = sf::seconds(-999.f);
+		initializeObjects(dt);
+		LastObjTimer = objects.getFirst().getHitTime();
+		checkerTimer = sf::seconds(-999.f);
 
-		if (this->level % 5 == 0){
-			this->player.setHP(this->player.getHP() + 1);
-			this->player.playNewLive();
+		if (isPlaying == false) {
+			musica.play();
+			isPlaying = true;
+		}
+			
+
+		if (level % 5 == 0){
+			player.setHP(player.getHP() + 1);
+			player.playNewLive();
 		} 
 
 		//condição de saída: ter gerado os objetos
-		this->state = 2;
+		state = 2;
 	}
 
 	//State 2
-	if (this->state == 2){
+	if (state == 2){
 
-		this->hp = this->player.getHP();
-		this->updateObjects(dt);
-		this->testCollisions();
-		this->player.updateAll(dt);
-
+		hp = player.getHP();
+		updateObjects(dt);
+		testCollisions();
+		player.updateAll(dt);
+		
+		if (player.getHP() == 1) {
+			musica.setPitch(1.2f);
+		}
+		else {
+			musica.setPitch(1.f);
+		}
 		//condições de saída: Zerar hp 
-		if (this->player.getHP() == 0){
-			this->state = 3;
+		if (player.getHP() == 0){
+			musica.stop();
+			isPlaying = false;
+			state = 3;
 		}
 
 		//Passar a fase
 		else if (pass == true){
 			std::cout << "YAY passou" << std::endl;
-			this->level++;
-			this->inGame = false;
-			this->state = 1;
+			level++;
+			inGame = false;
+			state = 1;
 		}
 		//Pausar o jogo
 		else if (pause == true) {
-			this->state = 4;
+			musica.pause();
+			state = 4;
 		}
 	}
 
 	//State 3
-	if (this->state == 3) {
+	if (state == 3) {
 		//std::cout << "Game Over" << std::endl;
 
 		//esvaziando lista e fila
-		while (this->objects.isEmpty() == false) {
-			this->objects.removeObject();
+		while (objects.isEmpty() == false) {
+			objects.removeObject();
 		}
-		while (this->spawnedObjects.getNroElementos() != 0) {
-			this->spawnedObjects.removeObject();
+		while (spawnedObjects.getNroElementos() != 0) {
+			spawnedObjects.removeObject();
 		}
-
-		this->hp = this->player.getHP();
-		this->player.updateAll(dt);
+		hp = player.getHP();
+		player.updateAll(dt);
 
 		//voltando variaveis ao estado inicial
-		this->inGame = false;
-		this->level = 1;
-		this->spawnTimer = sf::seconds(0.f);
+		inGame = false;
+		level = 1;
+		spawnTimer = sf::seconds(0.f);
 		
 		
 
 		//condição de saida: Após confirmação do player, voltar para tela inicial
-		if (this->start == false) {
-			this->state = 0;
+		if (start == false) {
+			state = 0;
 		}		
 	}
 
 	//state 4
-	if (this->state == 4) {
+	if (state == 4) {
 		//std::cout << "Jogo pausado" << std::endl;
-
 		//Condição de Saída: Despausar o jogo
-		if (this->pause == false) {
-			this->state = 2;
+		if (pause == false) {
+			musica.play();
+			state = 2;
 		}
 	}
 	
@@ -137,106 +151,113 @@ void Game::render(){
 	sf::FloatRect;*/
 
 	//state 0 
-	if (this->state == 0){
-		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
-		this->window->draw(background);
+	if (state == 0){
+		window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
+		window->draw(background);
 		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
 		opaco.setFillColor(sf::Color(0,0,0,150));
-		this->window->draw(opaco);
-		this->renderInicial();
+		window->draw(opaco);
+		renderInicial();
 		//renderiza mainScreen
 	}
 	
 	//state 1
-	if (this->state == 1){
+	if (state == 1){
 		//renderiza uma tela de loading
 	}
 
 	//state 2
-	if (this->state == 2){
-		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
+	if (state == 2){
+		window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
-		this->window->draw(background);
+		window->draw(background);
 
-		this->player.renderAll(this->window); //Desenha o Player
+		player.renderAll(window); //Desenha o Player
 
-		this->renderObjects();
+		renderObjects();
 
-		this->renderScore();
+		renderScore();
 	}
 
 	//state 3
-	if (this->state == 3){
+	if (state == 3){
 		//renderiza tela de Game over
-		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
+		window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		
-		this->window->draw(background);
+		window->draw(background);
 
-		this->player.renderAll(this->window); //Desenha o Player
+		player.renderAll(window); //Desenha o Player
 
-		this->renderObjects();
+		renderObjects();
 
 		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
 		opaco.setFillColor(sf::Color(0,0,0,150));
-		this->window->draw(opaco);
+		window->draw(opaco);
 
-		this->renderGameOver();
+		renderGameOver();
 	}
 
 	//state 4
-	if (this->state == 4){
+	if (state == 4){
 		//renderiza tela de pause
 
 		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
 		opaco.setFillColor(sf::Color(0,0,0,150));
 
-		this->window->draw(background);
+		window->draw(background);
 
-		this->player.renderAll(this->window); //Desenha o Player
+		player.renderAll(window); //Desenha o Player
 
-		this->renderScore();
+		renderScore();
 
-		this->renderObjects();
+		renderObjects();
 
-		this->window->draw(opaco);
+		window->draw(opaco);
 		renderPause();
 	}
 
-	this->window->display(); //Exibe na tela o desenho realizado no frame
+	window->display(); //Exibe na tela o desenho realizado no frame
 }
 
 
 //**Getters**
 //getIsWindowOpen(): Retorna true caso a janela do jogo esteja aberta, e false caso contrário
 const bool Game::getIsWindowOpen(){
-	return this->window->isOpen();
+	return window->isOpen();
 }
 
 //**Outros metodos**
 
 //InitializeVariables() : Inicializa as variáveis iniciais
 void Game::initializeVariables(){
-	this->window = nullptr;
+	window = nullptr;
 
-	this->start = false;
-	this->pause = false;
+	start = false;
+	pause = false;
+	isPlaying = false;
 
-	this->spawnTimer = sf::seconds(0.f);
-	this->checkerTimer = sf::seconds(-999.f);
-	this->state = 0; 
-	this->level = 1;
-	this->pass = false;
-	this->inGame = false;
+	spawnTimer = sf::seconds(0.f);
+	checkerTimer = sf::seconds(-999.f);
+	state = 0; 
+	level = 1;
+	pass = false;
+	inGame = false;
 
-	this->objects.initializeQueue();
-	this->spawnedObjects.initializeList();
+	objects.initializeQueue();
+	spawnedObjects.initializeList();
 
-	if (!this->tBackground.loadFromFile("resources/cenarioimprovisado.png"))
+	if (!musica.openFromFile("resources/Musics/ES_Glitching Through the Sky - William Benckert.wav"))
+		std::cout << "Falha ao carregar a música de fundo" << std::endl;
+
+	musica.setLoop(true);
+	musica.setVolume(20.f);
+
+	if (!tBackground.loadFromFile("resources/cenarioimprovisado.png"))
 		std::cout << "Failed loading background image" << std::endl;
 
-	this->background.setTexture(tBackground);
+	background.setTexture(tBackground);
 
-	if(!this->font.loadFromFile("resources/Fonts/Rubik.ttf")){
+	if(!font.loadFromFile("resources/Fonts/Rubik.ttf")){
 		std::cout << "Falha no carregamento da fonte" << std::endl;
 	}
 
@@ -294,16 +315,16 @@ void Game::initializeTexts(){
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
 void Game::initializeWindow(){
-	this->videoMode.height = HEIGHT;
-	this->videoMode.width = WIDTH;
-	this->window = new sf::RenderWindow(this->videoMode, "Me-OW!", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
+	videoMode.height = HEIGHT;
+	videoMode.width = WIDTH;
+	window = new sf::RenderWindow(videoMode, "Me-OW!", sf::Style::Titlebar | sf::Style::Close);
 
 	//Carrega e seta a imagem do jogo
 	sf::Image icon;
 	if(!icon.loadFromFile("resources/icon2.png")){ //Imagem quadrada 128x128
 		std::cout<<"Falha na leitura do ícone" << std::endl;
 	}
-	this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+	window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 /*
@@ -311,17 +332,17 @@ void Game::initializeWindow(){
 */
 void Game::initializeObjects(float dt){
 
-	int numObjs = log(this->level) * 6 + 3;
+	int numObjs = log(level) * 6 + 3;
 	if (numObjs > 200) numObjs = 200;
 
 	std::srand(time(0));  //inicializando seed aleatoria
 
-	this->generateQueue(numObjs, dt); //definir regra de geração pra queue (etapa de fase)
+	generateQueue(numObjs, dt); //definir regra de geração pra queue (etapa de fase)
 }
 
 void Game::initializePlayer(){
 
-	this->player.setPosition(videoMode.width/2, videoMode.height/2);
+	player.setPosition(videoMode.width/2, videoMode.height/2);
 }
 
 /*
@@ -329,24 +350,24 @@ void Game::initializePlayer(){
 */
 void Game::generateQueue(int size, float dt){
 
-	this->player.playNextLevel();
+	player.playNextLevel();
 	int key = level >= 5 ? std::rand() % 2 + 1 : 1;
 	for (int i = 0; i < size; i++){
-		this->objects.newObject(this->level, this->window->getSize().x, this->window->getSize().y, dt, 
-								this->player.getSpriteSize().height, this->player.getSpriteSize().width, key);
+		objects.newObject(level, window->getSize().x, window->getSize().y, dt, 
+								player.getSpriteSize().height, player.getSpriteSize().width, key);
 	}
 }
 
 //pollEvents(): Verifica eventos (Teclado, Janela aberta)
 void Game::pollEvents(float dt){
 	//Event polling
-	while (this->window->pollEvent(this->ev)){
-		if (this->ev.type == sf::Event::Closed) //Fecha a janela do jogo ao clicar no "X" da janela
-			this->window->close();
+	while (window->pollEvent(ev)){
+		if (ev.type == sf::Event::Closed) //Fecha a janela do jogo ao clicar no "X" da janela
+			window->close();
 
-		if (this->ev.type == sf::Event::KeyPressed){
+		if (ev.type == sf::Event::KeyPressed){
 			//movimento do player
-			if (this->state == 2) {
+			if (state == 2) {
 
 				if (ev.key.code == sf::Keyboard::Up || ev.key.code == sf::Keyboard::W) {
 					player.rotateDirection('u', dt);
@@ -363,13 +384,13 @@ void Game::pollEvents(float dt){
 			}
 
 			//start game
-			if (ev.key.code == sf::Keyboard::Enter && (this->state == 0 || this->state == 3)) {
-				this->start = !start;
+			if (ev.key.code == sf::Keyboard::Enter && (state == 0 || state == 3)) {
+				start = !start;
 			}
 
 			//pause and unpause
-			if (ev.key.code == sf::Keyboard::Escape && (this->state == 2 || this->state == 4)) {
-				this->pause = !pause;
+			if (ev.key.code == sf::Keyboard::Escape && (state == 2 || state == 4)) {
+				pause = !pause;
 			}
 		}
 
@@ -380,18 +401,18 @@ void Game::pollEvents(float dt){
 */
 
 sf::Time Game::setSpawnTimer() {
-	if (this->level == 1) 
+	if (level == 1) 
 		return sf::seconds(1.5f);
-	else if(this->level > 1 && this->level <=5){
+	else if(level > 1 && level <=5){
 		return sf::seconds(1.f);
 	}
-	else if (this->level > 5 && this->level <= 15) {
+	else if (level > 5 && level <= 15) {
 		return sf::seconds(0.6f);
 	}
-	else if (this->level > 15 && this->level % 5 == 0) {
+	else if (level > 15 && level % 5 == 0) {
 		return sf::seconds(0.35f);
 	}
-	else if (this->level > 15 && this->level % 5 != 0) {
+	else if (level > 15 && level % 5 != 0) {
 		return sf::seconds(0.5f);
 	}
 }
@@ -400,38 +421,38 @@ sf::Time Game::setSpawnTimer() {
 void Game::updateObjects(float dt) {
 	sf::Time delay = setSpawnTimer(); //delay entre spawns de objetos
 
-	this->increaseTimer(dt, &this->spawnTimer);
+	increaseTimer(dt, &spawnTimer);
 
-	if (this->objects.isEmpty() == false) {
+	if (objects.isEmpty() == false) {
 
-		if (this->inGame == true) this->checkerTimer = (this->LastObjTimer - this->spawnTimer) + delay;
+		if (inGame == true) checkerTimer = (LastObjTimer - spawnTimer) + delay;
 
-		if (this->spawnTimer.asSeconds() >= delay.asSeconds()) {
-			sf::Time test = this->objects.getFirst().getHitTime();
-			//std::cout << "Test time: " << test.asSeconds() << "CheckerTime: " << this->checkerTimer.asSeconds() << std::endl;
-			if (test.asSeconds() > this->checkerTimer.asSeconds()) {
+		if (spawnTimer.asSeconds() >= delay.asSeconds()) {
+			sf::Time test = objects.getFirst().getHitTime();
+			//std::cout << "Test time: " << test.asSeconds() << "CheckerTime: " << checkerTimer.asSeconds() << std::endl;
+			if (test.asSeconds() > checkerTimer.asSeconds()) {
 
-				this->LastObjTimer = this->objects.getFirst().getHitTime();
+				LastObjTimer = objects.getFirst().getHitTime();
 
 				spawnObject();
 
-				this->spawnTimer = sf::seconds(0.f); //restarta timer de spawn de objetos
+				spawnTimer = sf::seconds(0.f); //restarta timer de spawn de objetos
 			}
 
 		}
 	}
 
-	if(this->inGame == true){
-		//std::cout << "Num elem na lista: " << this->spawnedObjects.getNroElementos() << std::endl;
+	if(inGame == true){
+		//std::cout << "Num elem na lista: " << spawnedObjects.getNroElementos() << std::endl;
 
-		if (this->spawnedObjects.getNroElementos() != 0) { //se tiver elementos na lista de spawn, os movimenta
-			for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++) {
-				//if (this->spawnedObjects.getObjects() != nullptr) 
-					this->spawnedObjects.getObjects()->moveObject(dt);
+		if (spawnedObjects.getNroElementos() != 0) { //se tiver elementos na lista de spawn, os movimenta
+			for (int i = 0; i < spawnedObjects.getNroElementos(); i++) {
+				//if (spawnedObjects.getObjects() != nullptr) 
+					spawnedObjects.getObjects()->moveObject(dt);
 			}
 		}
-		else if(this->objects.isEmpty() == true){
-			this->pass = true;
+		else if(objects.isEmpty() == true){
+			pass = true;
 		}
 	}
 	
@@ -458,19 +479,19 @@ void Game::decreaseTimer(float dt, sf::Time* timer) {
 void Game::testCollisions(){
 
 	Object* testObject;
-	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++){
+	for (int i = 0; i < spawnedObjects.getNroElementos(); i++){
 
-		testObject = this->spawnedObjects.getObjects();
+		testObject = spawnedObjects.getObjects();
 
-		if(this->player.collidePlayer(testObject->getBody())){ // Colisão com player
-			this->player.playHurt();
-			this->spawnedObjects.removeObject();
+		if(player.collidePlayer(testObject->getBody())){ // Colisão com player
+			player.playHurt();
+			spawnedObjects.removeObject();
 		} 
-		else if(this->player.collideShields(testObject->getBody())){ // Colisão com escudos
-			this->player.playHitShield();
-			this->spawnedObjects.removeObject();
+		else if(player.collideShields(testObject->getBody())){ // Colisão com escudos
+			player.playHitShield();
+			spawnedObjects.removeObject();
 			//std::cout << testObject->getSpeed() << std::endl;
-			this->score += 100 + (testObject->getSpeed()) / 10;	
+			score += 100 + (testObject->getSpeed()) / 10;	
 		}
 	}
 }
@@ -480,37 +501,37 @@ void Game::testCollisions(){
 */
 void Game::spawnObject(){
 	Object* object = nullptr;
-	if (this->objects.isEmpty() == false){
-		object = this->objects.removeObject();
-		this->spawnedObjects.newObject(object);
-		this->inGame = true;
+	if (objects.isEmpty() == false){
+		object = objects.removeObject();
+		spawnedObjects.newObject(object);
+		inGame = true;
 	}
 }
 
 //renderObjects(): Desenha os inimigos na tela
 void Game::renderObjects(){
-	for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++){
-		(this->window)->draw(this->spawnedObjects.getObjects()->getBody());
+	for (int i = 0; i < spawnedObjects.getNroElementos(); i++){
+		(window)->draw(spawnedObjects.getObjects()->getBody());
 	}
 	
 }
 
 //renderScore(): Desenha Pontuação e Vida
 void Game::renderScore(){
-	tHP.setString("HP: " + std::to_string(this->hp));
-	tScore.setString("Score: " + std::to_string(this->score));
-	nivel.setString("Level: " + std::to_string(this->level));
-	this->window->draw(nivel);
-	this->window->draw(tHP);
-	this->window->draw(tScore);
+	tHP.setString("HP: " + std::to_string(hp));
+	tScore.setString("Score: " + std::to_string(score));
+	nivel.setString("Level: " + std::to_string(level));
+	window->draw(nivel);
+	window->draw(tHP);
+	window->draw(tScore);
 	
 }
 
 void Game::renderGameOver(){
-	this->tFinalScore.setString("Score: " + std::to_string(this->score));
-	this->window->draw(tFinalScore);
-	this->window->draw(tGameover);
-	this->window->draw(tInstrucaoGO);
+	tFinalScore.setString("Score: " + std::to_string(score));
+	window->draw(tFinalScore);
+	window->draw(tGameover);
+	window->draw(tInstrucaoGO);
 }
 
 void Game::renderPause(){
@@ -521,7 +542,7 @@ void Game::renderPause(){
 	}
 
 	if(piscaPisca){
-		this->window->draw(tPause);
+		window->draw(tPause);
 	}
 	
 }
@@ -529,7 +550,7 @@ void Game::renderPause(){
 void Game::renderInicial(){
 
 
-	//this->window->draw(tInstrucao);
+	//window->draw(tInstrucao);
 
 	timerPause++;
 	if(timerPause > 2200){
@@ -538,8 +559,8 @@ void Game::renderInicial(){
 	}
 
 	if(piscaPisca){
-		this->window->draw(tInstrucao);
+		window->draw(tInstrucao);
 	}
 
-	this->window->draw(tExtra);
+	window->draw(tExtra);
 }

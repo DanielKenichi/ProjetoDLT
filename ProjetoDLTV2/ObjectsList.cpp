@@ -10,12 +10,12 @@ ObjectsList::~ObjectsList(){
 }
 /**setters**/
 void ObjectsList::setAtt(){
-	this->att = this->PL;
+	att = PL;
 }
 
 /**getters**/
 int ObjectsList::getNroElementos(){
-	return this->NroElementos;
+	return NroElementos;
 }
 
 /*
@@ -23,14 +23,14 @@ int ObjectsList::getNroElementos(){
 */
 Object* ObjectsList::getObjects() {
 	LNodeptr Aux;
-	Aux = this->att; //Identifica o objeto a ser atualizado em um loop
+	Aux = att; //Identifica o objeto a ser atualizado em um loop
 
-	if (this->PL == NULL){
+	if (PL == NULL){
 		std::cout << "Acabou a os objetos da lista" << std::endl;
 		return NULL;
 	}
 	else{	
-		this->att = (this->att)->Next;
+		att = (att)->Next;
 		return &(Aux->Next)->info;
 	}	
 }
@@ -39,10 +39,10 @@ Object* ObjectsList::getObjects() {
 * initializeList(): Inicializa a lista de objetos, indicando quais objetos estão spawnados
 */
 void ObjectsList::initializeList(){
-	this->PL = nullptr;
-	this->UL = nullptr;
-	this->att = nullptr;
-	this->NroElementos = 0;
+	PL = nullptr;
+	UL = nullptr;
+	att = nullptr;
+	NroElementos = 0;
 }
 /*
 * newObject(): Insere um novo objeto na lista para ser spawnado
@@ -57,104 +57,104 @@ void ObjectsList::newObject(Object *obj){
 	Aux->info = *obj;
 
 	//Caso 1: Caso a lista esteja vazia
-	if (this->NroElementos == 0){
-		this->att = Aux;
-		this->PL = Aux;
-		this->UL = Aux;
+	if (NroElementos == 0){
+		att = Aux;
+		PL = Aux;
+		UL = Aux;
 
 		Aux->Next = Aux;
 
-		this->NroElementos++;
+		NroElementos++;
 	}
 
 	//Caso 2: Caso a lista tenha apenas um elemento
-	else if (this->NroElementos == 1){
-		this->UL = Aux;
-		(this->PL)->Next = Aux;
+	else if (NroElementos == 1){
+		UL = Aux;
+		PL->Next = Aux;
 
-		Aux->Next = this->PL;
-		this->att = UL;
+		Aux->Next = PL;
+		att = UL;
 
-		this->NroElementos++;
+		NroElementos++;
 	}
 
 	//Caso 3: Caso tenha mais de um elemento
 
-	else if (this->NroElementos > 1){
-		(this->UL)->Next = Aux;
-		this->UL = Aux;
+	else if (NroElementos > 1){
+		UL->Next = Aux;
+		UL = Aux;
 
-		Aux->Next = this->PL;
+		Aux->Next = PL;
 
-		this->att = UL;
+		att = UL;
 
-		this->NroElementos++;
+		NroElementos++;
 	}
 
 }
 
 void ObjectsList::removeObject(){
 	//caso 0: lista vazia
-	if (this->NroElementos == 0){
+	if (NroElementos == 0){
 		std::cout << "Não há objetos a serem removidos" << std::endl;
 	}
 
 	//caso 1: a lista tem apenas um elemento
-	else if (this->NroElementos == 1){
-		(this->PL)->Next = nullptr;
+	else if (NroElementos == 1){
+		PL->Next = nullptr;
 
-		delete this->PL;
+		delete PL;
 
-		this->PL = nullptr;
-		this->UL = nullptr;
-		this->att = nullptr;
+		PL = nullptr;
+		UL = nullptr;
+		att = nullptr;
 
-		this->NroElementos--;
+		NroElementos--;
 	}
 
 	//caso 2: a lista tem mais de um elemento...
-	else if (this->NroElementos > 1){
-		LNodeptr anterior = this->PL;
+	else if (NroElementos > 1){
+		LNodeptr anterior = PL;
 
 		//caso 2.1 ...e o elemento a ser removido esteja no começo da lista
-		if (this->att == this->PL){
-			this->PL = (this->PL)->Next;
-			(this->UL)->Next = this->PL;
-			(this->att)->Next = nullptr;
+		if (att == PL){
+			PL = PL->Next;
+			UL->Next = PL;
+			att->Next = nullptr;
 
-			delete this->att;
+			delete att;
 
-			this->att = this->PL;
-			this->NroElementos--;
+			att = PL;
+			NroElementos--;
 		}
 
-		else if (this->att == this->UL) {
-			while (anterior->Next != this->att){
+		else if (att == UL) {
+			while (anterior->Next != att){
 				anterior = anterior->Next;
 			}
 
-			anterior->Next = (this->att)->Next;
+			anterior->Next = att->Next;
 
-			(this->att)->Next = nullptr;
-			delete this->att;
+			att->Next = nullptr;
+			delete att;
 
-			this->att = anterior->Next;
-			this->UL = anterior;
-			this->NroElementos--;
+			att = anterior->Next;
+			UL = anterior;
+			NroElementos--;
 		}
 
 		//caso 2.2 ... e o elemento a ser removido esteja no meio da lista
 		else{
-			while (anterior->Next != this->att){
+			while (anterior->Next != att){
 				anterior = anterior->Next;
 			}
-			anterior->Next = (this->att)->Next;
+			anterior->Next = att->Next;
 
-			(this->att)->Next = nullptr;
-			delete this->att;
+			att->Next = nullptr;
+			delete att;
 
-			this->att = anterior->Next;
-			this->NroElementos--;
+			att = anterior->Next;
+			NroElementos--;
 		}
 
 	}

@@ -4,8 +4,8 @@
 
 Player::Player()
 {
-    this->initializeSprites();
-    this->initializeSounds();
+    initializeSprites();
+    initializeSounds();
 }
 
 void Player::initializeSprites(){
@@ -76,29 +76,29 @@ Player::~Player(){
 }
 
 int Player::getHP(){
-    return this->HP;
+    return HP;
 }
 
 void Player::setHP(int hp){
-    this->HP = hp;
+    HP = hp;
 }
 
 void Player::rotateDirection(char dir, float dt){
     switch(dir){
         case 'u': //up
-            //this->rotatePlayer(0.f, dt);
+            //rotatePlayer(0.f, dt);
             angAlvo = 360.f;
         break;
         case 'r': //right
-            this->rotatePlayer(90.f, dt);
+            rotatePlayer(90.f, dt);
             angAlvo = 90.f;
         break;
         case 'd': //down
-            //this->rotatePlayer(180.f, dt);
+            //rotatePlayer(180.f, dt);
             angAlvo = 180.f;
         break;
         case 'l': //left
-            //this->rotatePlayer(270.f, dt);
+            //rotatePlayer(270.f, dt);
             angAlvo = 270.f;
         break;
     }
@@ -109,15 +109,15 @@ float modulo(float a, float b){
 }
 
 void Player::rotatePlayer(double ang, float dt){
-    float deltaAng = ang - this->getRotation();
+    float deltaAng = ang - getRotation();
     deltaAng = modulo((deltaAng + 180.f), 360.f) - 180.f;
     float distancia = fabs(deltaAng);  
-    double distDecel = pow(this->velocidade, 2)/(2*DESACELERACAO);
+    double distDecel = pow(velocidade, 2)/(2*DESACELERACAO);
     
     if(distancia < (velocidade)) //Muito próximo do ângulo final
     { 
-        this->setRotation(ang);
-        this->velocidade = 0;
+        setRotation(ang);
+        velocidade = 0;
     }
     else if(distancia > distDecel) //Longe, continuar acelerando
     { 
@@ -127,17 +127,17 @@ void Player::rotatePlayer(double ang, float dt){
     { 
         velocidade = fmax(velocidade - DESACELERACAO, 0);
     }
-    this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt * 100.f);
-    //this->rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt); 
+    rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt * 100.f);
+    //rotate(velocidade * (deltaAng < 0 ? -1 : 1) * dt); 
 }
 
 double Player::getPRotation(){
-    return this->spr.getRotation();
+    return spr.getRotation();
 }
 
 sf::FloatRect Player::getSpriteSize()
 {
-    return this->spr.getLocalBounds();
+    return spr.getLocalBounds();
 }
 
 void InitializeShields(bool top, bool right, bool bottom, bool left){
@@ -160,7 +160,7 @@ void InitializeShields(bool top, bool right, bool bottom, bool left){
 }
 
 void Player::renderAll(sf::RenderWindow *win){
-    if (this->HP > 0) {
+    if (HP > 0) {
         win->draw(spr);
         win->draw(sTop);
     }
@@ -172,11 +172,11 @@ void Player::renderAll(sf::RenderWindow *win){
 
 void Player::updateAll(float dt){
     //Temporário FIXME: solução permanente para todas as atualizações
-    this->rotatePlayer(angAlvo, dt);
-    spr.setPosition(this->getPosition());
-    sTop.setPosition(this->getPosition());
-    spr.setRotation(this->getRotation());
-    sTop.setRotation(this->getRotation()); 
+    rotatePlayer(angAlvo, dt);
+    spr.setPosition(getPosition());
+    sTop.setPosition(getPosition());
+    spr.setRotation(getRotation());
+    sTop.setRotation(getRotation()); 
 
     //Animação Escudo
     if(cTop.getElapsedTime().asSeconds() > 0.06){
@@ -186,15 +186,15 @@ void Player::updateAll(float dt){
     }
     //Animação Player
     if(cSpr.getElapsedTime().asSeconds() > 0.06){
-        if (this->HP > 1) {
+        if (HP > 1) {
             spr.setTexture(tPlayer);
             spr.setColor(sf::Color::White);
         }
-        else if (this->HP == 1) {
+        else if (HP == 1) {
             spr.setTexture(playerHit);
             spr.setColor(sf::Color::White);
         }
-        else if (this->HP == 0) {
+        else if (HP == 0) {
             spr.setTexture(playerDead);
             spr.setColor(sf::Color::White);
         }
@@ -205,7 +205,7 @@ void Player::updateAll(float dt){
 }
 
 bool Player::collidePlayer(sf::Sprite obj){
-    if(Collision::CircleTest(this->spr, obj)){
+    if(Collision::CircleTest(spr, obj)){
         HP--;
         cSpr.restart();
         return true;
@@ -215,7 +215,7 @@ bool Player::collidePlayer(sf::Sprite obj){
 }
 
 bool Player::collideShields(sf::Sprite obj){ 
-    if(Collision::BoundingBoxTest(this->sTop, obj)){
+    if(Collision::BoundingBoxTest(sTop, obj)){
         cTop.restart();
         return true;
     }else{
