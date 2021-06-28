@@ -5,6 +5,8 @@
 
 /*Construtor e Destrutor*/
 Object::Object(){
+	this->poskey = 0;
+	this->Speed = 0;
 }
 
 Object::~Object(){
@@ -24,7 +26,7 @@ sf::Time Object::getHitTime()
 /*
 *initializeObject(): Inicializa os atributos de um objeto
 */
-void Object::initializeObject(int level, int h, int w, float dt, int ph, int pw) {
+void Object::initializeObject(int level, int h, int w, float dt, int ph, int pw, int key) {
 	const sf::Vector2f spriteScale(0.5f, 0.5f);
 
 	this->poskey = std::rand() % 4 + 1;
@@ -42,7 +44,7 @@ void Object::initializeObject(int level, int h, int w, float dt, int ph, int pw)
 	this->body.setOrigin(middle);
 
 	this->body.setScale(spriteScale);
-	this->speedAdjust(level);
+	this->speedAdjust(level, key);
 	
 	/*OBS: AJUSTAR O TAMANHO PARA SPAWNAR FORA DA TELA*/
 	switch (this->poskey) {
@@ -96,31 +98,40 @@ void Object::moveObject(float dt){
 		this->body.move(0.f, -1.f * this->Speed * dt); //...caso seja spawnado embaixo
 		break;
 	default:
-		std::cout << "UwU" << std::endl;
+		std::cout << "default" << std::endl;
 		break;
 	}
 }
 
-void Object::speedAdjust(int level)
+void Object::speedAdjust(int level, int key)
 {
-	//int key = std::rand() % 2 + 1;
-	int key = 2;
+	
+	
 	/*key = 1: fase de Velocidade constante
 	* key = 2: fase de velocidade variavel
 	*/
 	switch (key) {
 	case 1:		
-		if (level == 1) {
-			this->Speed = 200.f;
-		}if (level > 1 && level <= 5) {
+		if (level == 1)
 			this->Speed = 300.f;
-		}if (level > 5) {
+		else if (level > 1 && level <= 5)
+			this->Speed = 400.f;
+		else if (level > 5 && level < 10)
 			this->Speed = 600.f;
-		}
+
+		else if (level >= 15 && level % 5 == 0)
+			this->Speed = 100;
+
+		else if (level >= 10 && level % 5 != 0)
+			this->Speed = 800.f;
+
 		break;
+
 	case 2:
-		
-		this->Speed = (rand() % 6 + 1) * 100.f;
+		if(level < 10)
+			this->Speed = (std::rand() % 6 + 2) * 100.f;
+		else
+			this->Speed = (std::rand() % 7 + 1) * 100.f;
 		
 		break;
 	}

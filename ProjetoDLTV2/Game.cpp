@@ -33,7 +33,7 @@ void Game::update(float dt){
 		//condição de saida : start game
 		if (this->start == true){
 			this->initializePlayer();
-			this->player.setHP(3);
+			this->player.setHP(20);
 			this->score = 0;
 			this->state = 1;
 		}
@@ -188,7 +188,7 @@ void Game::initializeVariables(){
 	this->spawnTimer = sf::seconds(0.f);
 	this->checkerTimer = sf::seconds(-999.f);
 	this->state = 0; 
-	this->level = 1;
+	this->level = 10;
 	this->pass = false;
 	this->inGame = false;
 
@@ -246,7 +246,7 @@ void Game::initializeWindow(){
 */
 void Game::initializeObjects(float dt){
 
-	int numObjs = this->level * 4;
+	int numObjs = this->level * 3;
 	if (numObjs > 200) numObjs = 200;
 
 	std::srand(time(0));  //inicializando seed aleatoria
@@ -264,9 +264,10 @@ void Game::initializePlayer(){
 */
 void Game::generateQueue(int size, float dt){
 
+	int key = level > 5 ? std::rand() % 2 + 1 : 1;
 	for (int i = 0; i < size; i++){
 		this->objects.newObject(this->level, this->window->getSize().x, this->window->getSize().y, dt, 
-								this->player.getSpriteSize().height, this->player.getSpriteSize().width);
+								this->player.getSpriteSize().height, this->player.getSpriteSize().width, key);
 	}
 }
 
@@ -314,15 +315,18 @@ void Game::pollEvents(float dt){
 
 sf::Time Game::setSpawnTimer() {
 	if (this->level == 1) 
-		return sf::seconds(2.f);
+		return sf::seconds(1.5f);
 	else if(this->level > 1 && this->level <=5){
 		return sf::seconds(1.f);
 	}
 	else if (this->level > 5 && this->level <= 15) {
-		return sf::seconds(0.5f);
+		return sf::seconds(0.6f);
 	}
-	else if (this->level > 15) {
+	else if (this->level > 15 && this->level % 5 == 0) {
 		return sf::seconds(0.4f);
+	}
+	else if (this->level > 15 && this->level % 5 != 0) {
+		return sf::seconds(0.55f);
 	}
 }
 
