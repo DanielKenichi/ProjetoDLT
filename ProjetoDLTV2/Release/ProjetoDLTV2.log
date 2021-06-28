@@ -48,9 +48,8 @@ C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(335,37): warning C424
               T=float
           ]
   Gerando código
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(396): warning C4715: 'Game::setSpawnTimer': nem todos os caminhos de controle retornam um valor
-  3 of 249 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  2 of 249 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Release\ProjetoDLTV2.exe

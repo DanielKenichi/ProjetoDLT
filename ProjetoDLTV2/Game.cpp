@@ -230,7 +230,7 @@ void Game::initializeVariables(){
 	this->objects.initializeQueue();
 	this->spawnedObjects.initializeList();
 
-	if (this->tBackground.loadFromFile("resources/cenarioimprovisado.png"))
+	if (!this->tBackground.loadFromFile("resources/cenarioimprovisado.png"))
 		std::cout << "Failed loading background image" << std::endl;
 
 	this->background.setTexture(tBackground);
@@ -427,7 +427,6 @@ void Game::updateObjects(float dt) {
 			for (int i = 0; i < this->spawnedObjects.getNroElementos(); i++) {
 				//if (this->spawnedObjects.getObjects() != nullptr) 
 					this->spawnedObjects.getObjects()->moveObject(dt);
-				//else std::cout << "OwO" << std::endl;
 			}
 		}
 		else if(this->objects.isEmpty() == true){
@@ -469,7 +468,7 @@ void Game::testCollisions(){
 		else if(this->player.collideShields(testObject->getBody())){ // Colisão com escudos
 			this->player.playHitShield();
 			this->spawnedObjects.removeObject();
-			std::cout << testObject->getSpeed() << std::endl;
+			//std::cout << testObject->getSpeed() << std::endl;
 			this->score += 100 + (testObject->getSpeed()) / 10;	
 		}
 	}
@@ -529,10 +528,10 @@ void Game::renderPause(){
 void Game::renderInicial(){
 
 
-	this->window->draw(tInstrucao);
+	//this->window->draw(tInstrucao);
 
 	timerPause++;
-	if(timerPause > 1200){
+	if(timerPause > 2200){
 		piscaPisca = !piscaPisca;
 		timerPause = 0;
 	}
