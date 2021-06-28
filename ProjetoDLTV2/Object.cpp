@@ -10,7 +10,7 @@ Object::Object(){
 }
 
 Object::~Object(){
-	std::cout << "Objeto Destruido" << std::endl;
+	//std::cout << "Objeto Destruido" << std::endl;
 }
 
 /*getters*/
@@ -125,7 +125,7 @@ void Object::speedAdjust(int level, int key)
 			this->Speed = 600.f;
 
 		else if (level >= 10 && level % 5 == 0)
-			this->Speed = 100;
+			this->Speed = 100.f;
 
 		else if (level >= 10 && level % 5 != 0)
 			this->Speed = 800.f;

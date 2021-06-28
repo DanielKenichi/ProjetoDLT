@@ -20,8 +20,8 @@ void Player::initializeSprites(){
         std::cout << "Player.cpp : Falha na leitura de dead.png" << std::endl;
     }
     tPlayer.setSmooth(true);
-    if(!tShield.loadFromFile("resources/Escudo.png")){ //Imagem retangular 128x32
-		std::cout<<"Player.cpp : Falha na leitura de Escudo.png" << std::endl;
+    if(!tShield.loadFromFile("resources/ShieldSprite.png")){ //Imagem retangular 128x32
+		std::cout<<"Player.cpp : Falha na leitura de ShieldSprite.png" << std::endl;
 	}
     tShield.setSmooth(true);
 

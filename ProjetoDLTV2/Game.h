@@ -41,10 +41,14 @@ private:
 	int hp = 1;
 	sf::Text tHP;
 	sf::Text tScore;
+	sf::Text nivel;
 
 	//Texto de Start
 	sf::Text tInstrucao;
 	sf::Text tExtra;
+
+	
+
 	
 	//Texto de game over
 	sf::Text tGameover;

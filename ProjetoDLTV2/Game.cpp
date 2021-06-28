@@ -80,7 +80,7 @@ void Game::update(float dt){
 
 	//State 3
 	if (this->state == 3) {
-		std::cout << "Game Over" << std::endl;
+		//std::cout << "Game Over" << std::endl;
 
 		//esvaziando lista e fila
 		while (this->objects.isEmpty() == false) {
@@ -210,7 +210,7 @@ void Game::initializeVariables(){
 	this->spawnTimer = sf::seconds(0.f);
 	this->checkerTimer = sf::seconds(-999.f);
 	this->state = 0; 
-	this->level = 10;
+	this->level = 1;
 	this->pass = false;
 	this->inGame = false;
 
@@ -236,7 +236,11 @@ void Game::initializeTexts(){
 
 	// Texto Score
 	tScore = sf::Text{"Score: ", font, 32};
-	tScore.setPosition(10, tHP.getCharacterSize()+10);
+	tScore.setPosition(10, tHP.getCharacterSize() + 10);
+
+	// Texto Level
+	nivel = sf::Text{ "Level ", font, 32 };
+	nivel.setPosition(10, nivel.getCharacterSize() + 52);
 
 	// Texto Gameover
 	tGameover = sf::Text{"Gameover", font, 128};
@@ -442,7 +446,8 @@ void Game::testCollisions(){
 		else if(this->player.collideShields(testObject->getBody())){ // Colisão com escudos
 			this->player.playHitShield();
 			this->spawnedObjects.removeObject();
-			this->score += 100 + (testObject->getSpeed())/10;	
+			std::cout << testObject->getSpeed() << std::endl;
+			this->score += 100 + (testObject->getSpeed()) / 10;	
 		}
 	}
 }
@@ -471,6 +476,8 @@ void Game::renderObjects(){
 void Game::renderScore(){
 	tHP.setString("HP: " + std::to_string(this->hp));
 	tScore.setString("Score: " + std::to_string(this->score));
+	nivel.setString("Level: " + std::to_string(this->level));
+	this->window->draw(nivel);
 	this->window->draw(tHP);
 	this->window->draw(tScore);
 	

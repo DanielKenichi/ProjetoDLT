@@ -1,10 +1,4 @@
 ﻿  Object.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(64,26): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(70,33): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(116,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(118,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(120,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(126,18): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(132,40): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(134,40): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(69,26): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(75,33): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Debug\ProjetoDLTV2.exe
