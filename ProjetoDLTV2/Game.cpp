@@ -33,7 +33,7 @@ void Game::update(float dt){
 		//condição de saida : start game
 		if (this->start == true){
 			this->initializePlayer();
-			this->player.setHP(3);
+			this->player.setHP(20);
 			this->score = 0;
 			this->state = 1;
 		}
@@ -127,25 +127,26 @@ void Game::update(float dt){
 *	State 4: Pause
 */
 void Game::render(){
-	
-	this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 
 	/*sf::View view;
 	sf::FloatRect;*/
 
 	//state 0 
 	if (this->state == 0){
+		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		//renderiza mainScreen
 	}
 	
 	//state 1
 	if (this->state == 1) {
+		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		this->window->clear(sf::Color::Red); //limpa o frame antigo
 		//renderiza uma tela de loading
 	}
 
 	//state 2
 	if (this->state == 2) {
+		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		
 		this->player.renderAll(this->window); //Desenha o Player
 
@@ -157,9 +158,15 @@ void Game::render(){
 	//state 3
 	if (this->state == 3) {
 		//renderiza tela de Game over
-		this->window->clear(sf::Color(0, 0, 0, 1));
+		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
+		
+		this->player.renderAll(this->window); //Desenha o Player
 
-		this->player.renderAll(this->window);
+		this->renderObjects();
+
+		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
+		opaco.setFillColor(sf::Color(0,0,0,100));
+		this->window->draw(opaco);
 
 		this->renderGameOver();
 	}
@@ -268,7 +275,6 @@ void Game::initializePlayer(){
 void Game::generateQueue(int size, float dt){
 
 	int key = level > 5 ? std::rand() % 2 + 1 : 1;
-
 	for (int i = 0; i < size; i++){
 		this->objects.newObject(this->level, this->window->getSize().x, this->window->getSize().y, dt, 
 								this->player.getSpriteSize().height, this->player.getSpriteSize().width, key);
