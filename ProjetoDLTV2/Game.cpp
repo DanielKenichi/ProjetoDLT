@@ -165,7 +165,7 @@ void Game::render(){
 		this->renderObjects();
 
 		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
-		opaco.setFillColor(sf::Color(0,0,0,100));
+		opaco.setFillColor(sf::Color(0,0,0,150));
 		this->window->draw(opaco);
 
 		this->renderGameOver();
@@ -174,6 +174,17 @@ void Game::render(){
 	//state 4
 	if (this->state == 4) {
 		//renderiza tela de pause
+		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
+		opaco.setFillColor(sf::Color(0,0,0,150));
+
+		this->player.renderAll(this->window); //Desenha o Player
+
+		this->renderScore();
+
+		this->renderObjects();
+
+		this->window->draw(opaco);
+		renderPause();
 	}
 
 	this->window->display(); //Exibe na tela o desenho realizado no frame
@@ -235,6 +246,11 @@ void Game::initializeTexts(){
 	tFinalScore = sf::Text{"Score: ", font, 32};
 	tFinalScore.setOrigin(tFinalScore.getLocalBounds().width/2.f, tFinalScore.getLocalBounds().height/2.f);
 	tFinalScore.setPosition(videoMode.width/2.f, videoMode.height/2.f);	
+
+	// Texto Pause
+	tPause = sf::Text{"PAUSADO", font, 64};
+	tPause.setOrigin(tPause.getLocalBounds().width + 10, tPause.getLocalBounds().height + 10);
+	tPause.setPosition(videoMode.width - 20, videoMode.height - 20);	
 }
 
 //InitializeWindow(): Inicializa a janela com as especificações necessárias
@@ -452,4 +468,17 @@ void Game::renderGameOver(){
 	this->tFinalScore.setString("Score: " + std::to_string(this->score));
 	this->window->draw(tFinalScore);
 	this->window->draw(tGameover);
+}
+
+void Game::renderPause(){
+	timerPause++;
+	if(timerPause > 1500){
+		piscaPisca = !piscaPisca;
+		timerPause = 0;
+	}
+
+	if(piscaPisca){
+		this->window->draw(tPause);
+	}
+	
 }

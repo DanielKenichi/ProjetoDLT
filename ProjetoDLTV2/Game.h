@@ -46,11 +46,16 @@ private:
 	sf::Text tGameover;
 	sf::Text tFinalScore;
 
+	//Texto de Pause
+	sf::Text tPause;
+
 	ObjectsQueue objects; // Fila de Objetos
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
 	Player player; // Jogador
 
 	//timers
+	int timerPause;
+	bool piscaPisca = true;
 	sf::Time spawnTimer;
 	sf::Time checkerTimer;
 	sf::Time LastObjTimer;
@@ -79,6 +84,7 @@ private:
 	void renderObjects();
 	void renderScore();
 	void renderGameOver();
+	void renderPause();
 	void testCollisions();
 
 	sf::Time setSpawnTimer();
