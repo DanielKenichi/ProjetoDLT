@@ -119,9 +119,9 @@ void Object::speedAdjust(int level, int key)
 	case 1:		
 		if (level == 1)
 			this->Speed = 300.f;
-		else if (level > 1 && level <= 5)
+		else if (level > 1 && level <= 3)
 			this->Speed = 400.f;
-		else if (level > 5 && level < 10)
+		else if (level > 3 && level < 10)
 			this->Speed = 600.f;
 
 		else if (level >= 10 && level % 5 == 0)

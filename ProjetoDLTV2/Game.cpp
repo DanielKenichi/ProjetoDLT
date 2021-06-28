@@ -295,11 +295,11 @@ void Game::initializeTexts(){
 void Game::initializeWindow(){
 	this->videoMode.height = HEIGHT;
 	this->videoMode.width = WIDTH;
-	this->window = new sf::RenderWindow(this->videoMode, "Dona Chica Simulator", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
+	this->window = new sf::RenderWindow(this->videoMode, "Me-OW!", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 
 	//Carrega e seta a imagem do jogo
 	sf::Image icon;
-	if(!icon.loadFromFile("resources/icon.png")){ //Imagem quadrada 128x128
+	if(!icon.loadFromFile("resources/icon2.png")){ //Imagem quadrada 128x128
 		std::cout<<"Falha na leitura do ícone" << std::endl;
 	}
 	this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
@@ -329,7 +329,7 @@ void Game::initializePlayer(){
 void Game::generateQueue(int size, float dt){
 
 	this->player.playNextLevel();
-	int key = level > 5 ? std::rand() % 2 + 1 : 1;
+	int key = level >= 5 ? std::rand() % 2 + 1 : 1;
 	for (int i = 0; i < size; i++){
 		this->objects.newObject(this->level, this->window->getSize().x, this->window->getSize().y, dt, 
 								this->player.getSpriteSize().height, this->player.getSpriteSize().width, key);
@@ -391,7 +391,7 @@ sf::Time Game::setSpawnTimer() {
 		return sf::seconds(0.35f);
 	}
 	else if (this->level > 15 && this->level % 5 != 0) {
-		return sf::seconds(0.55f);
+		return sf::seconds(0.5f);
 	}
 }
 
