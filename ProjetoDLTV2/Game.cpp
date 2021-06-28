@@ -33,7 +33,7 @@ void Game::update(float dt){
 		//condição de saida : start game
 		if (this->start == true){
 			this->initializePlayer();
-			this->player.setHP(20);
+			this->player.setHP(3);
 			this->score = 0;
 			this->state = 1;
 		}
@@ -158,6 +158,9 @@ void Game::render(){
 	if (this->state == 3) {
 		//renderiza tela de Game over
 		this->window->clear(sf::Color(0, 0, 0, 1));
+
+		this->player.renderAll(this->window);
+
 		this->renderGameOver();
 	}
 
@@ -265,6 +268,7 @@ void Game::initializePlayer(){
 void Game::generateQueue(int size, float dt){
 
 	int key = level > 5 ? std::rand() % 2 + 1 : 1;
+
 	for (int i = 0; i < size; i++){
 		this->objects.newObject(this->level, this->window->getSize().x, this->window->getSize().y, dt, 
 								this->player.getSpriteSize().height, this->player.getSpriteSize().width, key);

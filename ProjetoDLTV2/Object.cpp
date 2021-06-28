@@ -118,16 +118,14 @@ void Object::speedAdjust(int level, int key)
 			this->Speed = 400.f;
 		else if (level > 5 && level < 10)
 			this->Speed = 600.f;
-
-		else if (level >= 15 && level % 5 == 0)
-			this->Speed = 100;
-
 		else if (level >= 10 && level % 5 != 0)
 			this->Speed = 800.f;
-
+		else if (level >= 10 && level % 5 == 0)
+			this->Speed = 100;
 		break;
 
 	case 2:
+
 		if(level < 10)
 			this->Speed = (std::rand() % 6 + 2) * 100.f;
 		else
