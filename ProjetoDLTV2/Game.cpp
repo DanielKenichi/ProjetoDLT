@@ -27,8 +27,8 @@ void Game::update(float dt){
 
 	//state 0
 	if (this->state == 0){
-		std::cout << "Estou na tela principal" << std::endl;
-		//gera main screen
+		//std::cout << "Estou na tela principal" << std::endl;
+
 
 		//condição de saida : start game
 		if (this->start == true){
@@ -108,7 +108,7 @@ void Game::update(float dt){
 
 	//state 4
 	if (this->state == 4) {
-		std::cout << "Jogo pausado" << std::endl;
+		//std::cout << "Jogo pausado" << std::endl;
 
 		//Condição de Saída: Despausar o jogo
 		if (this->pause == false) {
@@ -139,16 +139,18 @@ void Game::render(){
 	}
 	
 	//state 1
-	if (this->state == 1) {
+	if (this->state == 1){
 		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		this->window->clear(sf::Color::Red); //limpa o frame antigo
 		//renderiza uma tela de loading
 	}
 
 	//state 2
-	if (this->state == 2) {
+	if (this->state == 2){
 		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
-		
+
+		this->window->draw(background);
+
 		this->player.renderAll(this->window); //Desenha o Player
 
 		this->renderObjects();
@@ -157,10 +159,12 @@ void Game::render(){
 	}
 
 	//state 3
-	if (this->state == 3) {
+	if (this->state == 3){
 		//renderiza tela de Game over
 		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
 		
+		this->window->draw(background);
+
 		this->player.renderAll(this->window); //Desenha o Player
 
 		this->renderObjects();
@@ -173,10 +177,13 @@ void Game::render(){
 	}
 
 	//state 4
-	if (this->state == 4) {
+	if (this->state == 4){
 		//renderiza tela de pause
+
 		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
 		opaco.setFillColor(sf::Color(0,0,0,150));
+
+		this->window->draw(background);
 
 		this->player.renderAll(this->window); //Desenha o Player
 
@@ -217,14 +224,18 @@ void Game::initializeVariables(){
 	this->objects.initializeQueue();
 	this->spawnedObjects.initializeList();
 
+	if (this->tBackground.loadFromFile("resources/cenarioimprovisado.png"))
+		std::cout << "Failed loading background image" << std::endl;
+
+	this->background.setTexture(tBackground);
+
 	if(!this->font.loadFromFile("resources/Fonts/Rubik.ttf")){
 		std::cout << "Falha no carregamento da fonte" << std::endl;
 	}
 
 }
 
-sf::Vector2f round(const sf::Vector2f vector)
-{
+sf::Vector2f round(const sf::Vector2f vector){
     return sf::Vector2f{ std::round(vector.x), std::round(vector.y) };
 }
 
@@ -263,7 +274,7 @@ void Game::initializeTexts(){
 	tInstrucao.setPosition(videoMode.width/2.f, videoMode.height/2.f);	
 
 	// Texto Extra (Menu Inicial)
-	tExtra = sf::Text{L"2021 - Criado por Bruno L., Daniel K., João D.", font, 16};
+	tExtra = sf::Text{L"2021 - Criado por Bruno L., Daniel K., Jo\u00e3o D.", font, 16};
 	tExtra.setOrigin(tExtra.getLocalBounds().width/2, tExtra.getLocalBounds().height/2);
 	tExtra.setPosition(videoMode.width/2.f, videoMode.height - 20);
 
@@ -365,7 +376,7 @@ sf::Time Game::setSpawnTimer() {
 		return sf::seconds(0.6f);
 	}
 	else if (this->level > 15 && this->level % 5 == 0) {
-		return sf::seconds(0.4f);
+		return sf::seconds(0.35f);
 	}
 	else if (this->level > 15 && this->level % 5 != 0) {
 		return sf::seconds(0.55f);
@@ -503,6 +514,7 @@ void Game::renderPause(){
 }
 
 void Game::renderInicial(){
+
 	this->window->draw(tInstrucao);
 	this->window->draw(tExtra);
 }

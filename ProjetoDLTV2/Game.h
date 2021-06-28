@@ -47,15 +47,15 @@ private:
 	sf::Text tInstrucao;
 	sf::Text tExtra;
 
-	
-
-	
 	//Texto de game over
 	sf::Text tGameover;
 	sf::Text tFinalScore;
 
 	//Texto de Pause
 	sf::Text tPause;
+
+	sf::Sprite background;
+	sf::Texture tBackground;
 
 	ObjectsQueue objects; // Fila de Objetos
 	ObjectsList spawnedObjects; // Lista de Objetos Ativos
