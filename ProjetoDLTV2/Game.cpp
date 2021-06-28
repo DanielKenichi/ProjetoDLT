@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <stdio.h>
 #include <String>
+#include <math.h>
 
 // --> Construtor e Inicializadores <--
 Game::Game(){
@@ -310,7 +311,7 @@ void Game::initializeWindow(){
 */
 void Game::initializeObjects(float dt){
 
-	int numObjs = this->level * 3;
+	int numObjs = log(this->level) * 6 + 3;
 	if (numObjs > 200) numObjs = 200;
 
 	std::srand(time(0));  //inicializando seed aleatoria
