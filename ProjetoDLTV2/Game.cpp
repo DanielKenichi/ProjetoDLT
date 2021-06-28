@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <String>
 
-//AA
 
 // --> Construtor e Inicializadores <--
 Game::Game(){
@@ -15,7 +14,6 @@ Game::~Game(){
 	delete this->window;
 }
 
-// OI DANIEL
 
 /*
 * update():Atualiza os frames do jogo de acordo com cada estado:
@@ -86,12 +84,6 @@ void Game::update(float dt){
 	if (this->state == 3) {
 		std::cout << "Game Over" << std::endl;
 
-		this->hp = this->player.getHP();
-		//voltando variaveis ao estado inicial
-		this->inGame = false;
-		this->level = 1;
-		this->spawnTimer = sf::seconds(0.f);
-		
 		//esvaziando lista e fila
 		while (this->objects.isEmpty() == false) {
 			this->objects.removeObject();
@@ -99,6 +91,16 @@ void Game::update(float dt){
 		while (this->spawnedObjects.getNroElementos() != 0) {
 			this->spawnedObjects.removeObject();
 		}
+
+		this->hp = this->player.getHP();
+		this->player.updateAll(dt);
+
+		//voltando variaveis ao estado inicial
+		this->inGame = false;
+		this->level = 1;
+		this->spawnTimer = sf::seconds(0.f);
+		
+		
 
 		//condição de saida: Após confirmação do player, voltar para tela inicial
 		if (this->start == false) {
@@ -160,6 +162,7 @@ void Game::render(){
 	if (this->state == 3) {
 		//renderiza tela de Game over
 		this->renderGameOver();
+		this->player.renderAll(this->window);
 		this->window->display();
 	}
 
@@ -285,14 +288,20 @@ void Game::pollEvents(float dt){
 
 		if (this->ev.type == sf::Event::KeyPressed){
 			//movimento do player
-			if(ev.key.code == sf::Keyboard::Up || ev.key.code == sf::Keyboard::W){
-				player.rotateDirection('u', dt);
-			}else if(ev.key.code == sf::Keyboard::Right || ev.key.code == sf::Keyboard::D){
-				player.rotateDirection('r', dt);
-			}else if(ev.key.code == sf::Keyboard::Down  || ev.key.code == sf::Keyboard::S){
-				player.rotateDirection('d', dt);
-			}else if(ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::A){
-				player.rotateDirection('l', dt);
+			if (this->state == 2) {
+
+				if (ev.key.code == sf::Keyboard::Up || ev.key.code == sf::Keyboard::W) {
+					player.rotateDirection('u', dt);
+				}
+				else if (ev.key.code == sf::Keyboard::Right || ev.key.code == sf::Keyboard::D) {
+					player.rotateDirection('r', dt);
+				}
+				else if (ev.key.code == sf::Keyboard::Down || ev.key.code == sf::Keyboard::S) {
+					player.rotateDirection('d', dt);
+				}
+				else if (ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::A) {
+					player.rotateDirection('l', dt);
+				}
 			}
 
 			//start game
