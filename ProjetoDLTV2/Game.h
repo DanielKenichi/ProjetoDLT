@@ -48,6 +48,7 @@ private:
 	sf::Text tExtra;
 
 	//Texto de game over
+	sf::Text tInstrucaoGO;
 	sf::Text tGameover;
 	sf::Text tFinalScore;
 

@@ -138,6 +138,10 @@ void Game::render(){
 	//state 0 
 	if (this->state == 0){
 		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
+		this->window->draw(background);
+		sf::RectangleShape opaco(sf::Vector2f(videoMode.width, videoMode.height));
+		opaco.setFillColor(sf::Color(0,0,0,150));
+		this->window->draw(opaco);
 		this->renderInicial();
 		//renderiza mainScreen
 	}
@@ -263,7 +267,7 @@ void Game::initializeTexts(){
 	// Texto Final Score
 	tFinalScore = sf::Text{"Score: ", font, 32};
 	tFinalScore.setOrigin(tFinalScore.getLocalBounds().width/2.f, tFinalScore.getLocalBounds().height/2.f);
-	tFinalScore.setPosition(videoMode.width/2.f, videoMode.height/2.f);	
+	tFinalScore.setPosition(videoMode.width/2.f - 40, videoMode.height/2.f);	
 
 	// Texto Pause
 	tPause = sf::Text{"PAUSADO", font, 64};
@@ -279,6 +283,11 @@ void Game::initializeTexts(){
 	tExtra = sf::Text{L"2021 - Criado por Bruno L., Daniel K., Jo\u00e3o D.", font, 16};
 	tExtra.setOrigin(tExtra.getLocalBounds().width/2, tExtra.getLocalBounds().height/2);
 	tExtra.setPosition(videoMode.width/2.f, videoMode.height - 20);
+
+	// Texto Instrução GameOver
+	tInstrucaoGO = sf::Text{"Aperte Enter para reiniciar", font, 32};
+	tInstrucaoGO.setOrigin(tInstrucaoGO.getLocalBounds().width/2, tInstrucaoGO.getLocalBounds().height/2);
+	tInstrucaoGO.setPosition(videoMode.width/2.f, videoMode.height - tInstrucaoGO.getLocalBounds().height - 10);	
 
 }
 
@@ -501,6 +510,7 @@ void Game::renderGameOver(){
 	this->tFinalScore.setString("Score: " + std::to_string(this->score));
 	this->window->draw(tFinalScore);
 	this->window->draw(tGameover);
+	this->window->draw(tInstrucaoGO);
 }
 
 void Game::renderPause(){
