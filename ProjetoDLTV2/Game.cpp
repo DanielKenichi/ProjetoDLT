@@ -144,8 +144,6 @@ void Game::render(){
 	
 	//state 1
 	if (this->state == 1){
-		this->window->clear(sf::Color(19, 22, 28)); //limpa o frame antigo
-		this->window->clear(sf::Color::Red); //limpa o frame antigo
 		//renderiza uma tela de loading
 	}
 
