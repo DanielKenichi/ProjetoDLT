@@ -42,7 +42,7 @@ void Game::update(float dt){
 	}
 	//state 1
 	if (state == 1){
-		std::cout << "gerando objetos da fase: " << level <<  std::endl;
+		//std::cout << "gerando objetos da fase: " << level <<  std::endl;
 		this->pass = false;
 		initializeObjects(dt);
 
@@ -88,7 +88,7 @@ void Game::update(float dt){
 
 		//Passar a fase
 		else if (pass == true){
-			std::cout << "YAY passou" << std::endl;
+			//std::cout << "YAY passou" << std::endl;
 			level++;
 			inGame = false;
 			state = 1;

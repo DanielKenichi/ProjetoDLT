@@ -48,26 +48,9 @@ C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Game.cpp(362,31): warning C424
           [
               T=float
           ]
-  Object.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(69,20): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(75,27): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(123,12): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(125,12): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(127,12): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(130,12): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(133,12): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(139,34): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Object.cpp(141,34): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-  ObjectsList.cpp
-  ObjectsQueue.cpp
-  Player.cpp
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(112,20): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(119,21): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\L\source\repos\ProjetoDLTV2\ProjetoDLTV2\Player.cpp(130,54): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-  main.cpp
   Gerando código
-  11 of 250 functions ( 4.4%) were compiled, the rest were copied from previous compilation.
+  2 of 250 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+    18 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   ProjetoDLTV2.vcxproj -> C:\Users\L\source\repos\ProjetoDLTV2\Release\ProjetoDLTV2.exe
