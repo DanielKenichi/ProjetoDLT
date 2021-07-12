@@ -7,7 +7,7 @@ W/A/S/D ou ↑/←/↓/→ para controlar o personagem
 
 Esc para pausar
 
-Criado durante a disciplina de AED (ENPE 2020/2) da UFSCar sobre supervisão dos professores Ricardo Ferrari e Marcela Ribeiro.
+Criado durante a disciplina de AED (ENPE 2020/2, Maio 2020) da UFSCar sobre supervisão dos professores Ricardo Ferrari e Marcela Ribeiro.
 
 Utilizando a livraria de código aberto SFML
 
