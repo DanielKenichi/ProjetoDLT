@@ -11,6 +11,8 @@ Criado durante a disciplina de AED (ENPE 2020/2, Maio 2020) da UFSCar sobre supe
 
 Utilizando a livraria de código aberto SFML
 
+Atualizações futuras se encontram em: https://github.com/Mobuos/Me-OW
+
 Feito por:
 
 Bruno Leandro Pereira-
